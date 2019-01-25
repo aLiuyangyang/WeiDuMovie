@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_126"
+    android:layout_marginRight="@dimen/dp_20"
+    android:layout_height="@dimen/dp_164">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/hotshop_image"
+            android:background="@drawable/film_select"
+            android:layout_width="@dimen/dp_126"
+            fresco:roundedCornerRadius="@dimen/dp_8"
+            android:layout_height="@dimen/dp_164" />
+
+        <RelativeLayout
+            android:background="@drawable/dialog_rectangle_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentBottom="true"
+            >
+            <View
+                android:id="@+id/view1"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_width="@dimen/dp_3"
+                android:layout_height="@dimen/sp_18"
+                android:layout_centerVertical="true"
+                android:background="@drawable/show_filev"
+                />
+            <TextView
+                android:id="@+id/hotshop_name"
+                android:layout_toRightOf="@id/view1"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="ssss"
+                android:maxLines="1"
+                android:ellipsize="end"
+                />
+        </RelativeLayout>
+</RelativeLayout>

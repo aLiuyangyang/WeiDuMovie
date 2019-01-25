@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.logandregactivity.ShowActivity">
+    <FrameLayout
+        android:id="@+id/flPager"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+    <RadioGroup
+        android:paddingLeft="@dimen/dp_24"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rbFilm"
+            android:button="@null"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:background="@drawable/film_select"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/rbCinema"
+            android:button="@null"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/dp_50"
+            android:background="@drawable/cinema_select"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/rbMine"
+            android:button="@null"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/dp_50"
+            android:background="@drawable/mine_select"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+</RelativeLayout>
