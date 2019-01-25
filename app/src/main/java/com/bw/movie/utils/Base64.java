@@ -38,7 +38,7 @@ package com.bw.movie.utils;
  * @author Sandy Gao
  */
 public final class  Base64 {
-
+    //eee
     static private final int  BASELENGTH         = 128;
     static private final int  LOOKUPLENGTH       = 64;
     static private final int  TWENTYFOURBITGROUP = 24;
