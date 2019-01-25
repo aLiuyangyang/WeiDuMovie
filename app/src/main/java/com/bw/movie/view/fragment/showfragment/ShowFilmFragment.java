@@ -78,9 +78,10 @@ public class ShowFilmFragment extends BaseFragment {
         LinearLayoutManager linearLayoutManagerc=new LinearLayoutManager(getActivity());
         linearLayoutManagerc.setOrientation(OrientationHelper.HORIZONTAL);
         newShowingRecy.setLayoutManager(linearLayoutManagerc);
-        newShowingRecy.setAdapter(showFilm_newShowing_adapter);
         showFilm_newShowing_adapter = new ShowFilm_NewShowing_Adapter(getContext());
-        setGet(String.format(Constant.Coming_Path,page,count),ShowFile_ComingBean.class);
+        newShowingRecy.setAdapter(showFilm_newShowing_adapter);
+        /* setGet(String.format(Constant.Coming_Path,page,count),ShowFile_ComingBean.class);*/
+        setGet(Constant.Banner_Path, ShowFile_ComingBean.class);
         //即将上映
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
         linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
