@@ -4,7 +4,10 @@
     <style name="MyEditText" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">#6ccc</item>
         <item name="colorControlActivated">#6ccc</item>
+    </style>
 
-
+    <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 </resources>

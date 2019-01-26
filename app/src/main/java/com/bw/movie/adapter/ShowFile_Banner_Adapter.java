@@ -1,6 +1,7 @@
 package com.bw.movie.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,11 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.ShowFile_Banner_Info;
+import com.bw.movie.view.activity.DetailsActivity;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -53,13 +58,15 @@ public class ShowFile_Banner_Adapter extends RecyclerView.Adapter<ShowFile_Banne
         holder.image.setImageURI(parse);
         holder.text.setText(list.get(i).getName());
 
-        /*holder.image.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int layoutPosition = list.get(i).getId();
-                mOnItemClickListener.onItemClick(layoutPosition);
+                mContext.startActivity(new Intent(mContext, DetailsActivity.class));
+                EventBus.getDefault().postSticky(new EventBusMessage(list.get(i).getId()));
             }
-        });*/
+        });
+
+
 
     }
 
@@ -81,14 +88,4 @@ public class ShowFile_Banner_Adapter extends RecyclerView.Adapter<ShowFile_Banne
         }
     }
 
-   /* //接口回调
-    public interface OnItemClickListener{
-        void onItemClick(int position);
-    }
-
-    public OnItemClickListener mOnItemClickListener;
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
-        mOnItemClickListener = onItemClickListener;
-    }*/
 }

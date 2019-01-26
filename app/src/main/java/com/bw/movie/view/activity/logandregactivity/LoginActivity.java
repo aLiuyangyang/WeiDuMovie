@@ -2,8 +2,10 @@ package com.bw.movie.view.activity.logandregactivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +19,11 @@ import com.bw.movie.R;
 import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.utils.Constant;
+import com.bw.movie.utils.CustomClickListener;
 import com.bw.movie.utils.EncryptUtil;
+import com.bw.movie.utils.Loading_view;
 import com.bw.movie.utils.RegularUtil;
+import com.bw.movie.view.activity.MainActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,6 +57,7 @@ public class LoginActivity extends BaseActivity {
     private Unbinder bind;
     private SharedPreferences sharedPreferences;//存储
     private SharedPreferences.Editor edit;
+
     @Override
     public void initView() {
         bind = ButterKnife.bind(this);//控件绑定
@@ -108,6 +114,45 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });
+
+        loginBut.setOnClickListener(new CustomClickListener() {
+            @Override
+            protected void onSingleClick() {
+
+
+                String mPhone = loginPhone.getText().toString().trim();
+                String mPwd = loginPwd.getText().toString().trim();
+                if (loginRemember.isChecked()) {
+                    edit.putString("mPhone", mPhone);
+                    edit.putString("mPwd", mPwd);
+                    edit.putBoolean("Rem_check", true);
+                    edit.commit();
+                } else {
+                    edit.clear();
+                    edit.commit();
+                }
+                if (loginAuto.isChecked()) {
+                    edit.putBoolean("Auto_check", true);
+                    edit.commit();
+                }
+                if (mPhone.equals("") && mPwd.equals("")) {
+                    showToast("手机号或密码不能为空");
+                } else if (!RegularUtil.isMobile(mPhone)) {
+                    showToast("手机号格式错误");
+                } else if (!RegularUtil.isPassword(mPwd)) {
+                    showToast("密码错误");
+                } else {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("phone", mPhone);
+                    map.put("pwd", EncryptUtil.encrypt(mPwd));
+                    setPost(Constant.Login_Path, LoginBean.class, map);
+                }
+            }
+            @Override
+            protected void onFastClick() {
+                showLog("onFastClick");
+            }
+        });
     }
 
     @Override
@@ -144,37 +189,9 @@ public class LoginActivity extends BaseActivity {
                 Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 break;
-                //登录
-            case R.id.login_but:
-               String mPhone = loginPhone.getText().toString().trim();
-               String mPwd = loginPwd.getText().toString().trim();
-               if (loginRemember.isChecked()){
-                   edit.putString("mPhone",mPhone);
-                   edit.putString("mPwd",mPwd);
-                   edit.putBoolean("Rem_check",true);
-                   edit.commit();
-               }else {
-                   edit.clear();
-                   edit.commit();
-               }
-               if (loginAuto.isChecked()){
-                   edit.putBoolean("Auto_check",true);
-                   edit.commit();
-               }
-               if (mPhone.equals("")&&mPwd.equals("")){
-                   showToast("手机号或密码不能为空");
-               }else if (!RegularUtil.isMobile(mPhone)){
-                   showToast("手机号格式错误");
-               }else if (!RegularUtil.isPassword(mPwd)) {
-                   showToast("密码错误");
-               } else {
-                        Map<String, String> map = new HashMap<>();
-                        map.put("phone", mPhone);
-                        map.put("pwd", EncryptUtil.encrypt(mPwd));
-                        setPost(Constant.Login_Path, LoginBean.class, map);
-                        break;
+
             }
-        }
+
     }
 
     @Override

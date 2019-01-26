@@ -1,6 +1,7 @@
 package com.bw.movie.base;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bw.movie.R;
 import com.bw.movie.presenter.IPresenter;
+import com.bw.movie.utils.Loading_view;
 import com.bw.movie.view.IView;
 
 import java.util.Map;
@@ -25,6 +28,7 @@ import java.util.Map;
 public abstract class BaseFragment extends Fragment implements IView {
 
     private IPresenter mIPresenter;
+    private Loading_view loading;
 
     @Nullable
     @Override
@@ -61,6 +65,14 @@ public abstract class BaseFragment extends Fragment implements IView {
     }
 
     public void setGet(String url,Class clazz){
+       /* loading = new Loading_view(getContext(), R.style.CustomDialog);
+        loading.show();
+        new Handler().postDelayed(new Runnable() {//定义延时任务模仿网络请求
+            @Override
+            public void run() {
+                loading.dismiss();//3秒后调用关闭加载的方法
+            }
+        }, 3000);*/
         mIPresenter.setGetRequest(url,clazz);
     }
 
