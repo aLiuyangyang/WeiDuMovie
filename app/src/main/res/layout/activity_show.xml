@@ -13,32 +13,35 @@
     </FrameLayout>
 
     <RadioGroup
-        android:paddingLeft="@dimen/dp_24"
+        android:paddingLeft="@dimen/dp_20"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_90">
         <RadioButton
             android:id="@+id/rbFilm"
             android:button="@null"
-            android:checked="true"
+            android:layout_marginLeft="@dimen/dp_5"
             android:layout_width="wrap_content"
-            android:background="@drawable/film_select"
+            android:background="@drawable/show_film_select"
+            android:layout_marginTop="10dp"
             android:layout_height="wrap_content" />
         <RadioButton
             android:id="@+id/rbCinema"
             android:button="@null"
             android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_marginLeft="@dimen/dp_50"
-            android:background="@drawable/cinema_select"
+            android:background="@drawable/show_cinema_select"
             android:layout_height="wrap_content" />
         <RadioButton
             android:id="@+id/rbMine"
             android:button="@null"
             android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_marginLeft="@dimen/dp_50"
-            android:background="@drawable/mine_select"
+            android:background="@drawable/show_mine_select"
             android:layout_height="wrap_content" />
     </RadioGroup>
 </RelativeLayout>

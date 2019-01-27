@@ -1,4 +1,4 @@
-package com.bw.movie.adapter;
+package com.bw.movie.adapter.showfile_adapter;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bw.movie.R;
-import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.bean.ShowFile_NewShowingBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 

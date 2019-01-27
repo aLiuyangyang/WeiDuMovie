@@ -1,4 +1,4 @@
-package com.bw.movie.adapter;
+package com.bw.movie.adapter.showfile_adapter;
 
 import android.content.Context;
 import android.net.Uri;

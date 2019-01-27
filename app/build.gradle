@@ -27,6 +27,7 @@ configurations.all {
         }
     }
 }
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
@@ -49,5 +50,6 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.chenlittleping:recyclercoverflow:1.0.6'
     implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
 
 }

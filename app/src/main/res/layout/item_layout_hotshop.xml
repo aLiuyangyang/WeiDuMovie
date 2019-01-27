@@ -8,13 +8,12 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/hotshop_image"
-            android:background="@drawable/film_select"
             android:layout_width="@dimen/dp_126"
             fresco:roundedCornerRadius="@dimen/dp_8"
             android:layout_height="@dimen/dp_164" />
 
         <RelativeLayout
-            android:background="@drawable/dialog_rectangle_text"
+            android:background="@drawable/show_file_background"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
             android:layout_alignParentBottom="true"

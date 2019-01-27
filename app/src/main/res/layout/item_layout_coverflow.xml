@@ -25,6 +25,6 @@
             android:text="666"
             android:textColor="#ffffff"
             android:textSize="@dimen/sp_16"
-            android:background="@drawable/dialog_rectangle_text"/>
+            android:background="@drawable/show_file_background"/>
     </RelativeLayout>
 </LinearLayout>

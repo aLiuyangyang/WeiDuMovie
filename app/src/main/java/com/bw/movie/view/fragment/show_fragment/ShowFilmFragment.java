@@ -1,32 +1,30 @@
-package com.bw.movie.view.fragment.showfragment;
+package com.bw.movie.view.fragment.show_fragment;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
-import com.bw.movie.adapter.ShowFile_Banner_Adapter;
-import com.bw.movie.adapter.ShowFilm_Coming_Adapter;
-import com.bw.movie.adapter.ShowFilm_HotShop_Adapter;
-import com.bw.movie.adapter.ShowFilm_NewShowing_Adapter;
+import com.bw.movie.adapter.showfile_adapter.ShowFile_Banner_Adapter;
+import com.bw.movie.adapter.showfile_adapter.ShowFilm_Coming_Adapter;
+import com.bw.movie.adapter.showfile_adapter.ShowFilm_HotShop_Adapter;
+import com.bw.movie.adapter.showfile_adapter.ShowFilm_NewShowing_Adapter;
 import com.bw.movie.base.BaseFragment;
+import com.bw.movie.bean.ShowFile_Banner_Info;
 import com.bw.movie.bean.ShowFile_ComingBean;
 import com.bw.movie.bean.ShowFile_HotShopBean;
-import com.bw.movie.bean.ShowFile_Banner_Info;
 import com.bw.movie.bean.ShowFile_NewShowingBean;
 import com.bw.movie.utils.Constant;
-
-import java.util.List;
+import com.bw.movie.view.activity.showfileactivity.ShowFileAllActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import recycler.coverflow.RecyclerCoverFlow;
 
@@ -53,8 +51,15 @@ public class ShowFilmFragment extends BaseFragment {
     TextView originalSearch;
     @BindView(R.id.search_image)
     ImageView searchImage;
-     @BindView(R.id.recyc_flow)
+    @BindView(R.id.recyc_flow)
     RecyclerCoverFlow recycFlow;
+    @BindView(R.id.hotAll_HotFile)
+    ImageView hotAllHotFile;
+    @BindView(R.id.hotAll_IsHot)
+    ImageView hotAllIsHot;
+    @BindView(R.id.hotAll_Coming)
+    ImageView hotAllComing;
+    Unbinder unbinder1;
     private int page;//当前页数
     private int count = 10;//每页请求的数量;
     private ShowFilm_HotShop_Adapter showFilm_hotShop_adapter;
@@ -67,29 +72,29 @@ public class ShowFilmFragment extends BaseFragment {
     @Override
     public void initData(View view) {
         page = 1;
+        //轮播图
+        setGet(Constant.Banner_Path, ShowFile_Banner_Info.class);
         //热门电影
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         hotRecy.setLayoutManager(linearLayoutManager);
         showFilm_hotShop_adapter = new ShowFilm_HotShop_Adapter(getContext());
         hotRecy.setAdapter(showFilm_hotShop_adapter);
-        setGet(String.format(Constant.Hotfile_Path, page,count), ShowFile_HotShopBean.class);
+        setGet(String.format(Constant.Hotfile_Path, page, count), ShowFile_HotShopBean.class);
         //正在热映
-        LinearLayoutManager linearLayoutManagerc=new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManagerc = new LinearLayoutManager(getActivity());
         linearLayoutManagerc.setOrientation(OrientationHelper.HORIZONTAL);
         newShowingRecy.setLayoutManager(linearLayoutManagerc);
         showFilm_newShowing_adapter = new ShowFilm_NewShowing_Adapter(getContext());
         newShowingRecy.setAdapter(showFilm_newShowing_adapter);
-        /* setGet(String.format(Constant.Coming_Path,page,count),ShowFile_ComingBean.class);*/
         setGet(Constant.Banner_Path, ShowFile_ComingBean.class);
         //即将上映
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
-        linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
-        comingSooeRecy.setLayoutManager(linearLayoutManager1);
+        LinearLayoutManager linearLayoutManagerj = new LinearLayoutManager(getContext());
+        linearLayoutManagerj.setOrientation(LinearLayoutManager.HORIZONTAL);
+        comingSooeRecy.setLayoutManager(linearLayoutManagerj);
         showFilm_coming_adapter = new ShowFilm_Coming_Adapter(getContext());
         comingSooeRecy.setAdapter(showFilm_coming_adapter);
-        setGet(String.format(Constant.NWESHOWING_Path, page,count),ShowFile_NewShowingBean.class);
-
+        setGet(String.format(Constant.NWESHOWING_Path, page, count), ShowFile_NewShowingBean.class);
         //搜索
         originalSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,8 +120,8 @@ public class ShowFilmFragment extends BaseFragment {
 
             }
         });
-
     }
+
     @Override
     public int getContent() {
         return R.layout.fragment_show_film;
@@ -125,36 +130,54 @@ public class ShowFilmFragment extends BaseFragment {
     @Override
     public void success(Object data) {
         if (data instanceof ShowFile_HotShopBean) {
-                ShowFile_HotShopBean hotShopBean = (ShowFile_HotShopBean) data;
+            //热门
+            ShowFile_HotShopBean hotShopBean = (ShowFile_HotShopBean) data;
             if (hotShopBean.getStatus().equals("0000")) {
                 showFilm_hotShop_adapter.setMlist(hotShopBean.getResult());
-                setGet(Constant.Banner_Path, ShowFile_Banner_Info.class);
             }
-        }else if (data instanceof ShowFile_NewShowingBean){
-                ShowFile_NewShowingBean showFile_newShowingBean= (ShowFile_NewShowingBean) data;
-                if (showFile_newShowingBean.getStatus().equals("0000")){
-                    showFilm_newShowing_adapter.setLlist(showFile_newShowingBean.getResult());
-                }
-        } else if (data instanceof ShowFile_ComingBean){
-               ShowFile_ComingBean showFile_comingBean= (ShowFile_ComingBean) data;
-                if (showFile_comingBean.getStatus().equals("0000")){
-                showFilm_coming_adapter.setClist(showFile_comingBean.getResult());
+        } else if (data instanceof ShowFile_NewShowingBean) {
+            //正在上映
+            ShowFile_NewShowingBean showFile_newShowingBean = (ShowFile_NewShowingBean) data;
+            if (showFile_newShowingBean.getStatus().equals("0000")) {
+                showFilm_newShowing_adapter.setLlist(showFile_newShowingBean.getResult());
             }
         } else if (data instanceof ShowFile_Banner_Info) {
+            //即将上映
             ShowFile_Banner_Info showFile_banner_info = (ShowFile_Banner_Info) data;
-            List<ShowFile_Banner_Info.ResultBean> result = showFile_banner_info.getResult();
-            ShowFile_Banner_Adapter showFile_banner_adapter = new ShowFile_Banner_Adapter(getContext(), result);
+            showFilm_coming_adapter.setClist(showFile_banner_info.getResult());
+            ShowFile_Banner_Adapter showFile_banner_adapter = new ShowFile_Banner_Adapter(getContext(), showFile_banner_info.getResult());
             recycFlow.setAdapter(showFile_banner_adapter);
             recycFlow.smoothScrollToPosition(4);
         }
     }
+
     @Override
     public void fail(String error) {
-     showLog(error);
+        showLog(error);
     }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+    @OnClick({R.id.hotAll_HotFile, R.id.hotAll_IsHot, R.id.hotAll_Coming})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.hotAll_HotFile:
+                Intent intent=new Intent(getActivity(),ShowFileAllActivity.class);
+                intent.putExtra("flag",1);
+                startActivity(intent);
+                break;
+            case R.id.hotAll_IsHot:
+                Intent intenti=new Intent(getActivity(),ShowFileAllActivity.class);
+                intenti.putExtra("flag",2);
+                startActivity(intenti);
+                break;
+            case R.id.hotAll_Coming:
+                Intent intentc=new Intent(getActivity(),ShowFileAllActivity.class);
+                intentc.putExtra("flag",3);
+                startActivity(intentc);
+                break;
+        }
     }
 }

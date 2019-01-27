@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/dp_24"
+    android:background="#fff"
+    tools:context=".view.fragment.show_fragment.ShowCinemaFragment">
+    <include layout="@layout/include_layout"/>
+    <RadioGroup
+        android:id="@+id/radio"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RadioButton
+           android:id="@+id/but_recommend"
+           android:button="@null"
+           android:gravity="center"
+           android:text="推荐影院"
+           android:layout_marginRight="@dimen/dp_50"
+           android:layout_marginTop="@dimen/dp_70"
+           android:checked="true"
+           android:background="@drawable/show_cinema_bg"
+           android:textColor="@color/mycolor"
+           android:layout_marginLeft="@dimen/dp_40"
+           android:layout_width="@dimen/dp_83"
+           android:layout_height="@dimen/dp_25" />
+    <RadioButton
+        android:id="@+id/but_nearby"
+        android:text="附近影院"
+        android:button="@null"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_70"
+        android:background="@drawable/show_cinema_bg"
+        android:textColor="@color/mycolor"
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/dp_83"
+        android:layout_height="@dimen/dp_25" />
+    </RadioGroup>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/nearby_cinema_view"
+        android:layout_marginTop="@dimen/dp_110"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+</RelativeLayout>

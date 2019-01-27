@@ -1,6 +1,7 @@
-package com.bw.movie.view.fragment.showfragment;
+package com.bw.movie.view.fragment.allfile_fragment;
 
-
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,12 +11,7 @@ import android.view.ViewGroup;
 import com.bw.movie.R;
 import com.bw.movie.base.BaseFragment;
 
-/**
- * date:2019/1/24
- * author:刘洋洋(DELL)
- * function:
- */
-public class ShowMineFragment extends BaseFragment {
+public class IsHotFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
@@ -29,7 +25,7 @@ public class ShowMineFragment extends BaseFragment {
 
     @Override
     public int getContent() {
-        return R.layout.fragment_show_mine;
+        return R.layout.fragment_is_hot;
     }
 
     @Override
@@ -41,5 +37,4 @@ public class ShowMineFragment extends BaseFragment {
     public void fail(String error) {
 
     }
-
 }

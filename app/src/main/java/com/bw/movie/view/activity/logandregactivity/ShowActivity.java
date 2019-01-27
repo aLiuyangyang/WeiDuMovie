@@ -1,8 +1,8 @@
 package com.bw.movie.view.activity.logandregactivity;
 
-import android.os.Bundle;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -10,9 +10,9 @@ import android.widget.RadioButton;
 
 import com.bw.movie.R;
 import com.bw.movie.base.BaseActivity;
-import com.bw.movie.view.fragment.showfragment.ShowCinemaFragment;
-import com.bw.movie.view.fragment.showfragment.ShowFilmFragment;
-import com.bw.movie.view.fragment.showfragment.ShowMineFragment;
+import com.bw.movie.view.fragment.show_fragment.ShowCinemaFragment;
+import com.bw.movie.view.fragment.show_fragment.ShowFilmFragment;
+import com.bw.movie.view.fragment.show_fragment.ShowMineFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,16 +66,44 @@ public class ShowActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.rbFilm:
                 fragmentTransaction.replace(R.id.flPager,new ShowFilmFragment()).commit();
+                setAddAnimator(view);
+                setCutAnimator(rbCinema);
+                setCutAnimator(rbMine);
                 break;
             case R.id.rbCinema:
                 fragmentTransaction.replace(R.id.flPager,new ShowCinemaFragment()).commit();
+                setAddAnimator(view);
+                setCutAnimator(rbFilm);
+                setCutAnimator(rbMine);
                 break;
             case R.id.rbMine:
                 fragmentTransaction.replace(R.id.flPager,new ShowMineFragment()).commit();
+                setAddAnimator(view);
+                setCutAnimator(rbCinema);
+                setCutAnimator(rbFilm);
                 break;
                 default:break;
         }
     }
+    //点击放大
+    private void setAddAnimator(View view) {
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.17f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.17f);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(0);
+        animatorSet.playTogether(scaleX, scaleY);
+        animatorSet.start();
+    }
+    //点击缩小
+    private void setCutAnimator(View view) {
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(0);
+        animatorSet.playTogether(scaleX, scaleY);
+        animatorSet.start();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
