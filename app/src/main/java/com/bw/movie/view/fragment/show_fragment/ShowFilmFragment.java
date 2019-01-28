@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.bw.movie.adapter.ShowFilm_NewShowing_Adapter;
 import com.bw.movie.adapter.showfile_adapter.ShowFile_Banner_Adapter;
 import com.bw.movie.adapter.showfile_adapter.ShowFilm_Coming_Adapter;
 import com.bw.movie.adapter.showfile_adapter.ShowFilm_HotShop_Adapter;
-import com.bw.movie.adapter.showfile_adapter.ShowFilm_NewShowing_Adapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.ShowFile_Banner_Info;
 import com.bw.movie.bean.ShowFile_ComingBean;

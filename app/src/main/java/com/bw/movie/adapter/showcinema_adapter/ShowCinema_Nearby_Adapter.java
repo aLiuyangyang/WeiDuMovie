@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.ShowCinemaBean;
-import com.bw.movie.bean.ShowNearbyBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -28,7 +27,7 @@ import butterknife.ButterKnife;
  */
 public class ShowCinema_Nearby_Adapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder> {
 
-    private List<ShowNearbyBean.ResultBean> mlist;
+    private List<ShowCinemaBean.ResultBean> mlist;
     private Context context;
 
     public ShowCinema_Nearby_Adapter(Context context) {
@@ -36,14 +35,14 @@ public class ShowCinema_Nearby_Adapter extends XRecyclerView.Adapter<XRecyclerVi
         mlist = new ArrayList<>();
     }
 
-    public void setList(List<ShowNearbyBean.ResultBean> list) {
+    public void setList(List<ShowCinemaBean.ResultBean> list) {
         mlist.clear();
         mlist.addAll(list);
         notifyDataSetChanged();
 
     }
 
-    public void addList(List<ShowNearbyBean.ResultBean> list) {
+    public void addList(List<ShowCinemaBean.ResultBean> list) {
         mlist.addAll(list);
         notifyDataSetChanged();
     }

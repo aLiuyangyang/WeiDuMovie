@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/dp_24"
     android:background="#fff"
-    tools:context=".view.fragment.show_fragment.ShowCinemaFragment">
+    tools:context=".view.fragment.show_fragment.ShowCinemaFragment"
+    tools:ignore="MissingDefaultResource">
     <include layout="@layout/include_layout"/>
     <RadioGroup
         android:id="@+id/radio"

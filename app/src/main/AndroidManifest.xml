@@ -26,6 +26,7 @@
         <activity android:name=".view.activity.logandregactivity.GuideActivity" />
         <activity android:name=".view.activity.logandregactivity.ShowActivity" />
         <activity android:name=".view.activity.showfileactivity.ShowFileAllActivity"></activity>
+        <activity android:name=".view.activity.DetailsActivity"/>
     </application>
 
 </manifest>

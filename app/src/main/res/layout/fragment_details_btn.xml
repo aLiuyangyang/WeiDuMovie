@@ -4,16 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:layout_marginLeft="@dimen/dp_24"
         android:id="@+id/details_imagea"
         android:layout_width="@dimen/dp_130"
         android:layout_height="@dimen/dp_160" />
-
-
     <TextView
         android:id="@+id/details_name"
         android:layout_width="wrap_content"

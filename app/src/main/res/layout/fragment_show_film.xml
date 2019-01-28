@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.showfragment.ShowFilmFragment"
-    android:orientation="vertical">
+    tools:context=".view.fragment.show_fragment.ShowFilmFragment"
+    android:orientation="vertical"
+    android:background="#eeeeee">
     <ScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
@@ -19,11 +20,11 @@
                android:layout_height="@dimen/dp_250"
                android:background="@mipmap/beijing2">
 
-               <android.support.constraint.ConstraintLayout
+               <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                    android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="horizontal">
-
+                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                   android:orientation="horizontal"
+                   android:layout_height="wrap_content">
                    <ImageView
                        android:id="@+id/area_place"
                        android:layout_width="@dimen/dp_24"
@@ -34,7 +35,6 @@
                        app:layout_constraintLeft_toLeftOf="parent"
                        app:layout_constraintTop_toTopOf="parent"
                        />
-
                    <TextView
                        android:id="@+id/area_name"
                        android:layout_width="wrap_content"
@@ -87,7 +87,6 @@
                        />
                </android.support.constraint.ConstraintLayout>
 
-
            </RelativeLayout>
            <recycler.coverflow.RecyclerCoverFlow
                android:id="@+id/recyc_flow"
@@ -96,11 +95,9 @@
                android:layout_marginTop="@dimen/dp_85"
                android:layout_marginLeft="@dimen/dp_24"
                android:layout_marginRight="@dimen/dp_24">
-
            </recycler.coverflow.RecyclerCoverFlow>
 
-
-           <LinearLayout
+           <RelativeLayout
                android:id="@+id/hot"
                android:paddingLeft="@dimen/dp_24"
                android:layout_marginTop="@dimen/dp_330"
@@ -108,25 +105,36 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
                <TextView
-
+                   android:id="@+id/hfile"
                    android:text="热门电影"
                    android:textSize="@dimen/sp_16"
                    android:textColor="#333333"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content" />
+               <ImageView
+                   android:id="@+id/hotAll_HotFile"
+                   android:layout_alignParentRight="true"
+                   android:background="@mipmap/com_icon_next_default"
+                   android:layout_marginTop="@dimen/dp_8"
+                   android:layout_marginRight="@dimen/dp_24"
+                   android:layout_width="@dimen/dp_12"
+                   android:layout_height="@dimen/dp_14" />
                <View
-                   android:background="@drawable/show_file"
+                   android:id="@+id/hview"
+                   android:layout_below="@id/hfile"
+                   android:background="@drawable/show_fileh"
                    android:layout_marginTop="@dimen/dp_4"
                    android:layout_width="@dimen/dp_30"
                    android:layout_height="@dimen/dp_3"/>
                <android.support.v7.widget.RecyclerView
                    android:id="@+id/hotRecy"
+                   android:layout_below="@id/hview"
                    android:layout_marginTop="@dimen/sp_20"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-           </LinearLayout>
+           </RelativeLayout>
 
-           <LinearLayout
+           <RelativeLayout
                android:id="@+id/newshowing"
                android:layout_below="@id/hot"
                android:paddingLeft="@dimen/dp_24"
@@ -135,25 +143,36 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
                <TextView
-
+                   android:id="@+id/ntext"
                    android:text="正在热映"
                    android:textSize="@dimen/sp_16"
                    android:textColor="#333333"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content" />
+               <ImageView
+                   android:id="@+id/hotAll_IsHot"
+                   android:layout_alignParentRight="true"
+                   android:background="@mipmap/com_icon_next_default"
+                   android:layout_marginTop="@dimen/dp_8"
+                   android:layout_marginRight="@dimen/dp_24"
+                   android:layout_width="@dimen/dp_12"
+                   android:layout_height="@dimen/dp_14" />
                <View
-                   android:background="@drawable/show_file"
+                   android:id="@+id/nview"
+                   android:layout_below="@+id/ntext"
+                   android:background="@drawable/show_fileh"
                    android:layout_marginTop="@dimen/dp_4"
                    android:layout_width="@dimen/dp_30"
                    android:layout_height="@dimen/dp_3"/>
                <android.support.v7.widget.RecyclerView
                    android:id="@+id/newShowing_Recy"
+                   android:layout_below="@id/nview"
                    android:layout_marginTop="@dimen/sp_20"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content">
                </android.support.v7.widget.RecyclerView>
-           </LinearLayout>
-           <LinearLayout
+           </RelativeLayout>
+           <RelativeLayout
                android:layout_below="@id/newshowing"
                android:paddingLeft="@dimen/dp_24"
                android:layout_marginTop="@dimen/dp_20"
@@ -161,18 +180,30 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
                <TextView
+                   android:id="@+id/ctext"
                    android:text="即将上映"
                    android:textSize="@dimen/sp_16"
                    android:textColor="#333333"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content" />
+               <ImageView
+                   android:id="@+id/hotAll_Coming"
+                   android:layout_alignParentRight="true"
+                   android:background="@mipmap/com_icon_next_default"
+                   android:layout_marginTop="@dimen/dp_8"
+                   android:layout_marginRight="@dimen/dp_24"
+                   android:layout_width="@dimen/dp_12"
+                   android:layout_height="@dimen/dp_14" />
                <View
-                   android:background="@drawable/show_file"
+                   android:id="@+id/cview"
+                   android:layout_below="@+id/ctext"
+                   android:background="@drawable/show_fileh"
                    android:layout_marginTop="@dimen/dp_4"
                    android:layout_width="@dimen/dp_30"
                    android:layout_height="@dimen/dp_3"/>
                <android.support.v7.widget.RecyclerView
                    android:id="@+id/comingSooe_Recy"
+                   android:layout_below="@+id/cview"
                    android:layout_marginTop="@dimen/sp_20"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content">
@@ -180,11 +211,10 @@
 
                <TextView
                    android:layout_width="match_parent"
-                   android:layout_height="@dimen/dp_100"
-                   android:background="#fff"
+                   android:layout_height="@dimen/dp_90"
+                   android:layout_below="@+id/comingSooe_Recy"
                    />
-           </LinearLayout>
-
+           </RelativeLayout>
 
        </RelativeLayout>
    </ScrollView>

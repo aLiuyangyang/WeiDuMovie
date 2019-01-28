@@ -6,10 +6,8 @@ import android.view.View;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Nearby_Adapter;
-import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Recommend_Adapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.ShowCinemaBean;
-import com.bw.movie.bean.ShowNearbyBean;
 import com.bw.movie.utils.Constant;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -17,7 +15,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class Nearby_Fragment extends BaseFragment {
 
@@ -59,7 +56,7 @@ public class Nearby_Fragment extends BaseFragment {
                 load();
         }
         private void load() {
-                setGet(String.format(Constant.Nearby_Path,page),ShowNearbyBean.class);
+                setGet(String.format(Constant.Nearby_Path,page),ShowCinemaBean.class);
         }
 
         @Override
@@ -68,10 +65,10 @@ public class Nearby_Fragment extends BaseFragment {
         }
         @Override
         public void success(Object data) {
-                if (data instanceof ShowNearbyBean){
-                        ShowNearbyBean showCinemaBean= (ShowNearbyBean) data;
+                if (data instanceof ShowCinemaBean){
+                        ShowCinemaBean showCinemaBean= (ShowCinemaBean) data;
                         if (showCinemaBean.getStatus().equals("0000")){
-                                List<ShowNearbyBean.ResultBean> result = showCinemaBean.getResult();
+                                List<ShowCinemaBean.ResultBean> result = showCinemaBean.getResult();
                                 if (page==1){
                                         showCinema_adapter.setList(result);
                                 }else {

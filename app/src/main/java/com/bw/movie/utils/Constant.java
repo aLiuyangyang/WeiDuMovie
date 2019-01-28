@@ -25,9 +25,16 @@ public class Constant {
     public static String  NWESHOWING_Path="movie/v1/findComingSoonMovieList?page=%d&count=%d";
     public static String Coming_Path = "movie/v1/findReleaseMovieList?page=%d&count=%d";
 
+    //热门影院
+    public static String Recommend_Path="cinema/v1/findRecommendCinemas?page=%d&count=10";
+    //附近影院
+    public static String Nearby_Path="cinema/v1/findNearbyCinemas?page=%d&count=10";
     /*
     * 详情接口
     * */
     public static String Details_Path="movie/v1/findMoviesDetail?movieId=%d";
+    /*
+    *
+    * */
 
 }
