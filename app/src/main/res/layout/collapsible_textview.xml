@@ -13,7 +13,6 @@
         android:gravity="center_vertical"
         android:textSize="@dimen/sp_12" />
 
-    <!--可以灵活的将收藏的按钮至右 至左 居中  -->
     <TextView
         android:text="666"
         android:id="@+id/desc_op_tv"

@@ -6,7 +6,6 @@ import android.view.View;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Nearby_Adapter;
-import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Recommend_Adapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.ShowCinemaBean;

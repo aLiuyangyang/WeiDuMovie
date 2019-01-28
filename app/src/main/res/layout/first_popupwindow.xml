@@ -1,50 +1,18 @@
-<RelativeLayout
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:layout_marginLeft="@dimen/dp_24"
-        android:id="@+id/details_imagea"
-        android:layout_width="@dimen/dp_130"
-        android:layout_height="@dimen/dp_160" />
-    <TextView
-        android:id="@+id/details_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="666"
-        android:layout_marginLeft="@dimen/dp_180"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/sp_16" />
-
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_marginTop="@dimen/dp_40"
-        android:id="@+id/coordinator"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
+        android:layout_height="@dimen/dp_500"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/dialog_rectangle"
-        android:clipChildren="true">
-
-        <View
-            android:id="@+id/touch_outside"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:importantForAccessibility="no"
-            android:soundEffectsEnabled="true"
-            android:background="@drawable/dialog_rectangle"
-            tools:ignore="UnusedAttribute"/>
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_marginLeft="@dimen/dp_24"
-            android:layout_marginTop="-40dp"
-            android:id="@+id/details_image"
-            android:layout_width="@dimen/dp_130"
-            android:layout_height="@dimen/dp_160" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        >
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -58,7 +26,7 @@
                 android:layout_marginTop="20dp">
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/file_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -66,74 +34,74 @@
                     android:text="类型:" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/file_director"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView10"
+                    android:layout_below="@+id/file_type"
                     android:layout_marginTop="10dp"
                     android:textSize="@dimen/sp_12"
                     android:text="导演:" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/file_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView12"
+                    android:layout_below="@+id/file_director"
                     android:layout_marginTop="10dp"
                     android:textSize="@dimen/sp_12"
                     android:text="时长:" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/file_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView13"
+                    android:layout_below="@+id/file_time"
                     android:layout_marginTop="10dp"
                     android:textSize="@dimen/sp_12"
                     android:text="产地:" />
 
                 <TextView
-                    android:id="@+id/tv_film_intro_leixing"
+                    android:id="@+id/tv_film_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/textView10"
+                    android:layout_toEndOf="@+id/file_type"
                     android:textSize="@dimen/sp_12"
                     android:text="TextView"
-                    android:layout_toRightOf="@+id/textView10" />
+                    android:layout_toRightOf="@+id/file_type" />
 
                 <TextView
-                    android:id="@+id/tv_film_intro_daoyan"
+                    android:id="@+id/tv_film_director"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/tv_film_intro_leixing"
-                    android:layout_alignTop="@+id/textView12"
+                    android:layout_alignStart="@+id/tv_film_type"
+                    android:layout_alignTop="@+id/file_director"
                     android:textSize="@dimen/sp_12"
                     android:text="TextView"
-                    android:layout_alignLeft="@+id/tv_film_intro_leixing" />
+                    android:layout_alignLeft="@+id/file_director" />
 
                 <TextView
-                    android:id="@+id/tv_film_intro_time"
+                    android:id="@+id/tv_film_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/tv_film_intro_leixing"
-                    android:layout_alignTop="@+id/textView13"
+                    android:layout_alignStart="@+id/tv_film_director"
+                    android:layout_alignTop="@+id/file_time"
                     android:textSize="@dimen/sp_12"
                     android:text="TextView"
-                    android:layout_alignLeft="@+id/tv_film_intro_leixing" />
+                    android:layout_alignLeft="@+id/file_time" />
 
                 <TextView
-                    android:id="@+id/tv_film_intro_chandi"
+                    android:id="@+id/tv_film_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/tv_film_intro_leixing"
-                    android:layout_alignTop="@+id/textView14"
+                    android:layout_alignStart="@+id/tv_film_type"
+                    android:layout_alignTop="@+id/file_area"
                     android:textSize="@dimen/sp_12"
                     android:text="TextView"
-                    android:layout_alignLeft="@+id/tv_film_intro_leixing" />
+                    android:layout_alignLeft="@+id/tv_film_type" />
             </RelativeLayout>
 
             <ImageView
-                android:id="@+id/finish_xia"
+                android:id="@+id/finish_image"
                 android:layout_width="@dimen/dp_60"
                 android:layout_height="@dimen/dp_60"
                 android:layout_alignParentRight="true"
@@ -163,7 +131,7 @@
                 android:layout_marginTop="@dimen/dp_5" />
 
             <com.bw.movie.utils.CollapsibleTextView
-                android:id="@+id/juqing"
+                android:id="@+id/jianjie"
                 android:textSize="@dimen/sp_12"
                 android:layout_marginTop="@dimen/dp_10"
                 android:layout_width="match_parent"
@@ -210,24 +178,26 @@
 
             </LinearLayout>
 
-            <com.jcodecraeer.xrecyclerview.XRecyclerView
-                android:id="@+id/xingming_xrecyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </com.jcodecraeer.xrecyclerview.XRecyclerView>
+                <TextView
+                    android:id="@+id/file_stars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="徐峥"
+                    android:textSize="@dimen/sp_16"
+                    />
+
 
         </LinearLayout>
 
+    </RelativeLayout>
 
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/file_img"
+        android:layout_width="@dimen/dp_111"
+        android:layout_height="@dimen/dp_149"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/dp_40"
+        app:placeholderImage="@mipmap/bitmap"
+        />
 
-        <FrameLayout
-            android:id="@+id/design_bottom_sheet"
-            style="?attr/bottomSheetStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|top"
-            app:layout_behavior="@string/bottom_sheet_behavior"/>
-
-    </android.support.design.widget.CoordinatorLayout>
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
