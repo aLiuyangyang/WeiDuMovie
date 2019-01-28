@@ -6,7 +6,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.bigkoo.pickerview.TimePickerView;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.bw.movie.R;
 import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.LoginBean;
@@ -91,23 +93,35 @@ public class RegisterActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.reg_date:
-                TimePickerView pvTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+
+                final SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String date = sDateFormat.format(new java.util.Date());
+                String[] split = date.split("\\-");
+                //开始时间
+                Calendar startDate = Calendar.getInstance();
+                //结束时间
+                Calendar endDate = Calendar.getInstance();
+                startDate.set(Integer.valueOf(split[0])-99,0,1);
+                endDate.set(Integer.valueOf(split[0]),Integer.valueOf(split[1]),Integer.valueOf(split[2]));
+                TimePickerView pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {
-                        //转换时间格式
-                        Calendar startDate = Calendar.getInstance();
-                        startDate.set(1500,1,1);//设置起始年份
-                        Calendar endDate = Calendar.getInstance();
-                        endDate.set(2019,1,1);//设置结束年份
-                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");//精确到分钟
-                        String time = format.format(date);
+                        String time = sDateFormat.format(date);
                         regDate.setText(time+"");
                     }
                 })
-                        .setType(new boolean[]{true, true, true, false, false, false})// 默认全部显示
+                        .setType(new boolean[]{true, true, true, false, false, false})
+                        // 默认全部显示
                         .setCancelText("取消")
+                        //取消按钮文字
                         .setSubmitText("确定")
+                        //确认按钮文字
+                        .setOutSideCancelable(true)
+                        //点击屏幕，点在控件外部范围时，是否取消显示
+                        .setRangDate(startDate,endDate)
+                        //起始终止年月日设定
                         .isCenterLabel(false)
+                        //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                         .build();
                 pvTime.show();
                 break;

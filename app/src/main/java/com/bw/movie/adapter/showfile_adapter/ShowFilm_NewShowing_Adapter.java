@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
 /**
  * date:2019/1/25
  * author:刘洋洋(DELL)
- * function:热门电影
+ * function:正在热映
  */
 public class ShowFilm_NewShowing_Adapter extends RecyclerView.Adapter<ShowFilm_NewShowing_Adapter.ViewHolder> {
     private List<ShowFile_NewShowingBean.ResultBean> mlist;

@@ -1,6 +1,7 @@
 package com.bw.movie.adapter.showcinema_adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.ShowCinemaBean;
+import com.bw.movie.view.activity.showcinemaactivity.DetailsOfCinemaActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -56,14 +58,45 @@ public class ShowCinema_Recommend_Adapter extends XRecyclerView.Adapter<XRecycle
     }
 
     @Override
-    public void onBindViewHolder(@NonNull XRecyclerView.ViewHolder viewHolder, int i) {
-        ViewHolder rHolder= (ViewHolder) viewHolder;
+    public void onBindViewHolder(@NonNull XRecyclerView.ViewHolder viewHolder, final int i) {
+        final ViewHolder rHolder= (ViewHolder) viewHolder;
         rHolder.itemNameCinema.setText(mlist.get(i).getName());
         rHolder.itemAddrCinema.setText(mlist.get(i).getAddress());
+        if (mlist.get(i).getFollowCinema()==1){
+            rHolder.itemAttentionCinema.setImageResource(R.mipmap.com_icon_collection_selected);
+        }else {
+            rHolder.itemAttentionCinema.setImageResource(R.mipmap.com_icon_collection_default);
+        }
+        rHolder.itemDistanceCinema.setText(mlist.get(i).getDistance()+"km");
         Uri uri = Uri.parse(mlist.get(i).getLogo());
         rHolder.itemImageCinema.setImageURI(uri);
+        rHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,DetailsOfCinemaActivity.class);
+                intent.putExtra("id",mlist.get(i).getId());
+                context.startActivity(intent);
+            }
+        });
+        rHolder.itemAttentionCinema.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (attentLinener!=null) {
+                    attentLinener.setattent(mlist.get(i).getFollowCinema(), i, mlist.get(i).getId());
+                }
+            }
+        });
     }
-
+    //关注
+    public void add(int position){
+           mlist.get(position).setFollowCinema(1);
+            notifyDataSetChanged();
+    }
+    //取消
+    public void cancel(int position){
+            mlist.get(position).setFollowCinema(2);
+            notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return mlist.size();
@@ -84,5 +117,15 @@ public class ShowCinema_Recommend_Adapter extends XRecyclerView.Adapter<XRecycle
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
+    }
+
+   private AttentLinener attentLinener;
+
+    public void setAttentLinener(AttentLinener attentLinener) {
+        this.attentLinener = attentLinener;
+    }
+    public interface AttentLinener{
+        void setattent(int b,int position,int id);
+
     }
 }

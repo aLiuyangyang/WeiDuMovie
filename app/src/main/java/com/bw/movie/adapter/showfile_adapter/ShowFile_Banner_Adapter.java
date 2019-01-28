@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 /**
  * date:2019/1/25
  * author:孙佳鑫(孙佳鑫)
- * function:
+ * function:轮播图
  */
 public class ShowFile_Banner_Adapter extends RecyclerView.Adapter<ShowFile_Banner_Adapter.ViewHolder> {
 

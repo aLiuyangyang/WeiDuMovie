@@ -8,8 +8,8 @@ import com.bw.movie.R;
 import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Nearby_Adapter;
 import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Recommend_Adapter;
 import com.bw.movie.base.BaseFragment;
+import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.ShowCinemaBean;
-import com.bw.movie.bean.ShowNearbyBean;
 import com.bw.movie.utils.Constant;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -17,7 +17,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class Nearby_Fragment extends BaseFragment {
 
@@ -57,9 +56,21 @@ public class Nearby_Fragment extends BaseFragment {
                         }
                 });
                 load();
+                showCinema_adapter.setAttentLineners(new ShowCinema_Nearby_Adapter.AttentLineners() {
+                        @Override
+                        public void setattents(int b, int position, int id) {
+                                if(b==1){//取消
+                                        setGet(String.format(Constant.Unfollow_Path,id),AttentionBean.class);
+                                        showCinema_adapter.cancel(position);
+                                }else if(b == 2){//关注
+                                        setGet(String.format(Constant.Attention_Path,id),AttentionBean.class);
+                                        showCinema_adapter.add(position);
+                                }
+                        }
+                });
         }
         private void load() {
-                setGet(String.format(Constant.Nearby_Path,page),ShowNearbyBean.class);
+                setGet(String.format(Constant.Nearby_Path,page),ShowCinemaBean.class);
         }
 
         @Override
@@ -68,10 +79,10 @@ public class Nearby_Fragment extends BaseFragment {
         }
         @Override
         public void success(Object data) {
-                if (data instanceof ShowNearbyBean){
-                        ShowNearbyBean showCinemaBean= (ShowNearbyBean) data;
+                if (data instanceof ShowCinemaBean){
+                        ShowCinemaBean showCinemaBean= (ShowCinemaBean) data;
                         if (showCinemaBean.getStatus().equals("0000")){
-                                List<ShowNearbyBean.ResultBean> result = showCinemaBean.getResult();
+                                List<ShowCinemaBean.ResultBean> result = showCinemaBean.getResult();
                                 if (page==1){
                                         showCinema_adapter.setList(result);
                                 }else {
@@ -79,12 +90,20 @@ public class Nearby_Fragment extends BaseFragment {
                                 }
                                 page++;
                         }
+                }else if (data instanceof AttentionBean){
+                        AttentionBean attentionBean= (AttentionBean) data;
+                        if (attentionBean.getStatus().equals("0000")){
+                                showToast(attentionBean.getMessage());
+                        }else {
+                                showToast(attentionBean.getMessage());
+                                load();
+                        }
                 }
         }
 
         @Override
         public void fail(String error) {
-
+           showLog(error);
         }
 
 

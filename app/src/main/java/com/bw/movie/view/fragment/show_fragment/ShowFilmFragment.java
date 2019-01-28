@@ -10,13 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.bw.movie.adapter.ShowFilm_NewShowing_Adapter;
 import com.bw.movie.adapter.showfile_adapter.ShowFile_Banner_Adapter;
 import com.bw.movie.adapter.showfile_adapter.ShowFilm_Coming_Adapter;
 import com.bw.movie.adapter.showfile_adapter.ShowFilm_HotShop_Adapter;
-import com.bw.movie.adapter.showfile_adapter.ShowFilm_NewShowing_Adapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.ShowFile_Banner_Info;
-import com.bw.movie.bean.ShowFile_ComingBean;
 import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.bean.ShowFile_NewShowingBean;
 import com.bw.movie.utils.Constant;
@@ -73,7 +72,7 @@ public class ShowFilmFragment extends BaseFragment {
     public void initData(View view) {
         page = 1;
         //轮播图
-        setGet(Constant.Banner_Path, ShowFile_Banner_Info.class);
+        setGet(String.format(Constant.Banner_Path,page,count), ShowFile_Banner_Info.class);
         //热门电影
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -87,7 +86,7 @@ public class ShowFilmFragment extends BaseFragment {
         newShowingRecy.setLayoutManager(linearLayoutManagerc);
         showFilm_newShowing_adapter = new ShowFilm_NewShowing_Adapter(getContext());
         newShowingRecy.setAdapter(showFilm_newShowing_adapter);
-        setGet(Constant.Banner_Path, ShowFile_ComingBean.class);
+        setGet(String.format(Constant.Banner_Path,page,count), ShowFile_Banner_Info.class);
         //即将上映
         LinearLayoutManager linearLayoutManagerj = new LinearLayoutManager(getContext());
         linearLayoutManagerj.setOrientation(LinearLayoutManager.HORIZONTAL);

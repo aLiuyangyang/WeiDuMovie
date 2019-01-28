@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.activity.showcinemaactivity.DetailsOfCinemaActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_250"
+        android:background="@mipmap/beijing2">
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/dp_24"
+            android:paddingLeft="@dimen/dp_24"
+            android:paddingRight="@dimen/dp_24"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_80">
+            <com.facebook.drawee.view.SimpleDraweeView
+               android:id="@+id/details_image"
+               fresco:roundedCornerRadius="@dimen/dp_4"
+               android:layout_width="@dimen/dp_50"
+               android:layout_height="@dimen/dp_50" />
+            <TextView
+                android:id="@+id/details_name"
+                android:text="wewee"
+                android:textColor="#fff"
+                android:layout_toRightOf="@id/details_image"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textSize="@dimen/sp_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/com_icon_navigation_default"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30" />
+            <TextView
+                android:id="@+id/details_addr"
+                android:text="wewee"
+                android:textColor="#fff"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_60"
+                android:layout_toRightOf="@id/details_image"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textSize="@dimen/sp_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <recycler.coverflow.RecyclerCoverFlow
+        android:id="@+id/recyc_flow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_223"
+        android:layout_marginTop="@dimen/dp_115"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24"/>
+</RelativeLayout>

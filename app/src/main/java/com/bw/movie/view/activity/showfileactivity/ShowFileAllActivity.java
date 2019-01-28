@@ -133,7 +133,6 @@ public class ShowFileAllActivity extends BaseActivity {
     public void success(Object data) {
 
     }
-
     @Override
     public void fail(String error) {
 

@@ -77,7 +77,7 @@ public class HotFileFragment extends BaseFragment {
              }
              page++;
          }
-     }
+      }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.bw.movie.adapter;
+package com.bw.movie.adapter.showfile_adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +13,6 @@ import android.widget.TextView;
 import com.bw.movie.R;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.ShowFile_Banner_Info;
-import com.bw.movie.bean.ShowFile_ComingBean;
-import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.view.activity.DetailsActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -25,15 +23,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.http.POST;
 
 /**
  * date:2019/1/25
  * author:刘洋洋(DELL)
- * function:热门电影
+ * function:即将上映
  */
 public class ShowFilm_Coming_Adapter extends RecyclerView.Adapter<ShowFilm_Coming_Adapter.ViewHolder> {
-    private List<ShowFile_ComingBean.ResultBean> mlist;
+    private List<ShowFile_Banner_Info.ResultBean> mlist;
     private Context context;
 
     public ShowFilm_Coming_Adapter(Context context) {
@@ -41,24 +38,23 @@ public class ShowFilm_Coming_Adapter extends RecyclerView.Adapter<ShowFilm_Comin
         mlist=new ArrayList<>();
     }
 
-    public void setClist(List<ShowFile_ComingBean.ResultBean> list) {
+    public void setClist(List<ShowFile_Banner_Info.ResultBean> list) {
         this.mlist = list;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public ShowFilm_Coming_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view=LayoutInflater.from(context).inflate(R.layout.item_layout_hotshop,viewGroup,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ShowFilm_Coming_Adapter.ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         Uri parse = Uri.parse(mlist.get(i).getImageUrl());
         viewHolder.hotshop_image.setImageURI(parse);
         viewHolder.hotshop_name.setText(mlist.get(i).getName());
-
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,12 +62,14 @@ public class ShowFilm_Coming_Adapter extends RecyclerView.Adapter<ShowFilm_Comin
                 EventBus.getDefault().postSticky(new EventBusMessage(mlist.get(i).getId()));
             }
         });
-
     }
     @Override
     public int getItemCount() {
         return mlist.size();
     }
+
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.hotshop_image)
         SimpleDraweeView hotshop_image;

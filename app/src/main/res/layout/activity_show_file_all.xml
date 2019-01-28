@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:paddingLeft="@dimen/dp_24"
-    android:background="#fff"
     android:layout_height="match_parent"
     tools:context=".view.activity.showfileactivity.ShowFileAllActivity">
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -69,53 +68,58 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginRight="@dimen/dp_22" />
     </android.support.constraint.ConstraintLayout>
+
     <RadioGroup
         android:id="@+id/all_radio"
-        android:layout_marginTop="@dimen/dp_60"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <RadioButton
-        android:id="@+id/all_but_hotfile"
-        android:text="热门电影"
-        android:gravity="center"
-        android:button="@null"
-        android:elevation="@dimen/dp_3"
-        android:background="@drawable/show_cinema_bg"
-        android:textColor="@color/mycolor"
-        android:layout_below="@+id/constrain"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_width="@dimen/dp_83"
-        android:layout_height="@dimen/dp_25" />
-    <RadioButton
-        android:gravity="center"
-        android:id="@+id/all_but_ishot"
-        android:text="正在热映"
-        android:button="@null"
-        android:elevation="@dimen/dp_3"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:background="@drawable/show_cinema_bg"
-        android:textColor="@color/mycolor"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/constrain"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_width="@dimen/dp_83"
-        android:layout_height="@dimen/dp_25" />
-    <RadioButton
-        android:gravity="center"
-        android:id="@+id/all_but_Coming"
-        android:text="即将上映"
-        android:button="@null"
-        android:elevation="@dimen/dp_3"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:background="@drawable/show_cinema_bg"
-        android:textColor="@color/mycolor"
-        android:layout_marginRight="@dimen/dp_24"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/constrain"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_width="@dimen/dp_83"
-        android:layout_height="@dimen/dp_25" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/dp_60"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/all_but_hotfile"
+            android:layout_width="@dimen/dp_83"
+            android:layout_height="@dimen/dp_25"
+            android:layout_below="@+id/constrain"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/show_cinema_bg"
+            android:button="@null"
+            android:elevation="@dimen/dp_3"
+            android:gravity="center"
+            android:text="热门电影"
+            android:textColor="@color/mycolor" />
+
+        <RadioButton
+            android:id="@+id/all_but_ishot"
+            android:layout_width="@dimen/dp_83"
+            android:layout_height="@dimen/dp_25"
+            android:layout_below="@+id/constrain"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/show_cinema_bg"
+            android:button="@null"
+            android:elevation="@dimen/dp_3"
+            android:gravity="center"
+            android:text="正在热映"
+            android:textColor="@color/mycolor" />
+
+        <RadioButton
+            android:id="@+id/all_but_Coming"
+            android:layout_width="@dimen/dp_83"
+            android:layout_height="@dimen/dp_25"
+            android:layout_below="@+id/constrain"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_24"
+            android:background="@drawable/show_cinema_bg"
+            android:button="@null"
+            android:elevation="@dimen/dp_3"
+            android:gravity="center"
+            android:text="即将上映"
+            android:textColor="@color/mycolor" />
     </RadioGroup>
  <!--   <ImageView
         android:id="@+id/all_return"
