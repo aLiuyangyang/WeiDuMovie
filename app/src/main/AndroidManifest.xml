@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".utils.MyApp"
@@ -26,10 +28,12 @@
         <activity android:name=".view.activity.logandregactivity.GuideActivity" />
         <activity android:name=".view.activity.logandregactivity.ShowActivity" />
         <activity android:name=".view.activity.showfileactivity.ShowFileAllActivity" />
-        <activity android:name=".view.activity.showfileactivity.DetailsActivity" />
+        <activity android:name=".view.activity.DetailsActivity" />
         <activity android:name=".view.activity.showcinemaactivity.DetailsOfCinemaActivity" />
-        <activity android:name=".view.activity.showfileactivity.ChooseCinemaActivity" />
-        <activity android:name=".view.activity.showfileactivity.CooseClassActivity"></activity>
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true" />
+        <activity android:name=".view.activity.ChoseseatActivity"></activity>
     </application>
 
 </manifest>

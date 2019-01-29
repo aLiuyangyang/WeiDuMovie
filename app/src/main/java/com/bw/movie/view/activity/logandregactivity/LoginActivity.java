@@ -14,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.base.BaseActivity;
@@ -23,7 +24,9 @@ import com.bw.movie.utils.CustomClickListener;
 import com.bw.movie.utils.EncryptUtil;
 import com.bw.movie.utils.Loading_view;
 import com.bw.movie.utils.RegularUtil;
+import com.bw.movie.utils.WeiXinUtil;
 import com.bw.movie.view.activity.MainActivity;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -181,15 +184,27 @@ public class LoginActivity extends BaseActivity {
     public void fail(String error) {
        showLog(error);
     }
-    @OnClick({R.id.login_sign, R.id.login_but})
+    @OnClick({R.id.login_sign, R.id.login_but,R.id.login_weixin})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             //跳转到注册页面
             case R.id.login_sign:
                 Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
+                finish();
                 break;
-
+            case R.id.login_weixin:
+                //微信登录
+                if (!WeiXinUtil.success(this)) {
+                    showToast("请先安装应用");
+                } else {
+                    //  验证
+                    SendAuth.Req req = new SendAuth.Req();
+                    req.scope = "snsapi_userinfo";
+                    req.state = "wechat_sdk_demo_test";
+                    WeiXinUtil.reg(this).sendReq(req);
+                }
+                break;
             }
 
     }

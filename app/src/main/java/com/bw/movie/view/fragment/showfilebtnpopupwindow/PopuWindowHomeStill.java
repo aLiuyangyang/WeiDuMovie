@@ -1,9 +1,12 @@
 package com.bw.movie.view.fragment.showfilebtnpopupwindow;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,14 @@ import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 
 import com.bw.movie.R;
+import com.bw.movie.adapter.showfile_adapter.Show_File_ImageShow_Adapter;
+import com.bw.movie.bean.Details_Info;
+import com.bw.movie.utils.frescoutils.FrescoBitmapCallback;
+import com.bw.movie.utils.frescoutils.FrescoLoadUtil;
+import com.bw.movie.view.activity.DetailsActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PopuWindowHomeStill {
     private PopupWindow popupWindow;
@@ -19,9 +30,11 @@ public class PopuWindowHomeStill {
     private Context context;
     private ImageView mFinish_image;
     private RecyclerView mThird_recyclerview;
+    private Details_Info.ResultBean mResultBean;
 
-    public PopuWindowHomeStill(Context context) {
+    public PopuWindowHomeStill(Context context, Details_Info.ResultBean resultBean) {
         this.context = context;
+        mResultBean = resultBean;
     }
 
     public void bottomwindow(View view) {
@@ -49,6 +62,32 @@ public class PopuWindowHomeStill {
         mFinish_image = inflate.findViewById(R.id.finish_image);
         mThird_recyclerview = inflate.findViewById(R.id.third_recyclerview);
 
+        Show_File_ImageShow_Adapter show_file_imageShow_adapter = new Show_File_ImageShow_Adapter(context);
+        mThird_recyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        mThird_recyclerview.setAdapter(show_file_imageShow_adapter);
+
+        List<String> posterList = mResultBean.getPosterList();
+        final List<Bitmap> mlist = new ArrayList<>();
+        for (int i = 0; i < posterList.size(); i++) {
+            FrescoLoadUtil.getInstance().loadImageBitmap(posterList.get(i), new FrescoBitmapCallback<Bitmap>() {
+                @Override
+                public void onSuccess(Uri uri, Bitmap result) {
+                    mlist.add(result);
+                }
+
+                @Override
+                public void onFailure(Uri uri, Throwable throwable) {
+
+                }
+
+                @Override
+                public void onCancel(Uri uri) {
+
+                }
+            });
+
+        }
+        show_file_imageShow_adapter.setResultBeans(mlist);
 
         mFinish_image.setOnClickListener(new View.OnClickListener() {
             @Override

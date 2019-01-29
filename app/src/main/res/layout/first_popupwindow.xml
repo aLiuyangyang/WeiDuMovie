@@ -196,7 +196,7 @@
         android:layout_width="@dimen/dp_111"
         android:layout_height="@dimen/dp_149"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_24"
         app:placeholderImage="@mipmap/bitmap"
         />
 

@@ -66,6 +66,7 @@ public class PopuWindowForeshow {
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
+
             }
         });
     }
