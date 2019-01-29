@@ -40,14 +40,15 @@ public class Show_File_ImageShow_Adapter extends RecyclerView.Adapter<Show_File_
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View inflate = View.inflate(mContext, R.layout.item_fileshow_image, null);
+      /*  View inflate = View.inflate(mContext, R.layout.item_fileshow_image, null);
         ViewHolder viewHolder = new ViewHolder(inflate);
-        return viewHolder;
+        return viewHolder;*/
+      return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        List<String> image = mResultBeans.get(i).getPosterList();
+       /* List<String> image = mResultBeans.get(i).getPosterList();
 
 
             String s = image.get(0);
@@ -56,7 +57,7 @@ public class Show_File_ImageShow_Adapter extends RecyclerView.Adapter<Show_File_
         for (int j = 0; j < split.length; j++) {
             Glide.with(mContext).load(split[j]).into(viewHolder.mShow_image);
 
-        }
+        }*/
         //Glide.with(mContext).load(j).into(viewHolder.mShow_image);
 
     }

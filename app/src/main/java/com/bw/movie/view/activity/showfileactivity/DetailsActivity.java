@@ -1,11 +1,10 @@
-package com.bw.movie.view.activity;
+package com.bw.movie.view.activity.showfileactivity;
 
+import android.content.Intent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -23,10 +22,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DetailsActivity extends BaseActivity {
 
@@ -52,17 +50,21 @@ public class DetailsActivity extends BaseActivity {
     ImageView filmDetailsBack;
     @BindView(R.id.film_details_buy_ticket)
     Button filmDetailsBuyTicket;
+    @BindView(R.id.li4)
+    LinearLayout li4;
     private int movieId;
     private Details_Info.ResultBean mResult;
+    private String name;
 
     @Override
     public void initView() {
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
     }
+
     @Override
     public void initData() {
-        setGet(String.format(Constant.Details_Path,movieId),Details_Info.class);
+        setGet(String.format(Constant.Details_Path, movieId), Details_Info.class);
         filmDetailsBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +76,7 @@ public class DetailsActivity extends BaseActivity {
         filmDetailsHomeDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopuWindowDetails popuWindowDetails = new PopuWindowDetails(DetailsActivity.this,mResult);
+                PopuWindowDetails popuWindowDetails = new PopuWindowDetails(DetailsActivity.this, mResult);
                 popuWindowDetails.bottomwindow(linearlayout1);
             }
         });
@@ -82,7 +84,7 @@ public class DetailsActivity extends BaseActivity {
         filmDetailsHomeForeshow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopuWindowForeshow popuWindowForeshow = new PopuWindowForeshow(DetailsActivity.this,mResult);
+                PopuWindowForeshow popuWindowForeshow = new PopuWindowForeshow(DetailsActivity.this, mResult);
                 popuWindowForeshow.bottomwindow(linearlayout1);
             }
         });
@@ -116,9 +118,10 @@ public class DetailsActivity extends BaseActivity {
 
     @Override
     public void success(Object data) {
-        Details_Info details_info= (Details_Info) data;
+        Details_Info details_info = (Details_Info) data;
         mResult = details_info.getResult();
-        detailsTitle.setText(details_info.getResult().getName());
+        name = details_info.getResult().getName();
+        detailsTitle.setText(name);
         detailsPic.setImageURI(details_info.getResult().getImageUrl());
         detailsBackground.setImageURI(details_info.getResult().getImageUrl());
 
@@ -133,5 +136,13 @@ public class DetailsActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().isRegistered(this);
+    }
+    @OnClick(R.id.film_details_buy_ticket)
+    public void onViewClicked() {
+        Intent intent=new Intent(this,ChooseCinemaActivity.class);
+        intent.putExtra("movieId",movieId);
+        intent.putExtra("name",name);
+        startActivity(intent);
+
     }
 }

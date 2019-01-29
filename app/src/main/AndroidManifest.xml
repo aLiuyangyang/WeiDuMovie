@@ -26,8 +26,10 @@
         <activity android:name=".view.activity.logandregactivity.GuideActivity" />
         <activity android:name=".view.activity.logandregactivity.ShowActivity" />
         <activity android:name=".view.activity.showfileactivity.ShowFileAllActivity" />
-        <activity android:name=".view.activity.DetailsActivity" />
-        <activity android:name=".view.activity.showcinemaactivity.DetailsOfCinemaActivity"/>
+        <activity android:name=".view.activity.showfileactivity.DetailsActivity" />
+        <activity android:name=".view.activity.showcinemaactivity.DetailsOfCinemaActivity" />
+        <activity android:name=".view.activity.showfileactivity.ChooseCinemaActivity" />
+        <activity android:name=".view.activity.showfileactivity.CooseClassActivity"></activity>
     </application>
 
 </manifest>

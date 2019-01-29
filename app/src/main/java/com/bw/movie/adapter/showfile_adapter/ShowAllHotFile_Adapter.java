@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bw.movie.R;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.ShowFile_HotShopBean;
-import com.bw.movie.view.activity.DetailsActivity;
+import com.bw.movie.view.activity.showfileactivity.DetailsActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bw.movie.R;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.ShowFile_Banner_Info;
-import com.bw.movie.view.activity.DetailsActivity;
+import com.bw.movie.view.activity.showfileactivity.DetailsActivity;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.generic.RoundingParams;

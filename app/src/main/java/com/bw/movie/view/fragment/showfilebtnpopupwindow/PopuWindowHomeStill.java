@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,6 @@ import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 
 import com.bw.movie.R;
-import com.bw.movie.adapter.showfile_adapter.Show_File_ImageShow_Adapter;
-import com.bw.movie.bean.Details_Info;
-import com.bw.movie.view.activity.DetailsActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PopuWindowHomeStill {
     private PopupWindow popupWindow;
