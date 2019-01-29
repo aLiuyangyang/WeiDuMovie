@@ -55,8 +55,6 @@ public class PopuWindowDetails{
         popupWindow.showAtLocation(view, Gravity.LEFT | Gravity.BOTTOM, 0, -location[1]);
         //添加按键事件监听
         setButtonListeners(inflate);
-
-
     }
 
     private void setButtonListeners(ConstraintLayout inflate) {

@@ -75,7 +75,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/dp_60"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true">
 
         <RadioButton
             android:id="@+id/all_but_hotfile"

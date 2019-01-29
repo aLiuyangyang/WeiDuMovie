@@ -1,6 +1,7 @@
 package com.bw.movie.adapter.showfile_adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -25,16 +26,11 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
  */
 public class Show_File_ImageShow_Adapter extends RecyclerView.Adapter<Show_File_ImageShow_Adapter.ViewHolder> {
     Context mContext;
-    List<Details_Info.ResultBean> mResultBeans;
 
+    List<Bitmap>  imgs ;
     public Show_File_ImageShow_Adapter(Context context) {
         mContext = context;
-        mResultBeans=new ArrayList<>();
-    }
-
-    public void setResultBeans(List<Details_Info.ResultBean> resultBeans) {
-        mResultBeans = resultBeans;
-        notifyDataSetChanged();
+        imgs = new ArrayList<>();
     }
 
     @NonNull
@@ -47,23 +43,17 @@ public class Show_File_ImageShow_Adapter extends RecyclerView.Adapter<Show_File_
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        List<String> image = mResultBeans.get(i).getPosterList();
-
-
-            String s = image.get(0);
-            Pattern compile = Pattern.compile("\\,");
-            String[] split = compile.split(s);
-        for (int j = 0; j < split.length; j++) {
-            Glide.with(mContext).load(split[j]).into(viewHolder.mShow_image);
-
-        }
-        //Glide.with(mContext).load(j).into(viewHolder.mShow_image);
-
+        viewHolder.mShow_image.setImageBitmap(imgs.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return mResultBeans.size();
+        return imgs.size();
+    }
+
+    public void setResultBeans(List<Bitmap> mlist) {
+        imgs =mlist;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

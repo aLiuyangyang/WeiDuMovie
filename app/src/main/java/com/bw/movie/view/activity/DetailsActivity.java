@@ -90,7 +90,7 @@ public class DetailsActivity extends BaseActivity {
         filmDetailsHomeStill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopuWindowHomeStill popuWindowHomeStill = new PopuWindowHomeStill(DetailsActivity.this);
+                PopuWindowHomeStill popuWindowHomeStill = new PopuWindowHomeStill(DetailsActivity.this,mResult);
                 popuWindowHomeStill.bottomwindow(linearlayout1);
             }
         });

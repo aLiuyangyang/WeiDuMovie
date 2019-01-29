@@ -51,25 +51,25 @@ public class RetrofitManager<T> {
         builder.readTimeout(15, TimeUnit.SECONDS);
         builder.writeTimeout(15, TimeUnit.SECONDS);
         builder.addInterceptor(new Interceptor() {
-                                   @Override
-                                   public Response intercept(Chain chain) throws IOException {
-                                       Request request = chain.request();
-                                       SharedPreferences userMessage = MyApp.getApplication().getSharedPreferences("UserMessage", Context.MODE_PRIVATE);
-                                       String sessionId = userMessage.getString("sessionId", "");
-                                       String userId = userMessage.getString("userId", "");
-                                       Request.Builder newBuilder = request.newBuilder();
+           @Override
+           public Response intercept(Chain chain) throws IOException {
+           Request request = chain.request();
+           SharedPreferences userMessage = MyApp.getApplication().getSharedPreferences("UserMessage", Context.MODE_PRIVATE);
+           String sessionId = userMessage.getString("sessionId", "");
+           String userId = userMessage.getString("userId", "");
+           Request.Builder newBuilder = request.newBuilder();
 
-                                       newBuilder.method(request.method(),request.body());
+           newBuilder.method(request.method(),request.body());
 
-                                       if(!TextUtils.isEmpty(userId)&&!TextUtils.isEmpty(sessionId)){
-                                           newBuilder.addHeader("userId",userId);
-                                           newBuilder.addHeader("sessionId",sessionId);
-                                       }
-                                       Request request1 = newBuilder.build();
+           if(!TextUtils.isEmpty(userId)&&!TextUtils.isEmpty(sessionId)){
+               newBuilder.addHeader("userId",userId);
+               newBuilder.addHeader("sessionId",sessionId);
+           }
+           Request request1 = newBuilder.build();
 
-                                       return chain.proceed(request1);
-                                   }
-                               }
+           return chain.proceed(request1);
+        }
+   }
         );
         builder.retryOnConnectionFailure(true);
         OkHttpClient client = builder.build();

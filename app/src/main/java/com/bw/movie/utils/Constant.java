@@ -35,4 +35,8 @@ public class Constant {
     public static String Attention_Path="cinema/v1/verify/followCinema?cinemaId=%d";
     //取消关注
     public static String Unfollow_Path="cinema/v1/verify/cancelFollowCinema?cinemaId=%d";
+    public static String Weixin_Path="user/v1/weChatBindingLogin?code=%d";
+    public static String BDWeixin_Path="user/v1/verify/bindWeChat?userId=%d";
+    public static String SFWeixin_Path="user/v1/verify/whetherToBindWeChat?=%d";
+
 }
