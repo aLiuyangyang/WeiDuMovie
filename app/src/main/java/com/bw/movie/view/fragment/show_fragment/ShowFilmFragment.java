@@ -187,7 +187,7 @@ public class ShowFilmFragment extends BaseFragment {
             ShowFile_Banner_Adapter showFile_banner_adapter = new ShowFile_Banner_Adapter(getContext(), showFile_banner_info.getResult());
             recycFlow.setAdapter(showFile_banner_adapter);
             recycFlow.smoothScrollToPosition(4);
-            final ImageViewAnimationHelper imageViewAnimationHelper = new ImageViewAnimationHelper(getContext(), checkedLayout, 2, 30);
+            final ImageViewAnimationHelper imageViewAnimationHelper = new ImageViewAnimationHelper(getContext(), checkedLayout, 2, 31);
             recycFlow.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {
                 @Override
                 public void onItemSelected(int position) {

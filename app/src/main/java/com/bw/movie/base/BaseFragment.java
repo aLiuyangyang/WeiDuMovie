@@ -16,6 +16,7 @@ import com.bw.movie.presenter.IPresenter;
 import com.bw.movie.utils.Loading_view;
 import com.bw.movie.view.IView;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -65,18 +66,12 @@ public abstract class BaseFragment extends Fragment implements IView {
     }
 
     public void setGet(String url,Class clazz){
-       /* loading = new Loading_view(getContext(), R.style.CustomDialog);
-        loading.show();
-        new Handler().postDelayed(new Runnable() {//定义延时任务模仿网络请求
-            @Override
-            public void run() {
-                loading.dismiss();//3秒后调用关闭加载的方法
-            }
-        }, 3000);*/
+
         mIPresenter.setGetRequest(url,clazz);
     }
 
     public void setPost(String url, Class clazz, Map<String,String> map){
+
         mIPresenter.setRequest(url,clazz,map);
     }
 

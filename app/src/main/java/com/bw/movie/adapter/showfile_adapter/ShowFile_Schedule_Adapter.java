@@ -12,10 +12,12 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.MovieScheduleBean;
-import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
+import com.bw.movie.view.activity.ChoseseatActivity;
+import com.bw.movie.view.activity.logandregactivity.StartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,18 +51,23 @@ public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Sch
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         viewHolder.schedulePlayHall.setText(list.get(i).getScreeningHall());
         viewHolder.scheduleTimeEnd.setText(list.get(i).getEndTime());
         viewHolder.scheduleTimeStart.setText(list.get(i).getBeginTime());
         viewHolder.scheduleTimePrice.setText(list.get(i).getPrice() + "");
-        viewHolder.choseseat.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,ChoseseatActivity.class);
-                context.startActivity(intent);
+                if(mOnclickId!=null){
+                    mOnclickId.successed(list.get(i).getId(),list.get(i).getBeginTime(),
+                            list.get(i).getEndTime(),list.get(i).getScreeningHall()
+
+                            );
+                }
             }
         });
+
     }
 
     @Override
@@ -83,5 +90,15 @@ public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Sch
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface OnclickId{
+        void successed(int id,String scheduleTimeStart,String scheduleTimeEnd,String schedulePlayHall);
+    }
+
+    private OnclickId mOnclickId;
+
+    public void setOnclickId(OnclickId onclickId) {
+        mOnclickId = onclickId;
     }
 }
