@@ -9,9 +9,14 @@ import com.bw.movie.R;
 import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Recommend_Adapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.AttentionBean;
+import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.ShowCinemaBean;
 import com.bw.movie.utils.Constant;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,10 +29,12 @@ public class Recommend_Fragment extends BaseFragment {
         @BindView(R.id.recommend_cinema_xrecy)
         XRecyclerView recommendCinemaXrecy;
         private int page;//当前页数
+        private int mId1;
         private ShowCinema_Recommend_Adapter showCinema_adapter;
         @Override
         public void initView(View view) {
                 ButterKnife.bind(this,view);
+                EventBus.getDefault().register(this);
         }
 
         @Override
@@ -55,13 +62,15 @@ public class Recommend_Fragment extends BaseFragment {
                 });
                 load();
                 showCinema_adapter.setAttentLinener(new ShowCinema_Recommend_Adapter.AttentLinener() {
+
                         @Override
                         public void setattent(int b, int position, int id) {
+                                mId1 = getId();
                                 if(b==1){//取消
-                                setGet(String.format(Constant.Unfollow_Path,id),AttentionBean.class);
+                                setGet(String.format(Constant.Unfollow_Path,mId1),AttentionBean.class);
                                 showCinema_adapter.cancel(position);
                                 }else if(b == 2){//关注
-                                setGet(String.format(Constant.Attention_Path,id),AttentionBean.class);
+                                setGet(String.format(Constant.Attention_Path,mId1),AttentionBean.class);
                                 showCinema_adapter.add(position);
                                 }
                         }
@@ -75,7 +84,10 @@ public class Recommend_Fragment extends BaseFragment {
         public int getContent() {
                 return R.layout.fragment_recommend;
         }
-
+         @Subscribe(threadMode = ThreadMode.MAIN)
+         public void setLyy(EventBusMessage eventBusMessage){
+           setGet(String.format(Constant.Attention_Path,mId1),AttentionBean.class);
+         }
         @Override
         public void success(Object data) {
                 if (data instanceof ShowCinemaBean){
@@ -93,6 +105,8 @@ public class Recommend_Fragment extends BaseFragment {
                         AttentionBean attentionBean= (AttentionBean) data;
                         if (attentionBean.getStatus().equals("0000")){
                                showToast(attentionBean.getMessage());
+                               EventBus.getDefault().post(attentionBean);
+
                         }else {
                                 showToast(attentionBean.getMessage());
                                 load();
@@ -105,4 +119,9 @@ public class Recommend_Fragment extends BaseFragment {
 
         }
 
+        @Override
+        public void onDestroy() {
+                super.onDestroy();
+                EventBus.getDefault().unregister(this);
+        }
 }

@@ -12,6 +12,8 @@ import com.bw.movie.bean.ShowCinemaBean;
 import com.bw.movie.utils.Constant;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,7 +29,7 @@ public class Nearby_Fragment extends BaseFragment {
         @Override
         public void initView(View view) {
             ButterKnife.bind(this, view);
-                load();
+//            EventBus.getDefault().register(this);
         }
 
         @Override
@@ -58,11 +60,11 @@ public class Nearby_Fragment extends BaseFragment {
                 showCinema_adapter.setAttentLineners(new ShowCinema_Nearby_Adapter.AttentLineners() {
                         @Override
                         public void setattents(int b, int position, int id) {
-                                if(b==1){//取消
-                                        setGet(String.format(Constant.Unfollow_Path,id),AttentionBean.class);
+                                if (b == 1) {//取消
+                                        setGet(String.format(Constant.Unfollow_Path, id), AttentionBean.class);
                                         showCinema_adapter.cancel(position);
-                                }else if(b == 2){//关注
-                                        setGet(String.format(Constant.Attention_Path,id),AttentionBean.class);
+                                } else if (b == 2) {//关注
+                                        setGet(String.format(Constant.Attention_Path, id), AttentionBean.class);
                                         showCinema_adapter.add(position);
                                 }
                         }
@@ -89,14 +91,15 @@ public class Nearby_Fragment extends BaseFragment {
                                 }
                                 page++;
                         }
-                }else if (data instanceof AttentionBean){
-                        AttentionBean attentionBean= (AttentionBean) data;
-                        if (attentionBean.getStatus().equals("0000")){
-                                showToast(attentionBean.getMessage());
-                        }else {
-                                showToast(attentionBean.getMessage());
-                                load();
-                        }
+       }else if (data instanceof AttentionBean){
+            AttentionBean attentionBean= (AttentionBean) data;
+           if (attentionBean.getStatus().equals("0000")){
+             showToast(attentionBean.getMessage());
+                EventBus.getDefault().post(attentionBean);
+           }else {
+                showToast(attentionBean.getMessage());
+                load();
+                }
                 }
         }
 
@@ -105,5 +108,9 @@ public class Nearby_Fragment extends BaseFragment {
            showLog(error);
         }
 
-
+        @Override
+        public void onDestroy() {
+                super.onDestroy();
+                EventBus.getDefault().unregister(this);
+        }
 }

@@ -58,13 +58,18 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
     //抽取IView成功方法
     @Override
     public void successed(Object data) {
+
         success(data);
+        loading.dismiss();
     }
 
     //抽取IView失败方法
     @Override
     public void failed(String error) {
+
         fail(error);
+        loading.dismiss();
+        Toast.makeText(this, "没网了", Toast.LENGTH_SHORT).show();
     }
 
     //沉浸式状态栏

@@ -19,7 +19,6 @@ import com.bw.movie.adapter.showfile_adapter.Show_File_ImageShow_Adapter;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.utils.frescoutils.FrescoBitmapCallback;
 import com.bw.movie.utils.frescoutils.FrescoLoadUtil;
-import com.bw.movie.view.activity.DetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;

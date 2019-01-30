@@ -107,7 +107,7 @@
                android:id="@+id/parent_layout"
                android:layout_width="match_parent"
                android:layout_height="@dimen/dp_3"
-               android:background="#3333"
+               android:background="@drawable/bg_line_while"
                android:orientation="horizontal"
                android:layout_marginTop="@dimen/dp_10"
                android:layout_below="@+id/recyc_flow"
@@ -116,7 +116,7 @@
 
                <LinearLayout
                    android:id="@+id/checked_layout"
-                   android:layout_width="@dimen/dp_20"
+                   android:layout_width="@dimen/dp_21"
                    android:layout_height="@dimen/dp_3"
                    android:background="@drawable/bg_dividing_line_title"
                    android:gravity="center"

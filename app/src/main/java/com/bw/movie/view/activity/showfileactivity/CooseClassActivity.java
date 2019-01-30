@@ -13,6 +13,7 @@ import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.MovieScheduleBean;
 import com.bw.movie.utils.Constant;
+import com.bw.movie.view.activity.ChoseseatActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
@@ -42,6 +43,7 @@ public class CooseClassActivity extends BaseActivity {
     private int cinemasId;//影院id
     private String name, address;
     private ShowFile_Schedule_Adapter showFile_schedule_adapter;
+    private String mResultName;
 
     @Override
     public void initView() {
@@ -50,7 +52,7 @@ public class CooseClassActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         name = intent.getStringExtra("name");
         address = intent.getStringExtra("address");
         movieId = intent.getIntExtra("movieId", 0);
@@ -64,6 +66,25 @@ public class CooseClassActivity extends BaseActivity {
         showFile_schedule_adapter=new ShowFile_Schedule_Adapter(this);
         scheduleRecy.setAdapter(showFile_schedule_adapter);
         setGet(String.format(Constant.ChooseClass_Path,cinemasId,movieId),MovieScheduleBean.class);
+
+        showFile_schedule_adapter.setOnclickId(new ShowFile_Schedule_Adapter.OnclickId() {
+            @Override
+            public void successed(int id, String scheduleTimeStart, String scheduleTimeEnd, String schedulePlayHall) {
+                Intent intent1=new Intent(CooseClassActivity.this,ChoseseatActivity.class);
+                intent1.putExtra("movieId",movieId);
+                intent1.putExtra("cinemasId",cinemasId);
+                intent1.putExtra("Id",id);
+                intent1.putExtra("name",name);
+                intent1.putExtra("scheduleTimeStart",scheduleTimeStart);
+                intent1.putExtra("scheduleTimeEnd",scheduleTimeEnd);
+                intent1.putExtra("schedulePlayHall",schedulePlayHall);
+                intent1.putExtra("address",address);
+                intent1.putExtra("resultName",mResultName);
+                startActivity(intent1);
+            }
+
+        });
+
     }
 
     @Override
@@ -77,7 +98,8 @@ public class CooseClassActivity extends BaseActivity {
             Details_Info moviesByIdBean = (Details_Info) data;
             if (moviesByIdBean.getStatus().equals("0000")) {
                 Details_Info.ResultBean result = moviesByIdBean.getResult();
-                filmClassName.setText(result.getName());
+                mResultName = result.getName();
+                filmClassName.setText(mResultName);
                 filmClassType.setText("类型:" + result.getMovieTypes());
                 filmClassDirector.setText("导演： " + result.getDirector());
                 filmClassDuration.setText("时长： " + result.getDuration());
