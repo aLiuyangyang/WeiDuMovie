@@ -26,9 +26,6 @@ public class ChoseseatActivity extends BaseActivity {
     @BindView(R.id.cinema_seat_table_text_endTime)
     TextView mTextView_endTime;
 
-    @BindView(R.id.cinema_seat_table_text_hall)
-    TextView mTextView_hall;
-
     public SeatTable seatTableView;
     @Override
     public void initView() {
@@ -49,6 +46,7 @@ public class ChoseseatActivity extends BaseActivity {
             public boolean isValidSeat(int row, int column) {
                 if(column==2) {
                     return false;
+
                 }
                 return true;
             }

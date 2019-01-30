@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.MovieScheduleBean;
-import com.bw.movie.view.activity.ChoseseatActivity;
 import com.bw.movie.view.activity.logandregactivity.StartActivity;
 
 import java.util.ArrayList;
@@ -62,8 +61,7 @@ public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Sch
                 if(mOnclickId!=null){
                     mOnclickId.successed(list.get(i).getId(),list.get(i).getBeginTime(),
                             list.get(i).getEndTime(),list.get(i).getScreeningHall()
-
-                            );
+                    );
                 }
             }
         });

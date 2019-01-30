@@ -13,7 +13,6 @@ import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.MovieScheduleBean;
 import com.bw.movie.utils.Constant;
-import com.bw.movie.view.activity.ChoseseatActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
