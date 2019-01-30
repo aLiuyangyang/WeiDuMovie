@@ -12,9 +12,9 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
 /**
- * date:2019/1/26
+ * date:2019/1/29
  * author:刘洋洋(DELL)
- * function:
+ * function:自定义
  */
 public class Mine_Custom extends ScrollView {
     private static final String TAG = "BounceScrollView";

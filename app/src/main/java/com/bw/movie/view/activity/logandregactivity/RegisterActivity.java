@@ -1,6 +1,8 @@
 package com.bw.movie.view.activity.logandregactivity;
 
 import android.content.Intent;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +35,7 @@ import butterknife.Unbinder;
 /**
  * date:2019/1/25
  * author:刘洋洋(DELL)
- * function:
+ * function:注册页面
  */
 public class RegisterActivity extends BaseActivity {
     @BindView(R.id.reg_name)
@@ -80,6 +84,7 @@ public class RegisterActivity extends BaseActivity {
                 setPost(Constant.Login_Path, LoginBean.class, map);
                 Intent intent=new Intent(this,ShowActivity.class);
                 startActivity(intent);
+                finish();
             } else {
                 showToast(registerBean.getMessage());
             }
@@ -93,7 +98,6 @@ public class RegisterActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.reg_date:
-
                 final SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String date = sDateFormat.format(new java.util.Date());
                 String[] split = date.split("\\-");
@@ -140,11 +144,13 @@ public class RegisterActivity extends BaseActivity {
                     showToast("请填写正确的手机号");
                 }else if (!RegularUtil.isEmail(mEmil)){
                     showToast("请填写正确的邮箱格式");
-                }else {
+                }else if (!RegularUtil.isPassword(mPass)){
+                    showToast("密码不能有特殊符号");
+                } else {
                     map.put("nickName",mName);
                     map.put("phone", mPhone);
-                    map.put("pwd",EncryptUtil.encrypt(mPass));
-                    map.put("pwd2",EncryptUtil.encrypt(mPass));
+                    map.put("pwd",EncryptUtil.encrypt(mPass));//加密密码
+                    map.put("pwd2",EncryptUtil.encrypt(mPass));//加密密码
                     map.put("sex",sex+"");
                     map.put("birthday",mDtae);
                     map.put("email",mEmil);

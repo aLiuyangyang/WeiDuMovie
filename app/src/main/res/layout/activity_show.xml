@@ -22,26 +22,26 @@
         <RadioButton
             android:id="@+id/rbFilm"
             android:button="@null"
-            android:layout_marginLeft="@dimen/dp_5"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_width="@dimen/dp_60"
             android:background="@drawable/show_film_select"
             android:layout_marginTop="10dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="@dimen/dp_60" />
         <RadioButton
             android:id="@+id/rbCinema"
             android:button="@null"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp_60"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginLeft="@dimen/dp_50"
             android:background="@drawable/show_cinema_select"
-            android:layout_height="wrap_content" />
+            android:layout_height="@dimen/dp_60" />
         <RadioButton
             android:id="@+id/rbMine"
             android:button="@null"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp_60"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginLeft="@dimen/dp_50"
             android:background="@drawable/show_mine_select"
-            android:layout_height="wrap_content" />
+            android:layout_height="@dimen/dp_60" />
     </RadioGroup>
 </RelativeLayout>

@@ -88,10 +88,7 @@
                            android:layout_marginLeft="@dimen/dp_10"
                            android:textColor="#fff"/>
                    </LinearLayout>
-
-
                </RelativeLayout>
-
            </RelativeLayout>
            <recycler.coverflow.RecyclerCoverFlow
                android:id="@+id/recyc_flow"
@@ -101,8 +98,6 @@
                android:layout_marginLeft="@dimen/dp_24"
                android:layout_marginRight="@dimen/dp_24">
            </recycler.coverflow.RecyclerCoverFlow>
-
-
            <LinearLayout
                android:id="@+id/parent_layout"
                android:layout_width="match_parent"
@@ -113,7 +108,6 @@
                android:layout_below="@+id/recyc_flow"
                android:layout_marginLeft="@dimen/dp_24"
                android:layout_marginRight="@dimen/dp_24">
-
                <LinearLayout
                    android:id="@+id/checked_layout"
                    android:layout_width="@dimen/dp_20"

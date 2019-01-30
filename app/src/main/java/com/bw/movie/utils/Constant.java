@@ -31,10 +31,20 @@ public class Constant {
     public static String Details_Path="movie/v1/findMoviesDetail?movieId=%d";
     //查询电影信息明细
     public static String DetailsOfCinema_Path="cinema/v1/findCinemaInfo?cinemaId=%d";
-    //关注
+    //关注影院
     public static String Attention_Path="cinema/v1/verify/followCinema?cinemaId=%d";
-    //取消关注
+    //取消关注影院
     public static String Unfollow_Path="cinema/v1/verify/cancelFollowCinema?cinemaId=%d";
+    //关注影片
+    public static String Attentionmovie_Path="movie/v1/verify/followMovie?movieId=%d";
+    //取消关注影片
+    public static String Unfollowmovie_Path="movie/v1/verify/cancelFollowMovie?movieId=%d";
+    //根据电影id查看电影排期
+    public static String ChooseCinema_Path="movie/v1/findCinemasListByMovieId?movieId=%d";
+    //根据电影ID和影院ID查询电影排期列表
+    public static String ChooseClass_Path="movie/v1/findMovieScheduleList?cinemasId=%d&movieId=%d";
+    //根据电影ID查询电影信息
+    public static String MoviesById_Path="movie/v1/findMoviesById?movieId=%d";
     public static String Weixin_Path="user/v1/weChatBindingLogin?code=%d";
     public static String BDWeixin_Path="user/v1/verify/bindWeChat?userId=%d";
     public static String SFWeixin_Path="user/v1/verify/whetherToBindWeChat?=%d";

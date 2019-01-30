@@ -5,47 +5,73 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.bw.movie.R;
+import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Nearby_Adapter;
 import com.bw.movie.adapter.showfile_adapter.ShowAllHotFile_Adapter;
 import com.bw.movie.base.BaseFragment;
+import com.bw.movie.bean.AttentionBean;
+import com.bw.movie.bean.EventBusMessage;
+import com.bw.movie.bean.ShowCinemaBean;
 import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.utils.Constant;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+/**
+ * date:2019/1/27
+ * author:刘洋洋(DELL)
+ * function: 正在热映
+ */
 public class IsHotFragment extends BaseFragment {
 
     @BindView(R.id.all_ishot_xrecy)
     XRecyclerView allIshotXrecy;
     Unbinder unbinder;
+    @BindView(R.id.film_details_back)
+    ImageView filmDetailsBack;
+    Unbinder unbinder1;
     private int page;//当前页数
-    private int count=10;//数量
+    private int count = 10;//数量
     private ShowAllHotFile_Adapter showAllHotFile_adapter;
+
     @Override
     public void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void initData(View view) {
-        page=1;
+        filmDetailsBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+        page = 1;
         allIshotXrecy.setPullRefreshEnabled(true);
         allIshotXrecy.setLoadingMoreEnabled(true);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         allIshotXrecy.setLayoutManager(linearLayoutManager);
-        showAllHotFile_adapter=new ShowAllHotFile_Adapter(getActivity());
+        showAllHotFile_adapter = new ShowAllHotFile_Adapter(getActivity());
         allIshotXrecy.setAdapter(showAllHotFile_adapter);
         allIshotXrecy.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                page=1;
+                page = 1;
                 allIshotXrecy.refreshComplete();
                 load();
             }
+
             @Override
             public void onLoadMore() {
                 allIshotXrecy.loadMoreComplete();
@@ -53,10 +79,30 @@ public class IsHotFragment extends BaseFragment {
             }
         });
         load();
+        showAllHotFile_adapter.setAttentLineners(new ShowCinema_Nearby_Adapter.AttentLineners() {
+            @Override
+            public void setattents(int b, int position, int id) {
+                if(b==1){//取消
+                    setGet(String.format(Constant.Unfollowmovie_Path,id),AttentionBean.class);
+                    showAllHotFile_adapter.cancel(position);
+                }else if(b == 2){//关注
+                    setGet(String.format(Constant.Attentionmovie_Path,id),AttentionBean.class);
+                    showAllHotFile_adapter.add(position);
+                }
+            }
+        });
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void message(EventBusMessage eventBusMessage) {
+        if (eventBusMessage.getId() == 1){
+            page = 1;
+            setGet(String.format(Constant.Nearby_Path,page),ShowCinemaBean.class);
+        }
     }
     private void load() {
-        setGet(String.format(Constant.Banner_Path,page,count),ShowFile_HotShopBean.class);
+        setGet(String.format(Constant.Banner_Path, page, count), ShowFile_HotShopBean.class);
     }
+
     @Override
     public int getContent() {
         return R.layout.fragment_is_hot;
@@ -64,15 +110,24 @@ public class IsHotFragment extends BaseFragment {
 
     @Override
     public void success(Object data) {
-        if (data instanceof ShowFile_HotShopBean){
-            ShowFile_HotShopBean showFile_hotShopBean= (ShowFile_HotShopBean) data;
-            if (showFile_hotShopBean.getStatus().equals("0000")){
-                if (page==1){
+        if (data instanceof ShowFile_HotShopBean) {
+            ShowFile_HotShopBean showFile_hotShopBean = (ShowFile_HotShopBean) data;
+            if (showFile_hotShopBean.getStatus().equals("0000")) {
+                if (page == 1) {
                     showAllHotFile_adapter.setList(showFile_hotShopBean.getResult());
-                }else {
+                } else {
                     showAllHotFile_adapter.addList(showFile_hotShopBean.getResult());
                 }
                 page++;
+            }
+        }else if (data instanceof AttentionBean){
+            AttentionBean attentionBean= (AttentionBean) data;
+            if (attentionBean.getStatus().equals("0000")){
+                EventBus.getDefault().post(new EventBusMessage(1));
+                showToast(attentionBean.getMessage());
+            }else {
+                showToast(attentionBean.getMessage());
+                load();
             }
         }
     }
@@ -86,5 +141,6 @@ public class IsHotFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        EventBus.getDefault().unregister(this);
     }
 }

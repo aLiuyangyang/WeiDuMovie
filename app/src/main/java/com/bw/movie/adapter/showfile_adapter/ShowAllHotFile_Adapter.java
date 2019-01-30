@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Nearby_Adapter;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.view.activity.showfileactivity.DetailsActivity;
@@ -65,6 +66,11 @@ public class ShowAllHotFile_Adapter extends XRecyclerView.Adapter<XRecyclerView.
        holder.allHotBrief.setText("简介:  "+mlist.get(i).getSummary());
        Uri parse = Uri.parse(mlist.get(i).getImageUrl());
        holder.allHotImage.setImageURI(parse);
+        if (mlist.get(i).getFollowMovie()==1){
+            holder.allHotAttention.setImageResource(R.mipmap.com_icon_collection_selected);
+        }else {
+            holder.allHotAttention.setImageResource(R.mipmap.com_icon_collection_default);
+        }
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,8 +78,25 @@ public class ShowAllHotFile_Adapter extends XRecyclerView.Adapter<XRecyclerView.
                 EventBus.getDefault().postSticky(new EventBusMessage(mlist.get(i).getId()));
             }
         });
+        holder.allHotAttention.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (attentLineners!=null) {
+                    attentLineners.setattents(mlist.get(i).getFollowMovie(), i, mlist.get(i).getId());
+                }
+            }
+        });
     }
-
+    //关注
+    public void add(int position){
+        mlist.get(position).setFollowMovie(1);
+        notifyDataSetChanged();
+    }
+    //取消
+    public void cancel(int position){
+        mlist.get(position).setFollowMovie(2);
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return mlist.size();
@@ -92,5 +115,14 @@ public class ShowAllHotFile_Adapter extends XRecyclerView.Adapter<XRecyclerView.
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
+    }
+    private ShowCinema_Nearby_Adapter.AttentLineners attentLineners;
+
+    public void setAttentLineners(ShowCinema_Nearby_Adapter.AttentLineners attentLineners) {
+        this.attentLineners = attentLineners;
+    }
+    public interface AttentLineners{
+        void setattents(int b,int position,int id);
+
     }
 }

@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/dp_40"
     android:paddingLeft="@dimen/dp_40"
     tools:context=".view.activity.logandregactivity.RegisterActivity">
-    <EditText
+    <com.xw.repo.XEditText
         android:id="@+id/reg_name"
         android:layout_width="@dimen/dp_280"
         android:layout_height="wrap_content"
@@ -18,6 +18,7 @@
         android:hint="昵称"
         android:textColor="#eeeeee"
         android:textColorHint="#fff"
+        app:x_disableClear="true"
         android:theme="@style/MyEditText"
         android:textSize="@dimen/sp_16"
         />
@@ -30,6 +31,7 @@
         android:drawableLeft="@mipmap/register_icon_sex_default"
         android:drawablePadding="@dimen/dp_20"
         android:hint="性别"
+        android:digits="男女"
         android:textColor="#eeeeee"
         android:textColorHint="#fff"
         android:theme="@style/MyEditText"
@@ -58,13 +60,16 @@
         android:layout_width="@dimen/dp_280"
         android:layout_height="1dp"/>
     <EditText
+        android:maxLength="11"
         android:id="@+id/reg_phone"
         android:layout_below="@id/reg_date"
         android:layout_width="@dimen/dp_280"
+        android:inputType="number"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
         android:theme="@style/MyEditText"
         android:drawableLeft="@mipmap/reg_ohone"
+        android:digits="0123456789"
         android:drawablePadding="@dimen/dp_20"
         android:hint="手机号"
         android:textColor="#eeeeee"
@@ -80,6 +85,7 @@
         android:drawableLeft="@mipmap/register_icon_mail_default"
         android:drawablePadding="@dimen/dp_20"
         android:hint="邮箱"
+        android:digits="0123456789abcdefghigklmnopqrstuvwxyz@."
         android:textColor="#eeeeee"
         android:textColorHint="#fff"
         android:theme="@style/MyEditText"
@@ -95,6 +101,7 @@
         android:drawableLeft="@mipmap/register_lock_default_hdpi"
         android:drawablePadding="@dimen/dp_20"
         android:hint="登录密码"
+        android:digits="0123456789abcdefghigklmnopqrstuvwxyz."
         android:textColor="#eeeeee"
         android:textColorHint="#fff"
         android:textSize="@dimen/sp_16"

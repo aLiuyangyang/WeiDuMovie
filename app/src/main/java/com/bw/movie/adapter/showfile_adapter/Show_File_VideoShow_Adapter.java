@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.bw.movie.R;
 import com.bw.movie.bean.Details_Info;
-import com.bw.movie.view.activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;

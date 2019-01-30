@@ -23,7 +23,7 @@ import butterknife.Unbinder;
 /**
  * date:2019/1/25
  * author:刘洋洋(DELL)
- * function:
+ * function:影院页面
  */
 public class ShowCinemaFragment extends BaseFragment {
     @BindView(R.id.nearby_cinema_view)

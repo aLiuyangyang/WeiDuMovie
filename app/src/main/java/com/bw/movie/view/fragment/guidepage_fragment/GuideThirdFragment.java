@@ -14,7 +14,7 @@ import com.bw.movie.R;
 /**
  * date:2019/1/24
  * author:刘洋洋(DELL)
- * function:
+ * function:引导页三
  */
 public class GuideThirdFragment extends Fragment {
    @Nullable

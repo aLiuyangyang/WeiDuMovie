@@ -10,7 +10,7 @@ import com.bw.movie.R;
 /**
  * date:2019/1/24
  * author:刘洋洋(DELL)
- * function:
+ * function:启动页
  */
 public class StartActivity extends AppCompatActivity {
     int i=2;

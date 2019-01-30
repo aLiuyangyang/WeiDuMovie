@@ -128,11 +128,57 @@
     </RelativeLayout>
 
 
+
     <com.bw.movie.utils.SeatTable
         android:id="@+id/seatView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/dp_300"
         android:layout_marginTop="@dimen/dp_50"
         />
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="@dimen/dp_80"
+        android:background="@drawable/dialog_rectangle"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合计: ￥"
+            android:textSize="@dimen/dp_20"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_34"
+            />
+
+        <TextView
+            android:id="@+id/movie_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_30"
+            android:layout_gravity="center"
+            android:text="56.6"
+            android:textColor="#e8175e"
+            />
+
+        <ImageView
+            android:id="@+id/pay_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/group2"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_20"
+            />
+        <ImageView
+            android:id="@+id/pay_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/group3"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_10"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -17,7 +17,11 @@ import com.bw.movie.adapter.showfile_adapter.Show_File_VideoShow_Adapter;
 import com.bw.movie.bean.Details_Info;
 
 import java.util.List;
-
+/**
+ * date:2019/1/27
+ * author:孙佳鑫(DELL)
+ * function:
+ */
 public class PopuWindowForeshow {
     private PopupWindow popupWindow;
 

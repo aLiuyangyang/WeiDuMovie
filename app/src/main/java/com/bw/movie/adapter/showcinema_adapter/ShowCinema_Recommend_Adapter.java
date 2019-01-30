@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * date:2019/1/26
  * author:刘洋洋(DELL)
- * function:
+ * function:推荐影院
  */
 public class ShowCinema_Recommend_Adapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder> {
 

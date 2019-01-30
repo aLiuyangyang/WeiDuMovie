@@ -16,7 +16,11 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * date:2019/1/29
+ * author:刘洋洋(DELL)
+ * function:微信登录
+ */
 public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler {
 
     public static String code;

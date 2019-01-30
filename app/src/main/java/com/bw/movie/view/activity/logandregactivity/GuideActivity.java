@@ -26,7 +26,7 @@ import butterknife.Unbinder;
 /**
  * date:2019/1/24
  * author:刘洋洋(DELL)
- * function:
+ * function:引导页
  */
 public class GuideActivity extends BaseActivity {
     @BindView(R.id.guide_pager)
@@ -82,9 +82,6 @@ public class GuideActivity extends BaseActivity {
                     case 3:
                         editor.putInt("num",1);
                         editor.commit();
-                        Intent intent = new Intent(GuideActivity.this,LoginActivity.class);
-                        startActivity(intent);
-                        finish();
                         group.check(R.id.radio_fou);
                         break;
                     default:

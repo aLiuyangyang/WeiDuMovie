@@ -46,6 +46,10 @@ public class ShowActivity extends BaseActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.flPager,new ShowFilmFragment()).commit();
+        rbFilm.setChecked(true);
+        setAddAnimator(rbFilm);
+        setCutAnimator(rbCinema);
+        setCutAnimator(rbMine);
     }
 
     @Override

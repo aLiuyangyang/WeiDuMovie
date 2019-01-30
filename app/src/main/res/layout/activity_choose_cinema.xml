@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,14 +17,17 @@
          android:id="@+id/mChoose"
          android:textSize="@dimen/sp_10"
          android:textColor="#b11450"
+          android:layout_below="@id/mCinema_name"
           android:text="请选择合适的影院"
          android:layout_marginTop="@dimen/dp_10"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content" />
         <android.support.v7.widget.RecyclerView
+            android:layout_below="@id/mChoose"
             android:layout_marginTop="@dimen/dp_10"
             android:id="@+id/mCinema_recy"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+    <include layout="@layout/include_return"/>
+</RelativeLayout>

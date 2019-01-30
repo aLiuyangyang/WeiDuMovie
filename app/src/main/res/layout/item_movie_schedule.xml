@@ -27,7 +27,7 @@
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content">
         <TextView
-            android:text="234"
+            android:text="1号厅"
             android:textSize="@dimen/sp_12"
             android:textColor="#666666"
             android:id="@+id/schedule_Play_Hall"
@@ -45,7 +45,7 @@
                 android:id="@+id/schedule_Time_Start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="23232"
+                android:text="12:12"
                 android:textColor="#000"
                 android:textSize="@dimen/sp_20" />
 
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/schedule_Play_Hall"
                 android:layout_marginLeft="@dimen/dp_8"
-                android:text="23232"
+                android:text="12:32"
                 android:textSize="@dimen/sp_16" />
 
             <TextView
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/schedule_Time_Price"
-            android:text="￥"
+            android:text="0.23"
             android:textSize="@dimen/sp_28"
             android:textColor="#b11450"
             android:layout_alignParentRight="true"
@@ -94,6 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
+            android:id="@+id/choseseat"
             android:background="@mipmap/com_icon_next_default"
             android:layout_width="@dimen/dp_12"
             android:layout_alignParentRight="true"

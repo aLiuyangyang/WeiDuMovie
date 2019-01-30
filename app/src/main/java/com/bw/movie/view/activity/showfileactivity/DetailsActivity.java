@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.base.BaseActivity;
+import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.utils.Constant;
@@ -25,7 +26,11 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+/**
+ * date:2019/1/26
+ * author:孙佳鑫(DELL)
+ * function: 详情
+ */
 public class DetailsActivity extends BaseActivity {
 
     @BindView(R.id.movie_details_home_xin)
@@ -55,6 +60,9 @@ public class DetailsActivity extends BaseActivity {
     private int movieId;
     private Details_Info.ResultBean mResult;
     private String name;
+    private int b;
+    private int id;
+    private Details_Info details_info;
 
     @Override
     public void initView() {
@@ -104,6 +112,19 @@ public class DetailsActivity extends BaseActivity {
                 popuWindowFileReview.bottomwindow(linearlayout1);
             }
         });
+        movieDetailsHomeXin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(b==1){//取消
+                    setGet(String.format(Constant.Unfollow_Path,id),AttentionBean.class);
+                    details_info.getResult().setFollowMovie(2);
+                }else if(b == 2){//关注
+                    setGet(String.format(Constant.Attention_Path,id),AttentionBean.class);
+                    details_info.getResult().setFollowMovie(1);
+                }
+            }
+
+        });
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
@@ -118,24 +139,33 @@ public class DetailsActivity extends BaseActivity {
 
     @Override
     public void success(Object data) {
-        Details_Info details_info = (Details_Info) data;
-        mResult = details_info.getResult();
-        name = details_info.getResult().getName();
-        detailsTitle.setText(name);
-        detailsPic.setImageURI(details_info.getResult().getImageUrl());
-        detailsBackground.setImageURI(details_info.getResult().getImageUrl());
-
+        if (data instanceof Details_Info) {
+            details_info = (Details_Info) data;
+            id = details_info.getResult().getId();
+            mResult = details_info.getResult();
+            name = details_info.getResult().getName();
+            detailsTitle.setText(name);
+            detailsPic.setImageURI(details_info.getResult().getImageUrl());
+            detailsBackground.setImageURI(details_info.getResult().getImageUrl());
+            if (details_info.getResult().getFollowMovie() == 1) {
+                movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_selected);
+            } else {
+                movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_default);
+            }
+        }else if (data instanceof AttentionBean){
+            AttentionBean attentionBean= (AttentionBean) data;
+            if (attentionBean.getStatus().equals("0000")){
+                showToast(attentionBean.getMessage());
+            }else {
+                showToast(attentionBean.getMessage());
+                setGet(String.format(Constant.Details_Path, movieId), Details_Info.class);
+            }
+        }
     }
 
     @Override
     public void fail(String error) {
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().isRegistered(this);
     }
     @OnClick(R.id.film_details_buy_ticket)
     public void onViewClicked() {
@@ -144,5 +174,10 @@ public class DetailsActivity extends BaseActivity {
         intent.putExtra("name",name);
         startActivity(intent);
 
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().isRegistered(this);
     }
 }

@@ -5,22 +5,37 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.bw.movie.R;
+import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Nearby_Adapter;
 import com.bw.movie.adapter.showfile_adapter.ShowAllHotFile_Adapter;
 import com.bw.movie.base.BaseFragment;
+import com.bw.movie.bean.AttentionBean;
+import com.bw.movie.bean.EventBusMessage;
+import com.bw.movie.bean.ShowCinemaBean;
 import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.utils.Constant;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
+/**
+ * date:2019/1/27
+ * author:刘洋洋(DELL)
+ * function: 即将上映
+ */
 public class ComingFragment extends BaseFragment {
 
     @BindView(R.id.all_coming_xrecy)
     XRecyclerView allComingXrecy;
+    @BindView(R.id.film_details_back)
+    ImageView filmDetailsBack;
     Unbinder unbinder;
     private int page;//当前页数
     private int count=10;//数量
@@ -28,10 +43,17 @@ public class ComingFragment extends BaseFragment {
     @Override
     public void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void initData(View view) {
+        filmDetailsBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
         page=1;
         allComingXrecy.setPullRefreshEnabled(true);
         allComingXrecy.setLoadingMoreEnabled(true);
@@ -53,6 +75,26 @@ public class ComingFragment extends BaseFragment {
             }
         });
         load();
+        showAllHotFile_adapter.setAttentLineners(new ShowCinema_Nearby_Adapter.AttentLineners() {
+            @Override
+            public void setattents(int b, int position, int id) {
+                if(b==1){//取消
+                    setGet(String.format(Constant.Unfollowmovie_Path,id),AttentionBean.class);
+                    showAllHotFile_adapter.cancel(position);
+                }else if(b == 2){//关注
+                    setGet(String.format(Constant.Attentionmovie_Path,id),AttentionBean.class);
+                    showAllHotFile_adapter.add(position);
+                }
+            }
+        });
+
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void message(EventBusMessage eventBusMessage) {
+        if (eventBusMessage.getId() == 1){
+            page = 1;
+            setGet(String.format(Constant.Nearby_Path,page),ShowCinemaBean.class);
+        }
     }
     private void load() {
         setGet(String.format(Constant.NWESHOWING_Path,page,count),ShowFile_HotShopBean.class);
@@ -75,6 +117,15 @@ public class ComingFragment extends BaseFragment {
                 }
                 page++;
             }
+        }else if (data instanceof AttentionBean){
+            AttentionBean attentionBean= (AttentionBean) data;
+            if (attentionBean.getStatus().equals("0000")){
+                EventBus.getDefault().post(new EventBusMessage(1));
+                showToast(attentionBean.getMessage());
+            }else {
+                showToast(attentionBean.getMessage());
+                load();
+            }
         }
     }
 
@@ -86,5 +137,7 @@ public class ComingFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        EventBus.getDefault().unregister(this);
     }
+
 }

@@ -25,7 +25,6 @@ import com.bw.movie.utils.EncryptUtil;
 import com.bw.movie.utils.Loading_view;
 import com.bw.movie.utils.RegularUtil;
 import com.bw.movie.utils.WeiXinUtil;
-import com.bw.movie.view.activity.MainActivity;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 import java.util.HashMap;
@@ -38,7 +37,7 @@ import butterknife.Unbinder;
 /**
  * date:2019/1/24
  * author:刘洋洋(DELL)
- * function:
+ * function:登录页面
  */
 public class LoginActivity extends BaseActivity {
     @BindView(R.id.login_phone)
@@ -121,8 +120,6 @@ public class LoginActivity extends BaseActivity {
         loginBut.setOnClickListener(new CustomClickListener() {
             @Override
             protected void onSingleClick() {
-
-
                 String mPhone = loginPhone.getText().toString().trim();
                 String mPwd = loginPwd.getText().toString().trim();
                 if (loginRemember.isChecked()) {
@@ -147,7 +144,7 @@ public class LoginActivity extends BaseActivity {
                 } else {
                     Map<String, String> map = new HashMap<>();
                     map.put("phone", mPhone);
-                    map.put("pwd", EncryptUtil.encrypt(mPwd));
+                    map.put("pwd", EncryptUtil.encrypt(mPwd));//加密密码
                     setPost(Constant.Login_Path, LoginBean.class, map);
                 }
             }

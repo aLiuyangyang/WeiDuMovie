@@ -16,7 +16,11 @@ import com.bw.movie.R;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.utils.CollapsibleTextView;
 import com.facebook.drawee.view.SimpleDraweeView;
-
+/**
+ * date:2019/1/27
+ * author:孙佳鑫(DELL)
+ * function:
+ */
 public class PopuWindowDetails{
     private PopupWindow popupWindow;
 

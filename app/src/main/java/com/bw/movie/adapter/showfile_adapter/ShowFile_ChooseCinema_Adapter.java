@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * date:2019/1/28
  * author:刘洋洋(DELL)
- * function:
+ * function:选择影院
  */
 public class ShowFile_ChooseCinema_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

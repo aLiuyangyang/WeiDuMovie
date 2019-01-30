@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -17,9 +19,14 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * date:2019/1/27
+ * author:刘洋洋(DELL)
+ * function: 根据电影ID和影院ID查询电影排期列表
+ */
 public class CooseClassActivity extends BaseActivity {
-
+    @BindView(R.id.film_details_back)
+    ImageView filmDetailsBack;
     @BindView(R.id.cinema_class_name)
     TextView cinemaClassName;
     @BindView(R.id.cinema_class_addr)
@@ -50,6 +57,12 @@ public class CooseClassActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        filmDetailsBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         address = intent.getStringExtra("address");

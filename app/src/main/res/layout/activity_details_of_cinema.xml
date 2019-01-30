@@ -17,7 +17,7 @@
             android:paddingLeft="@dimen/dp_24"
             android:paddingRight="@dimen/dp_24"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_80">
+            android:layout_height="@dimen/dp_60">
             <com.facebook.drawee.view.SimpleDraweeView
                android:id="@+id/details_image"
                fresco:roundedCornerRadius="@dimen/dp_4"
@@ -52,10 +52,36 @@
 
     </RelativeLayout>
     <recycler.coverflow.RecyclerCoverFlow
-        android:id="@+id/recyc_flow"
+        android:id="@+id/cinema_recyc_flow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_223"
-        android:layout_marginTop="@dimen/dp_115"
+        android:layout_marginTop="@dimen/dp_100"
         android:layout_marginLeft="@dimen/dp_24"
         android:layout_marginRight="@dimen/dp_24"/>
+    <LinearLayout
+        android:id="@+id/parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_3"
+        android:background="#3333"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_below="@+id/cinema_recyc_flow"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24">
+        <LinearLayout
+            android:id="@+id/checked_layout"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_3"
+            android:background="@drawable/bg_dividing_line_title"
+            android:gravity="center"
+            android:orientation="horizontal"
+            ></LinearLayout>
+
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/dp_35"
+        android:layout_below="@id/cinema_recyc_flow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    <include layout="@layout/include_return"/>
 </RelativeLayout>

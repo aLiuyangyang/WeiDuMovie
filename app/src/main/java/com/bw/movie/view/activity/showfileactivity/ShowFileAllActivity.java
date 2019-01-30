@@ -20,7 +20,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * date:2019/1/26
+ * author:刘洋洋(DELL)
+ * function: 影片全部信息
+ */
 public class ShowFileAllActivity extends BaseActivity {
     @BindView(R.id.all_but_hotfile)
     RadioButton allButHotfile;

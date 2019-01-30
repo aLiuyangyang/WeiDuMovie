@@ -1,15 +1,18 @@
 package com.bw.movie.adapter.showfile_adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.MovieScheduleBean;
+import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,7 @@ import butterknife.ButterKnife;
  * function:
  */
 public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Schedule_Adapter.ViewHolder> {
+
 
     private List<MovieScheduleBean.ResultBean> list;
     private Context context;
@@ -46,11 +50,17 @@ public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Sch
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-      viewHolder.schedulePlayHall.setText(list.get(i).getScreeningHall());
-      viewHolder.scheduleTimeEnd.setText(list.get(i).getEndTime());
-      viewHolder.scheduleTimeStart.setText(list.get(i).getBeginTime());
-      viewHolder.scheduleTimePrice.setText(list.get(i).getPrice()+"");
-
+        viewHolder.schedulePlayHall.setText(list.get(i).getScreeningHall());
+        viewHolder.scheduleTimeEnd.setText(list.get(i).getEndTime());
+        viewHolder.scheduleTimeStart.setText(list.get(i).getBeginTime());
+        viewHolder.scheduleTimePrice.setText(list.get(i).getPrice() + "");
+        viewHolder.choseseat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,ChoseseatActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -67,9 +77,11 @@ public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Sch
         TextView scheduleTimeEnd;
         @BindView(R.id.schedule_Time_Price)
         TextView scheduleTimePrice;
+        @BindView(R.id.choseseat)
+        ImageView choseseat;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

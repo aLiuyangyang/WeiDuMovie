@@ -1,4 +1,4 @@
-package com.bw.movie.view.activity;
+package com.bw.movie.view.activity.showfileactivity;
 
 import android.widget.TextView;
 
@@ -13,7 +13,11 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * date:2019/1/28
+ * author:孙佳鑫(DELL)
+ * function: 选座
+ */
 public class ChoseseatActivity extends BaseActivity {
 
     @BindView(R.id.cinema_seat_table_text_beginTime)
@@ -34,7 +38,6 @@ public class ChoseseatActivity extends BaseActivity {
     @Override
     public void initData() {
         ButterKnife.bind(this);
-       //  EventBus.getDefault().register(this);
 
         seatTableView = (SeatTable) findViewById(R.id.seatView);
         seatTableView.setScreenName("8号厅荧幕");//设置屏幕名称
@@ -79,15 +82,6 @@ public class ChoseseatActivity extends BaseActivity {
 
     }
 
-   /* @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
-    public void sjx(CinemaSeatTableDetailBean detailsBean){
-
-        mTextView_beginTime.setText(detailsBean.getBeginTime());
-        mTextView_endTime.setText(detailsBean.getEndTime());
-        mTextView_hall.setText(detailsBean.getHall());
-        int seatsTotal = detailsBean.getSeatsTotal();
-
-    }*/
 
     @Override
     public int getContent() {

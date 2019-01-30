@@ -7,7 +7,7 @@ package com.bw.movie.bean;
  */
 public class EventBusMessage {
 
-    public final int id;
+    private int id;
 
     public EventBusMessage(int id) {
         this.id = id;
@@ -17,4 +17,7 @@ public class EventBusMessage {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 }

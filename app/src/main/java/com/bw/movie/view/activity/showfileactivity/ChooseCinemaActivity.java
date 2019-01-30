@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -15,10 +17,16 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ * date:2019/1/27
+ * author:刘洋洋(DELL)
+ * function: 选择影院
+ */
 public class ChooseCinemaActivity extends BaseActivity {
     @BindView(R.id.mCinema_name)
     TextView mCinemaName;
+    @BindView(R.id.film_details_back)
+    ImageView filmDetailsBack;
     @BindView(R.id.mCinema_recy)
     RecyclerView mCinemarecy;
     private ShowFile_ChooseCinema_Adapter showFile_chooseCinema_adapter;
@@ -32,6 +40,12 @@ public class ChooseCinemaActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        filmDetailsBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         final Intent intent = getIntent();
         movieId = intent.getIntExtra("movieId",0);
         name = intent.getStringExtra("name");

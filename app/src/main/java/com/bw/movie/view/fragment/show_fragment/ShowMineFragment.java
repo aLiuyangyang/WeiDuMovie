@@ -9,7 +9,7 @@ import com.bw.movie.base.BaseFragment;
 /**
  * date:2019/1/24
  * author:刘洋洋(DELL)
- * function:
+ * function:我的页面
  */
 public class ShowMineFragment extends BaseFragment {
 

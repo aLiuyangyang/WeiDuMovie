@@ -2,13 +2,10 @@ package com.bw.movie.view.fragment.show_fragment;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,7 +24,7 @@ import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.bean.ShowFile_NewShowingBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.utils.ImageViewAnimationHelper;
-import com.bw.movie.view.activity.ChoseseatActivity;
+import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
 import com.bw.movie.view.activity.showfileactivity.ShowFileAllActivity;
 
 import butterknife.BindView;
@@ -39,7 +36,7 @@ import recycler.coverflow.RecyclerCoverFlow;
 
 /**
  * date:2019/1/25
- * author:刘洋洋(DELL)
+ * author:刘洋洋,孙佳鑫(DELL)
  * function:影片展示
  */
 public class ShowFilmFragment extends BaseFragment {
@@ -160,7 +157,6 @@ public class ShowFilmFragment extends BaseFragment {
         areaPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(),ChoseseatActivity.class));
             }
         });
     }
