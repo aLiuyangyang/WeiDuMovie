@@ -24,6 +24,7 @@ import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.bean.ShowFile_NewShowingBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.utils.ImageViewAnimationHelper;
+import com.bw.movie.view.activity.AreaActivity;
 import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
 import com.bw.movie.view.activity.showfileactivity.ShowFileAllActivity;
 
@@ -114,21 +115,20 @@ public class ShowFilmFragment extends BaseFragment {
         hotRecy.setLayoutManager(linearLayoutManager);
         showFilm_hotShop_adapter = new ShowFilm_HotShop_Adapter(getContext());
         hotRecy.setAdapter(showFilm_hotShop_adapter);
-        setGet(String.format(Constant.Hotfile_Path, page, count), ShowFile_HotShopBean.class);
-        //正在热映
+       //正在热映
         LinearLayoutManager linearLayoutManagerc = new LinearLayoutManager(getActivity());
         linearLayoutManagerc.setOrientation(OrientationHelper.HORIZONTAL);
         newShowingRecy.setLayoutManager(linearLayoutManagerc);
         showFilm_newShowing_adapter = new ShowFilm_NewShowing_Adapter(getContext());
         newShowingRecy.setAdapter(showFilm_newShowing_adapter);
-        setGet(String.format(Constant.Banner_Path, page, count), ShowFile_Banner_Info.class);
+        //setGet(String.format(Constant.Banner_Path, page, count), ShowFile_Banner_Info.class);
         //即将上映
         LinearLayoutManager linearLayoutManagerj = new LinearLayoutManager(getContext());
         linearLayoutManagerj.setOrientation(LinearLayoutManager.HORIZONTAL);
         comingSooeRecy.setLayoutManager(linearLayoutManagerj);
         showFilm_coming_adapter = new ShowFilm_Coming_Adapter(getContext());
         comingSooeRecy.setAdapter(showFilm_coming_adapter);
-        setGet(String.format(Constant.NWESHOWING_Path, page, count), ShowFile_NewShowingBean.class);
+
         //搜索
         fileSearchImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +157,7 @@ public class ShowFilmFragment extends BaseFragment {
         areaPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getContext(),AreaActivity.class));
             }
         });
     }
@@ -174,6 +175,7 @@ public class ShowFilmFragment extends BaseFragment {
             if (hotShopBean.getStatus().equals("0000")) {
                 showFilm_hotShop_adapter.setMlist(hotShopBean.getResult());
             }
+            setGet(String.format(Constant.NWESHOWING_Path, page, count), ShowFile_NewShowingBean.class);
         } else if (data instanceof ShowFile_NewShowingBean) {
             //正在上映
             ShowFile_NewShowingBean showFile_newShowingBean = (ShowFile_NewShowingBean) data;
@@ -194,6 +196,8 @@ public class ShowFilmFragment extends BaseFragment {
                     imageViewAnimationHelper.startAnimation(position);
                 }
             });
+            setGet(String.format(Constant.Hotfile_Path, page, count), ShowFile_HotShopBean.class);
+
         }
     }
 

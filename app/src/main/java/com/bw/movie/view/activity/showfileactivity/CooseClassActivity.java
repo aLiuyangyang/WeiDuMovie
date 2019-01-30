@@ -2,7 +2,6 @@ package com.bw.movie.view.activity.showfileactivity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -68,7 +67,7 @@ public class CooseClassActivity extends BaseActivity {
 
         showFile_schedule_adapter.setOnclickId(new ShowFile_Schedule_Adapter.OnclickId() {
             @Override
-            public void successed(int id, String scheduleTimeStart, String scheduleTimeEnd, String schedulePlayHall) {
+            public void successed(int id, String scheduleTimeStart, String scheduleTimeEnd, String schedulePlayHall, double price) {
                 Intent intent1=new Intent(CooseClassActivity.this,ChoseseatActivity.class);
                 intent1.putExtra("movieId",movieId);
                 intent1.putExtra("cinemasId",cinemasId);
@@ -79,6 +78,7 @@ public class CooseClassActivity extends BaseActivity {
                 intent1.putExtra("schedulePlayHall",schedulePlayHall);
                 intent1.putExtra("address",address);
                 intent1.putExtra("resultName",mResultName);
+                intent1.putExtra("price",price);
                 startActivity(intent1);
             }
 

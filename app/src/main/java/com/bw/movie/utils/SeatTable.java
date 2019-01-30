@@ -31,11 +31,6 @@ import com.bw.movie.R;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * Author: 范瑞旗
- * Date: 2019/1/28 10:17
- * Description: 选座
- */
 public class SeatTable extends View {
     private final boolean DBG = false;
 
@@ -292,8 +287,8 @@ public class SeatTable extends View {
         overview_checked = typedArray.getColor(R.styleable.SeatTableView_overview_checked, Color.parseColor("#5A9E64"));
         overview_sold = typedArray.getColor(R.styleable.SeatTableView_overview_sold, Color.RED);
         txt_color=typedArray.getColor(R.styleable.SeatTableView_txt_color,Color.WHITE);
-        seatCheckedResID = typedArray.getResourceId(R.styleable.SeatTableView_seat_checked, R.mipmap.rectangle3copy12);
-        seatSoldResID = typedArray.getResourceId(R.styleable.SeatTableView_overview_sold, R.mipmap.rectangle3copy18);
+        seatCheckedResID = typedArray.getResourceId(R.styleable.SeatTableView_seat_checked, R.mipmap.rectangle3copy18);
+        seatSoldResID = typedArray.getResourceId(R.styleable.SeatTableView_overview_sold, R.mipmap.rectangle3copy12);
         seatAvailableResID = typedArray.getResourceId(R.styleable.SeatTableView_seat_available, R.mipmap.rectangle3copy5);
         typedArray.recycle();
     }

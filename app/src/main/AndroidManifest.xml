@@ -8,6 +8,20 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--//获取设备网络状态，禁用后无法获取网络状态-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!--//网络权限，当禁用后，无法进行检索等相关业务-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--//读取设备硬件信息，统计数据-->
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <!--//读取系统信息，包含系统版本等信息，用作统计-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--//获取设备的网络状态，鉴权所需网络代理-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--//获取统计数据-->
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".utils.MyApp"
         android:allowBackup="true"
@@ -15,7 +29,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        android:theme="@style/TranslucentTheme">
         <activity android:name=".view.activity.logandregactivity.LoginActivity" />
         <activity android:name=".view.activity.logandregactivity.StartActivity">
             <intent-filter>
@@ -32,10 +46,15 @@
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true" />
-        <activity android:name=".view.activity.showfileactivity.ChoseseatActivity"/>
-        <activity android:name=".view.activity.showfileactivity.ChooseCinemaActivity"/>
-        <activity android:name=".view.activity.showfileactivity.CooseClassActivity"/>
-        <activity android:name=".view.activity.showfileactivity.DetailsActivity"/>
+        <activity android:name=".view.activity.showfileactivity.ChoseseatActivity" />
+        <activity android:name=".view.activity.showfileactivity.ChooseCinemaActivity" />
+        <activity android:name=".view.activity.showfileactivity.CooseClassActivity" />
+        <activity android:name=".view.activity.showfileactivity.DetailsActivity" />
+        <activity android:name=".view.activity.AreaActivity"></activity>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="slTiOBlO6mj5FIUGUnv5baxwbZdSXA8T" />
     </application>
 
 </manifest>

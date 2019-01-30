@@ -23,8 +23,6 @@ import java.util.Map;
  * date:2019/1/23
  * author:孙佳鑫(孙佳鑫)
  * function:抽取fragment基类
- * GitHub  Token值:
- * d1e28b84e2517ab35c6101a5f0eba1f852b57010
  */
 public abstract class BaseFragment extends Fragment implements IView {
 
@@ -57,16 +55,19 @@ public abstract class BaseFragment extends Fragment implements IView {
 
     @Override
     public void successed(Object data) {
+        loading.dismiss();
         success(data);
     }
 
     @Override
     public void failed(String error) {
+        loading.dismiss();
         fail(error);
     }
 
     public void setGet(String url,Class clazz){
-
+        loading = new Loading_view(getContext(), R.style.CustomDialog);
+        loading.show();
         mIPresenter.setGetRequest(url,clazz);
     }
 
@@ -80,6 +81,8 @@ public abstract class BaseFragment extends Fragment implements IView {
 
     //提供给activity的失败方法
     public abstract void fail(String error);
+
+
 
     @Override
     public void onDestroy() {

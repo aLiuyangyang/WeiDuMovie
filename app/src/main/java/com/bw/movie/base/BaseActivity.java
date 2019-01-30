@@ -3,26 +3,20 @@ package com.bw.movie.base;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.baidu.mapapi.NetworkUtil;
 import com.bw.movie.R;
 import com.bw.movie.presenter.IPresenter;
-import com.bw.movie.utils.Constant;
 import com.bw.movie.utils.Loading_view;
-import com.bw.movie.utils.NetworkUtil;
 import com.bw.movie.view.IView;
-import com.bw.movie.view.activity.logandregactivity.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * date:2019/1/23
@@ -33,7 +27,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
 
     private IPresenter mIPresenter;
     private Loading_view loading;
-    private int mNetworkType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +67,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
 
         fail(error);
         loading.dismiss();
-        Toast.makeText(this, "没网了"+mNetworkType, Toast.LENGTH_SHORT).show();
     }
 
     //沉浸式状态栏
@@ -91,10 +83,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
     public void setGet(String url,Class clazz){
 
         mIPresenter.setGetRequest(url,clazz);
-    }
-    public  void NetWork(Context context){
-        mNetworkType = NetworkUtil.getNetworkType(context);
-
     }
 
     public void setPost(String url, Class clazz, Map<String,String> map){
