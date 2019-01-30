@@ -12,6 +12,8 @@ import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.EventBusMessage;
+import com.bw.movie.bean.MovieCommentDetailsBean;
+import com.bw.movie.bean.MovieScheduleBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.view.fragment.showfilebtnpopupwindow.PopuWindowDetails;
 import com.bw.movie.view.fragment.showfilebtnpopupwindow.PopuWindowFileReview;
@@ -22,6 +24,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.io.DataInput;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,6 +67,8 @@ public class DetailsActivity extends BaseActivity {
     private int b;
     private int id;
     private Details_Info details_info;
+    private MovieCommentDetailsBean mMovieCommentDetailsBean;
+    private MovieCommentDetailsBean mMovieCommentDetailsBean1;
 
     @Override
     public void initView() {
@@ -108,7 +114,7 @@ public class DetailsActivity extends BaseActivity {
         filmDetailsHomeFilmReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopuWindowFileReview popuWindowFileReview = new PopuWindowFileReview(DetailsActivity.this);
+                PopuWindowFileReview popuWindowFileReview = new PopuWindowFileReview(DetailsActivity.this,mMovieCommentDetailsBean1);
                 popuWindowFileReview.bottomwindow(linearlayout1);
             }
         });
@@ -152,6 +158,7 @@ public class DetailsActivity extends BaseActivity {
             } else {
                 movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_default);
             }
+            setGet(String.format(Constant.URL_QUERY_COMMENT,movieId),MovieCommentDetailsBean.class);
         }else if (data instanceof AttentionBean){
             AttentionBean attentionBean= (AttentionBean) data;
             if (attentionBean.getStatus().equals("0000")){
@@ -160,6 +167,10 @@ public class DetailsActivity extends BaseActivity {
                 showToast(attentionBean.getMessage());
                 setGet(String.format(Constant.Details_Path, movieId), Details_Info.class);
             }
+
+        }else if(data instanceof MovieCommentDetailsBean){
+            mMovieCommentDetailsBean1 = (MovieCommentDetailsBean) data;
+
         }
     }
 

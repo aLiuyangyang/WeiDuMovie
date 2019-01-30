@@ -61,8 +61,7 @@ public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Sch
                 if(mOnclickId!=null){
                     mOnclickId.successed(list.get(i).getId(),list.get(i).getBeginTime(),
                             list.get(i).getEndTime(),list.get(i).getScreeningHall()
-
-                            );
+                    );
                 }
             }
         });
