@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.MovieScheduleBean;
-import com.bw.movie.view.activity.ChoseseatActivity;
 import com.bw.movie.view.activity.logandregactivity.StartActivity;
 
 import java.util.ArrayList;

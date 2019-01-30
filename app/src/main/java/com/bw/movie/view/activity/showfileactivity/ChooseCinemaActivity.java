@@ -17,18 +17,14 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-/**
- * date:2019/1/27
- * author:刘洋洋(DELL)
- * function: 选择影院
- */
+
 public class ChooseCinemaActivity extends BaseActivity {
     @BindView(R.id.mCinema_name)
     TextView mCinemaName;
-    @BindView(R.id.film_details_back)
-    ImageView filmDetailsBack;
     @BindView(R.id.mCinema_recy)
     RecyclerView mCinemarecy;
+    @BindView(R.id.film_details_back)
+    ImageView filmDetailsBack;
     private ShowFile_ChooseCinema_Adapter showFile_chooseCinema_adapter;
     private int movieId;
     private String name;
@@ -43,7 +39,7 @@ public class ChooseCinemaActivity extends BaseActivity {
         filmDetailsBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+              finish();
             }
         });
         final Intent intent = getIntent();

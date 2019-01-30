@@ -23,6 +23,7 @@
             android:id="@+id/camera_details_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:layout_below="@+id/camera_name"
             android:text="30号"
             android:textColor="#fff"
@@ -190,7 +191,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/sp_30"
             android:layout_gravity="center"
-            android:text="56.6"
+            android:text="0.28"
             android:textColor="#b11450"
             />
 

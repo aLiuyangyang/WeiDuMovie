@@ -32,7 +32,7 @@
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true" />
-        <activity android:name=".view.activity.ChoseseatActivity"></activity>
+        <activity android:name=".view.activity.showfileactivity.ChoseseatActivity"/>
         <activity android:name=".view.activity.showfileactivity.ChooseCinemaActivity"/>
         <activity android:name=".view.activity.showfileactivity.CooseClassActivity"/>
         <activity android:name=".view.activity.showfileactivity.DetailsActivity"/>

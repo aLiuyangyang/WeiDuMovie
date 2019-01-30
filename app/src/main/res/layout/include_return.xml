@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:id="@+id/li4"
         android:layout_alignParentBottom="true"
         android:paddingLeft="@dimen/dp_24"
         android:paddingRight="@dimen/dp_24"
-        android:id="@+id/li4"
         android:layout_below="@id/li3"
         android:layout_marginTop="@dimen/dp_60"
         android:orientation="horizontal"
