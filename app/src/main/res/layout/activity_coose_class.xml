@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
+            android:id="@+id/ditu"
             android:layout_alignParentRight="true"
             android:background="@mipmap/com_icon_navigation_default"
             android:layout_width="@dimen/dp_30"

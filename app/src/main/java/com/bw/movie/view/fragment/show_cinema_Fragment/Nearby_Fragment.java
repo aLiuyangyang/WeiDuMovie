@@ -8,24 +8,15 @@ import com.bw.movie.R;
 import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Nearby_Adapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.AttentionBean;
-import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.ShowCinemaBean;
 import com.bw.movie.utils.Constant;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-/**
- * date:2019/1/28
- * author:刘洋洋(DELL)
- * function:推荐影院
- */
+
 public class Nearby_Fragment extends BaseFragment {
 
         @BindView(R.id.nearby_cinema_xrecy)
@@ -36,15 +27,9 @@ public class Nearby_Fragment extends BaseFragment {
         @Override
         public void initView(View view) {
             ButterKnife.bind(this, view);
-            EventBus.getDefault().register(this);
+                load();
         }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void message(EventBusMessage eventBusMessage) {
-        if (eventBusMessage.getId() == 1){
-            page = 1;
-            setGet(String.format(Constant.Nearby_Path,page),ShowCinemaBean.class);
-        }
-    }
+
         @Override
         public void initData(View view) {
                 page=1;
@@ -70,15 +55,15 @@ public class Nearby_Fragment extends BaseFragment {
                         }
                 });
                 load();
-      showCinema_adapter.setAttentLineners(new ShowCinema_Nearby_Adapter.AttentLineners() {
-          @Override
-         public void setattents(int b, int position, int id) {
-               if(b==1){//取消
-                 setGet(String.format(Constant.Unfollow_Path,id),AttentionBean.class);
-                 showCinema_adapter.cancel(position);
-                }else if(b == 2){//关注
-                 setGet(String.format(Constant.Attention_Path,id),AttentionBean.class);
-                 showCinema_adapter.add(position);
+                showCinema_adapter.setAttentLineners(new ShowCinema_Nearby_Adapter.AttentLineners() {
+                        @Override
+                        public void setattents(int b, int position, int id) {
+                                if(b==1){//取消
+                                        setGet(String.format(Constant.Unfollow_Path,id),AttentionBean.class);
+                                        showCinema_adapter.cancel(position);
+                                }else if(b == 2){//关注
+                                        setGet(String.format(Constant.Attention_Path,id),AttentionBean.class);
+                                        showCinema_adapter.add(position);
                                 }
                         }
                 });
@@ -86,6 +71,7 @@ public class Nearby_Fragment extends BaseFragment {
         private void load() {
                 setGet(String.format(Constant.Nearby_Path,page),ShowCinemaBean.class);
         }
+
         @Override
         public int getContent() {
                 return R.layout.fragment_nearbys;
@@ -94,9 +80,7 @@ public class Nearby_Fragment extends BaseFragment {
         public void success(Object data) {
                 if (data instanceof ShowCinemaBean){
                         ShowCinemaBean showCinemaBean= (ShowCinemaBean) data;
-
                         if (showCinemaBean.getStatus().equals("0000")){
-
                                 List<ShowCinemaBean.ResultBean> result = showCinemaBean.getResult();
                                 if (page==1){
                                         showCinema_adapter.setList(result);
@@ -108,7 +92,6 @@ public class Nearby_Fragment extends BaseFragment {
                 }else if (data instanceof AttentionBean){
                         AttentionBean attentionBean= (AttentionBean) data;
                         if (attentionBean.getStatus().equals("0000")){
-                            EventBus.getDefault().post(new EventBusMessage(1));
                                 showToast(attentionBean.getMessage());
                         }else {
                                 showToast(attentionBean.getMessage());
@@ -122,9 +105,5 @@ public class Nearby_Fragment extends BaseFragment {
            showLog(error);
         }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
+
 }

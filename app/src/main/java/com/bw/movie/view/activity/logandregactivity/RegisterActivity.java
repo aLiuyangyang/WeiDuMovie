@@ -1,9 +1,11 @@
 package com.bw.movie.view.activity.logandregactivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -98,18 +100,22 @@ public class RegisterActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.reg_date:
-                final SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String date = sDateFormat.format(new java.util.Date());
-                String[] split = date.split("\\-");
-                //开始时间
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(RegisterActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                Calendar calendar = Calendar.getInstance();
+                final int year = calendar.get(Calendar.YEAR);
+                final int month = calendar.get(Calendar.MONTH);
+                final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
                 Calendar startDate = Calendar.getInstance();
-                //结束时间
                 Calendar endDate = Calendar.getInstance();
-                startDate.set(Integer.valueOf(split[0])-99,0,1);
-                endDate.set(Integer.valueOf(split[0]),Integer.valueOf(split[1]),Integer.valueOf(split[2]));
+
+                startDate.set(year-100,0,1);
+                endDate.set(year,month,day);
                 TimePickerView pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {
+                        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                         String time = sDateFormat.format(date);
                         regDate.setText(time+"");
                     }
@@ -128,6 +134,7 @@ public class RegisterActivity extends BaseActivity {
                         //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                         .build();
                 pvTime.show();
+
                 break;
             case R.id.reg_but:
                 Map<String,String> map=new HashMap<>();

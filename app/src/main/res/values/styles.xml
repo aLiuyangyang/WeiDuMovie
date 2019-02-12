@@ -14,4 +14,26 @@
         <item name="android:windowEnterAnimation">@anim/window_out</item>
         <item name="android:windowExitAnimation">@anim/window_back</item>
     </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+    <!--隐藏状态栏-->
+    <style name="AppTheme.NoTitle_FullScreen"> <!--自定义主题名称-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="TranslucentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus" tools:ignore="NewApi">false</item>
+        <item name="android:windowTranslucentNavigation" tools:ignore="NewApi">true</item>
+        <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
+        <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
+    </style>
+    <style name="CustomTheme" parent="DefaultCityPickerTheme">
+
+    </style>
 </resources>

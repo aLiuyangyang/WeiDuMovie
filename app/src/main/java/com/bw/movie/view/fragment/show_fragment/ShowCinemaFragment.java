@@ -1,17 +1,27 @@
 package com.bw.movie.view.fragment.show_fragment;
 
 
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.base.BaseFragment;
+import com.bw.movie.view.activity.AreaActivity;
 import com.bw.movie.view.fragment.show_cinema_Fragment.Nearby_Fragment;
 import com.bw.movie.view.fragment.show_cinema_Fragment.Recommend_Fragment;
+import com.zaaach.citypicker.CityPicker;
+import com.zaaach.citypicker.adapter.OnPickListener;
+import com.zaaach.citypicker.model.City;
+import com.zaaach.citypicker.model.LocatedCity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,16 +42,18 @@ public class ShowCinemaFragment extends BaseFragment {
     RadioButton butRecommend;
     @BindView(R.id.but_nearby)
     RadioButton butNearby;
+    @BindView(R.id.area_place)
+    ImageView areaPlace;
+    @BindView(R.id.area_name)
+    TextView areaName;
     @BindView(R.id.radio)
     RadioGroup radio;
-    Unbinder unbinder;
     private List<Fragment> list = new ArrayList<>();
 
     @Override
     public void initView(View view) {
         ButterKnife.bind(this, view);
     }
-
     @Override
     public void initData(View view) {
         list.add(new Recommend_Fragment());
@@ -69,6 +81,44 @@ public class ShowCinemaFragment extends BaseFragment {
                         break;
 
                 }
+            }
+        });
+        areaPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),AreaActivity.class));
+            }
+        });
+        areaName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CityPicker.from(getActivity()) //activity或者fragment
+                        .enableAnimation(true)	//启用动画效果，默认无
+                        .setLocatedCity(new LocatedCity("杭州", "浙江", "101210101"))
+
+                        .setOnPickListener(new OnPickListener() {
+                            @Override
+                            public void onPick(int position, City data) {
+                                areaName.setText(data.getName());
+                            }
+
+                            @Override
+                            public void onCancel(){
+
+                            }
+
+                            @Override
+                            public void onLocate() {
+                                //定位接口，需要APP自身实现，这里模拟一下定位
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                    }
+                                }, 3000);
+                            }
+                        })
+                        .show();
             }
         });
         nearby_cinema_view.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -110,6 +160,36 @@ public class ShowCinemaFragment extends BaseFragment {
     public void fail(String error) {
 
     }
+    private long exitTime=0;
+    private void getFocus() {
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
 
+                    //双击退出
+                    if (System.currentTimeMillis() - exitTime > 2000) {
+
+                        exitTime = System.currentTimeMillis();
+                        showToast("再按一次退出程序");
+                    } else {
+                        getActivity().finish();
+                        System.exit(0);
+                    }
+                    return true;
+                }
+
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getFocus();
+    }
 
 }

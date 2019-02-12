@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -211,4 +212,7 @@ public class LoginActivity extends BaseActivity {
         super.onDestroy();
         bind.unbind();
     }
+
+
+
 }

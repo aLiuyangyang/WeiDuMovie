@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bw.movie.R;
 import com.bw.movie.presenter.IPresenter;
 import com.bw.movie.utils.Loading_view;
+import com.bw.movie.utils.NetWorkUtil;
 import com.bw.movie.view.IView;
 
 import java.util.HashMap;
@@ -23,8 +24,6 @@ import java.util.Map;
  * date:2019/1/23
  * author:孙佳鑫(孙佳鑫)
  * function:抽取fragment基类
- * GitHub  Token值:
- * d1e28b84e2517ab35c6101a5f0eba1f852b57010
  */
 public abstract class BaseFragment extends Fragment implements IView {
 
@@ -57,21 +56,41 @@ public abstract class BaseFragment extends Fragment implements IView {
 
     @Override
     public void successed(Object data) {
+        if(loading!=null){
+            loading.dismiss();
+        }
         success(data);
     }
 
     @Override
     public void failed(String error) {
+        if(loading!=null){
+            loading.dismiss();
+        }
         fail(error);
     }
 
     public void setGet(String url,Class clazz){
-
+        if (!(NetWorkUtil.isConn(getActivity()))){
+            NetWorkUtil.setNetworkMethod(getActivity());
+            return ;
+        }
+        if(loading==null){
+            loading = new Loading_view(getContext(), R.style.CustomDialog);
+            loading.show();
+        }
         mIPresenter.setGetRequest(url,clazz);
     }
 
     public void setPost(String url, Class clazz, Map<String,String> map){
-
+        if (!(NetWorkUtil.isConn(getActivity()))){
+            NetWorkUtil.setNetworkMethod(getActivity());
+            return ;
+        }
+        if(loading==null){
+            loading = new Loading_view(getContext(), R.style.CustomDialog);
+            loading.show();
+        }
         mIPresenter.setRequest(url,clazz,map);
     }
 
@@ -81,11 +100,16 @@ public abstract class BaseFragment extends Fragment implements IView {
     //提供给activity的失败方法
     public abstract void fail(String error);
 
+
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (mIPresenter!=null){
             mIPresenter.onDistouch();
+        }
+        if(loading!=null){
+            loading.dismiss();
         }
     }
 }

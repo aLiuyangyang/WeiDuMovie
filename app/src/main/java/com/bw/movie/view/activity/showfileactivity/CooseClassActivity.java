@@ -2,7 +2,6 @@ package com.bw.movie.view.activity.showfileactivity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,13 +14,15 @@ import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.MovieScheduleBean;
 import com.bw.movie.utils.Constant;
+import com.bw.movie.view.activity.AreaActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CooseClassActivity extends BaseActivity {
-
+    @BindView(R.id.ditu)
+    ImageView ditu;
     @BindView(R.id.cinema_class_name)
     TextView cinemaClassName;
     @BindView(R.id.cinema_class_addr)
@@ -78,7 +79,7 @@ public class CooseClassActivity extends BaseActivity {
 
         showFile_schedule_adapter.setOnclickId(new ShowFile_Schedule_Adapter.OnclickId() {
             @Override
-            public void successed(int id, String scheduleTimeStart, String scheduleTimeEnd, String schedulePlayHall) {
+            public void successed(int id, String scheduleTimeStart, String scheduleTimeEnd, String schedulePlayHall, double price) {
                 Intent intent1=new Intent(CooseClassActivity.this,ChoseseatActivity.class);
                 intent1.putExtra("movieId",movieId);
                 intent1.putExtra("cinemasId",cinemasId);
@@ -89,11 +90,17 @@ public class CooseClassActivity extends BaseActivity {
                 intent1.putExtra("schedulePlayHall",schedulePlayHall);
                 intent1.putExtra("address",address);
                 intent1.putExtra("resultName",mResultName);
+                intent1.putExtra("price",price);
                 startActivity(intent1);
             }
 
         });
-
+        ditu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CooseClassActivity.this,AreaActivity.class));
+            }
+        });
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.bw.movie.adapter.showfile_adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,11 +11,9 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.MovieScheduleBean;
-import com.bw.movie.view.activity.logandregactivity.StartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,7 +57,8 @@ public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Sch
             public void onClick(View v) {
                 if(mOnclickId!=null){
                     mOnclickId.successed(list.get(i).getId(),list.get(i).getBeginTime(),
-                            list.get(i).getEndTime(),list.get(i).getScreeningHall()
+                            list.get(i).getEndTime(),list.get(i).getScreeningHall(),
+                            list.get(i).getPrice()
                     );
                 }
             }
@@ -91,7 +89,7 @@ public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Sch
     }
 
     public interface OnclickId{
-        void successed(int id,String scheduleTimeStart,String scheduleTimeEnd,String schedulePlayHall);
+        void successed(int id, String scheduleTimeStart, String scheduleTimeEnd, String schedulePlayHall, double price);
     }
 
     private OnclickId mOnclickId;

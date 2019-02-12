@@ -1,9 +1,9 @@
 package com.bw.movie.base;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,17 +12,12 @@ import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.presenter.IPresenter;
-import com.bw.movie.utils.Constant;
 import com.bw.movie.utils.Loading_view;
-import com.bw.movie.utils.NetworkUtil;
+import com.bw.movie.utils.NetWorkUtil;
 import com.bw.movie.view.IView;
-import com.bw.movie.view.activity.logandregactivity.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * date:2019/1/23
@@ -33,12 +28,17 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
 
     private IPresenter mIPresenter;
     private Loading_view loading;
-    private int mNetworkType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(getContent());
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+
         mIPresenter = new IPresenter(this);
         initView();
         initData();
@@ -64,7 +64,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
     public void successed(Object data) {
 
         success(data);
-        loading.dismiss();
+        if(loading!=null){
+            loading.dismiss();
+        }
     }
 
 
@@ -73,8 +75,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
     public void failed(String error) {
 
         fail(error);
-        loading.dismiss();
-        Toast.makeText(this, "没网了"+mNetworkType, Toast.LENGTH_SHORT).show();
+        if(loading!=null){
+            loading.dismiss();
+        }
     }
 
     //沉浸式状态栏
@@ -89,18 +92,26 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
     }
 
     public void setGet(String url,Class clazz){
-
+        if (!(NetWorkUtil.isConn(this))){
+            NetWorkUtil.setNetworkMethod(this);
+            return ;
+        }
+        if(loading==null){
+            loading = new Loading_view(this, R.style.CustomDialog);
+            loading.show();
+        }
         mIPresenter.setGetRequest(url,clazz);
-    }
-    public  void NetWork(Context context){
-        mNetworkType = NetworkUtil.getNetworkType(context);
-
     }
 
     public void setPost(String url, Class clazz, Map<String,String> map){
-
-        loading = new Loading_view(this, R.style.CustomDialog);
-        loading.show();
+        if (!(NetWorkUtil.isConn(this))){
+            NetWorkUtil.setNetworkMethod(this);
+            return ;
+        }
+        if(loading==null){
+            loading = new Loading_view(this, R.style.CustomDialog);
+            loading.show();
+        }
 
         if (map==null){
             map=new HashMap<>();
@@ -120,6 +131,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
         super.onDestroy();
         if (mIPresenter!=null){
             mIPresenter.onDistouch();
+        }
+        if(loading!=null){
+            loading.dismiss();
         }
     }
 }

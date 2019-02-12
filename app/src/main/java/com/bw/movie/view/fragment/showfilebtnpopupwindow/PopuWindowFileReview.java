@@ -63,6 +63,7 @@ public class PopuWindowFileReview {
         film_details_button_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 popupWindow.dismiss();
             }
         });

@@ -2,16 +2,12 @@ package com.bw.movie.view.activity.showfileactivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.base.BaseActivity;
-import com.bw.movie.bean.Details_Info;
-import com.bw.movie.bean.MovieScheduleBean;
-import com.bw.movie.utils.Constant;
 import com.bw.movie.utils.SeatTable;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,11 +28,19 @@ public class ChoseseatActivity extends BaseActivity {
     TextView movieClass;
     @BindView(R.id.seatView)
     SeatTable seatView;
+    @BindView(R.id.movie_price)
+    TextView moviePrice;
+    @BindView(R.id.pay_success)
+    ImageView paySuccess;
+    @BindView(R.id.pay_error)
+    ImageView payError;
     private int movieId;//影片id
     private int cinemasId;//影院id
     public SeatTable seatTableView;
     private int mId;
     private String mScreeningHall;
+    private double price;
+    double totalPrice = 0;
 
     @Override
     public void initView() {
@@ -54,6 +58,7 @@ public class ChoseseatActivity extends BaseActivity {
         movieId = intent1.getIntExtra("movieId", 0);
         cinemasId = intent1.getIntExtra("cinemasId", 0);
         mId = intent1.getIntExtra("Id", 0);
+        price = intent1.getDoubleExtra("price", 0);
         String scheduleTimeStart = intent1.getStringExtra("scheduleTimeStart");
         String scheduleTimeEnd = intent1.getStringExtra("scheduleTimeEnd");
         String schedulePlayHall = intent1.getStringExtra("schedulePlayHall");
@@ -81,15 +86,21 @@ public class ChoseseatActivity extends BaseActivity {
                 }
                 return false;
             }
+
             @Override
             public void checked(int row, int column) {
+                totalPrice += price;
+                String totalprice = String.format("%.2f", totalPrice);
+                moviePrice.setText(totalprice + "");
 
 
             }
 
             @Override
             public void unCheck(int row, int column) {
-
+                totalPrice -= price;
+                String totalprice = String.format("%.2f", totalPrice);
+                moviePrice.setText(totalprice + "");
             }
 
             @Override

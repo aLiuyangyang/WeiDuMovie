@@ -16,6 +16,7 @@
         android:paddingLeft="@dimen/dp_20"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_show"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_90">
