@@ -70,7 +70,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
     }
 
     //沉浸式状态栏
-    public void windowManger() {
+    public void windowManger(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // 透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -83,6 +83,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
     public void setGet(String url,Class clazz){
 
         mIPresenter.setGetRequest(url,clazz);
+
     }
 
     public void setPost(String url, Class clazz, Map<String,String> map){
@@ -95,7 +96,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
         }
         mIPresenter.setRequest(url,clazz,map);
     }
-
 
     //提供给activity的成功方法
     public abstract void success(Object data);

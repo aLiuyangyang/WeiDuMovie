@@ -67,7 +67,6 @@ public class DetailsActivity extends BaseActivity {
     private int b;
     private int id;
     private Details_Info details_info;
-    private MovieCommentDetailsBean mMovieCommentDetailsBean;
     private MovieCommentDetailsBean mMovieCommentDetailsBean1;
 
     @Override
