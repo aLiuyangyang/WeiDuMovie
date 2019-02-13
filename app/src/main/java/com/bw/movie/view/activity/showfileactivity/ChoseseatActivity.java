@@ -1,8 +1,13 @@
 package com.bw.movie.view.activity.showfileactivity;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -16,7 +21,7 @@ import butterknife.ButterKnife;
 
 /**
  * date:2019/1/28
- * author:孙佳鑫(DELL)
+ * author:孙佳鑫
  * function: 选座
  */
 public class ChoseseatActivity extends BaseActivity {
@@ -46,6 +51,8 @@ public class ChoseseatActivity extends BaseActivity {
     @BindView(R.id.pay_error)
     ImageView payError;
     private double mPrice;
+    private PopupWindow popupWindow;
+    private PopupWindow mPopupWindow;
 
     @Override
     public void initView() {
@@ -81,7 +88,7 @@ public class ChoseseatActivity extends BaseActivity {
             }
 
             @Override
-            public void checked(int row, int column) {
+            public void checked(int row, int coluomn) {
                 totalPrice+=mPrice;
                 String totalprice = String.format("%.2f", totalPrice);
                 moviePrice.setText(totalprice+"");
@@ -90,11 +97,11 @@ public class ChoseseatActivity extends BaseActivity {
 
             @Override
             public void unCheck(int row, int column) {
-                totalPrice-=mPrice;
+                if(totalPrice>0){
+                    totalPrice-=mPrice;
+                }
                 String totalprice = String.format("%.2f", totalPrice);
                 moviePrice.setText(totalprice+"");
-
-
             }
 
             @Override
@@ -105,8 +112,33 @@ public class ChoseseatActivity extends BaseActivity {
         });
         seatTableView.setData(10, 15);
 
+        payError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        paySuccess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow();
+            }
+        });
     }
 
+    private void showPopupWindow() {
+        View contentView = LayoutInflater.from(ChoseseatActivity.this).inflate(R.layout.pay_popupwindow, null);
+        mPopupWindow = new PopupWindow(contentView,
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+
+        mPopupWindow.setContentView(contentView);
+
+        //显示PopupWindow
+        View rootview = LayoutInflater.from(ChoseseatActivity.this).inflate(R.layout.pay_popupwindow, null);
+
+        mPopupWindow.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
+    }
 
     @Override
     public int getContent() {
