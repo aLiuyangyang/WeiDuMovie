@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -12,13 +14,15 @@ import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.MovieScheduleBean;
 import com.bw.movie.utils.Constant;
+import com.bw.movie.view.activity.AreaActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CooseClassActivity extends BaseActivity {
-
+    @BindView(R.id.ditu)
+    ImageView ditu;
     @BindView(R.id.cinema_class_name)
     TextView cinemaClassName;
     @BindView(R.id.cinema_class_addr)
@@ -40,6 +44,8 @@ public class CooseClassActivity extends BaseActivity {
     private int movieId;//影片id
     private int cinemasId;//影院id
     private String name, address;
+    @BindView(R.id.film_details_back)
+    ImageView filmDetailsBack;
     private ShowFile_Schedule_Adapter showFile_schedule_adapter;
     private String mResultName;
 
@@ -50,6 +56,12 @@ public class CooseClassActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        filmDetailsBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              finish();
+            }
+        });
         final Intent intent = getIntent();
         name = intent.getStringExtra("name");
         address = intent.getStringExtra("address");
@@ -83,7 +95,12 @@ public class CooseClassActivity extends BaseActivity {
             }
 
         });
-
+        ditu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CooseClassActivity.this,AreaActivity.class));
+            }
+        });
     }
 
     @Override

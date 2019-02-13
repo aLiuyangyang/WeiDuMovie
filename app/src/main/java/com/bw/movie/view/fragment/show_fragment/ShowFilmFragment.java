@@ -2,9 +2,11 @@ package com.bw.movie.view.fragment.show_fragment;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.ShowFilm_NewShowing_Adapter;
@@ -27,6 +30,11 @@ import com.bw.movie.utils.ImageViewAnimationHelper;
 import com.bw.movie.view.activity.AreaActivity;
 import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
 import com.bw.movie.view.activity.showfileactivity.ShowFileAllActivity;
+import com.zaaach.citypicker.CityPicker;
+import com.zaaach.citypicker.adapter.OnPickListener;
+import com.zaaach.citypicker.model.City;
+import com.zaaach.citypicker.model.LocateState;
+import com.zaaach.citypicker.model.LocatedCity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -212,7 +220,7 @@ public class ShowFilmFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.hotAll_HotFile, R.id.hotAll_IsHot, R.id.hotAll_Coming})
+    @OnClick({R.id.hotAll_HotFile, R.id.hotAll_IsHot, R.id.hotAll_Coming,R.id.area_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.hotAll_HotFile:
@@ -230,9 +238,68 @@ public class ShowFilmFragment extends BaseFragment {
                 intentc.putExtra("flag", 3);
                 startActivity(intentc);
                 break;
+            case R.id.area_name:
+                CityPicker.from(getActivity()) //activity或者fragment
+                        .enableAnimation(true)	//启用动画效果，默认无
+                        .setLocatedCity(new LocatedCity("杭州", "浙江", "101210101"))
+
+                    .setOnPickListener(new OnPickListener() {
+                        @Override
+                        public void onPick(int position, City data) {
+                           areaName.setText(data.getName());
+                        }
+
+                        @Override
+                        public void onCancel(){
+
+                        }
+
+                        @Override
+                        public void onLocate() {
+                            //定位接口，需要APP自身实现，这里模拟一下定位
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                }
+                            }, 3000);
+                        }
+                    })
+                    .show();
+                break;
         }
     }
 
+    private long exitTime=0;
+    private void getFocus() {
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
 
+                    //双击退出
+                    if (System.currentTimeMillis() - exitTime > 2000) {
+
+                        exitTime = System.currentTimeMillis();
+                        showToast("再按一次退出程序");
+                    } else {
+                        getActivity().finish();
+                        System.exit(0);
+                    }
+                    return true;
+                }
+
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getFocus();
+    }
 
 }

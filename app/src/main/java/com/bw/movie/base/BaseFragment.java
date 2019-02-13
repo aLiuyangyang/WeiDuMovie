@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bw.movie.R;
 import com.bw.movie.presenter.IPresenter;
 import com.bw.movie.utils.Loading_view;
+import com.bw.movie.utils.NetWorkUtil;
 import com.bw.movie.view.IView;
 
 import java.util.HashMap;
@@ -55,24 +56,41 @@ public abstract class BaseFragment extends Fragment implements IView {
 
     @Override
     public void successed(Object data) {
-        loading.dismiss();
+        if(loading!=null){
+            loading.dismiss();
+        }
         success(data);
     }
 
     @Override
     public void failed(String error) {
-        loading.dismiss();
+        if(loading!=null){
+            loading.dismiss();
+        }
         fail(error);
     }
 
     public void setGet(String url,Class clazz){
-        loading = new Loading_view(getContext(), R.style.CustomDialog);
-        loading.show();
+        if (!(NetWorkUtil.isConn(getActivity()))){
+            NetWorkUtil.setNetworkMethod(getActivity());
+            return ;
+        }
+        if(loading==null){
+            loading = new Loading_view(getContext(), R.style.CustomDialog);
+            loading.show();
+        }
         mIPresenter.setGetRequest(url,clazz);
     }
 
     public void setPost(String url, Class clazz, Map<String,String> map){
-
+        if (!(NetWorkUtil.isConn(getActivity()))){
+            NetWorkUtil.setNetworkMethod(getActivity());
+            return ;
+        }
+        if(loading==null){
+            loading = new Loading_view(getContext(), R.style.CustomDialog);
+            loading.show();
+        }
         mIPresenter.setRequest(url,clazz,map);
     }
 
@@ -89,6 +107,9 @@ public abstract class BaseFragment extends Fragment implements IView {
         super.onDestroy();
         if (mIPresenter!=null){
             mIPresenter.onDistouch();
+        }
+        if(loading!=null){
+            loading.dismiss();
         }
     }
 }

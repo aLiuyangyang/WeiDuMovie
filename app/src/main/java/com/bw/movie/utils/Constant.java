@@ -55,7 +55,7 @@ public class Constant {
     public static String ChooseClass_Path="movie/v1/findMovieScheduleList?cinemasId=%d&movieId=%d";
     //根据电影ID查询电影信息
     public static String MoviesById_Path="movie/v1/findMoviesById?movieId=%d";*/
-   public static final String URL_QUERY_COMMENT="movie/v1/findAllMovieComment?movieId=%s&page=1&count=10";
+   public static final String URL_QUERY_COMMENT="movie/v1/findAllMovieComment?movieId=%d&page=1&count=10";
 
 
 }

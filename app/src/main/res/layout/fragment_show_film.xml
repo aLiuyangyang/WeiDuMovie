@@ -139,8 +139,8 @@
                    android:background="@mipmap/com_icon_next_default"
                    android:layout_marginTop="@dimen/dp_8"
                    android:layout_marginRight="@dimen/dp_24"
-                   android:layout_width="@dimen/dp_12"
-                   android:layout_height="@dimen/dp_14" />
+                   android:layout_width="@dimen/dp_16"
+                   android:layout_height="@dimen/dp_18" />
                <View
                    android:id="@+id/hview"
                    android:layout_below="@id/hfile"
@@ -177,8 +177,8 @@
                    android:background="@mipmap/com_icon_next_default"
                    android:layout_marginTop="@dimen/dp_8"
                    android:layout_marginRight="@dimen/dp_24"
-                   android:layout_width="@dimen/dp_12"
-                   android:layout_height="@dimen/dp_14" />
+                   android:layout_width="@dimen/dp_16"
+                   android:layout_height="@dimen/dp_18" />
                <View
                    android:id="@+id/nview"
                    android:layout_below="@+id/ntext"
@@ -214,8 +214,8 @@
                    android:background="@mipmap/com_icon_next_default"
                    android:layout_marginTop="@dimen/dp_8"
                    android:layout_marginRight="@dimen/dp_24"
-                   android:layout_width="@dimen/dp_12"
-                   android:layout_height="@dimen/dp_14" />
+                   android:layout_width="@dimen/dp_16"
+                   android:layout_height="@dimen/dp_18" />
                <View
                    android:id="@+id/cview"
                    android:layout_below="@+id/ctext"

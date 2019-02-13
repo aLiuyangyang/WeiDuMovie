@@ -2,18 +2,27 @@ package com.bw.movie.view.activity.showfileactivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.base.BaseActivity;
+import com.bw.movie.view.activity.AreaActivity;
 import com.bw.movie.view.fragment.allfile_fragment.ComingFragment;
 import com.bw.movie.view.fragment.allfile_fragment.HotFileFragment;
 import com.bw.movie.view.fragment.allfile_fragment.IsHotFragment;
+import com.zaaach.citypicker.CityPicker;
+import com.zaaach.citypicker.adapter.OnPickListener;
+import com.zaaach.citypicker.model.City;
+import com.zaaach.citypicker.model.LocatedCity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +41,10 @@ public class ShowFileAllActivity extends BaseActivity {
     RadioButton allButIshot;
     @BindView(R.id.all_but_Coming)
     RadioButton allButComing;
+    @BindView(R.id.area_place)
+    ImageView areaPlace;
+    @BindView(R.id.area_name)
+    TextView areaName;
     @BindView(R.id.all_frame)
     ViewPager allFrame;
     @BindView(R.id.all_radio)
@@ -48,7 +61,7 @@ public class ShowFileAllActivity extends BaseActivity {
     @Override
     public void initData() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         flag = intent.getIntExtra("flag", 0);
         list.add(new HotFileFragment());
         list.add(new IsHotFragment());
@@ -91,6 +104,44 @@ public class ShowFileAllActivity extends BaseActivity {
             @Override
             public void onPageScrollStateChanged(int i) {
 
+            }
+        });
+        areaPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(ShowFileAllActivity.this,AreaActivity.class);
+                startActivity(intent1);
+            }
+        });
+        areaName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CityPicker.from(ShowFileAllActivity.this) //activity或者fragment
+                        .enableAnimation(true)	//启用动画效果，默认无
+                        .setLocatedCity(new LocatedCity("杭州", "浙江", "101210101"))
+                        .setOnPickListener(new OnPickListener() {
+                            @Override
+                            public void onPick(int position, City data) {
+                                areaName.setText(data.getName());
+                            }
+
+                            @Override
+                            public void onCancel(){
+
+                            }
+
+                            @Override
+                            public void onLocate() {
+                                //定位接口，需要APP自身实现，这里模拟一下定位
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                    }
+                                }, 3000);
+                            }
+                        })
+                        .show();
             }
         });
         allRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

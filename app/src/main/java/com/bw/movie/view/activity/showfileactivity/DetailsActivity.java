@@ -14,6 +14,7 @@ import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.MovieCommentDetailsBean;
 import com.bw.movie.bean.MovieScheduleBean;
+import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.view.fragment.showfilebtnpopupwindow.PopuWindowDetails;
 import com.bw.movie.view.fragment.showfilebtnpopupwindow.PopuWindowFileReview;
@@ -64,7 +65,6 @@ public class DetailsActivity extends BaseActivity {
     private int movieId;
     private Details_Info.ResultBean mResult;
     private String name;
-    private int b;
     private int id;
     private Details_Info details_info;
     private MovieCommentDetailsBean mMovieCommentDetailsBean1;
@@ -120,18 +120,14 @@ public class DetailsActivity extends BaseActivity {
         movieDetailsHomeXin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(b==1){//取消
-                    setGet(String.format(Constant.Unfollow_Path,id),AttentionBean.class);
-                    details_info.getResult().setFollowMovie(2);
-                }else if(b == 2){//关注
-                    setGet(String.format(Constant.Attention_Path,id),AttentionBean.class);
-                    details_info.getResult().setFollowMovie(1);
+                if(details_info.getResult().getFollowMovie()==1){//取消
+                    setGet(String.format(Constant.Unfollowmovie_Path,id),AttentionBean.class);
+                }else if(details_info.getResult().getFollowMovie()==2){//关注
+                    setGet(String.format(Constant.Attentionmovie_Path,id),AttentionBean.class);
                 }
             }
-
         });
     }
-
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void message(EventBusMessage eventBusMessage) {
         movieId = eventBusMessage.getId();
@@ -161,10 +157,16 @@ public class DetailsActivity extends BaseActivity {
         }else if (data instanceof AttentionBean){
             AttentionBean attentionBean= (AttentionBean) data;
             if (attentionBean.getStatus().equals("0000")){
+                if(attentionBean.getMessage().equals("关注成功")){
+                    details_info.getResult().setFollowMovie(1);
+                    movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_selected);
+                }else if(attentionBean.getMessage().equals("取消关注成功")){
+                    details_info.getResult().setFollowMovie(2);
+                    movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_default);
+                }
                 showToast(attentionBean.getMessage());
             }else {
                 showToast(attentionBean.getMessage());
-                setGet(String.format(Constant.Details_Path, movieId), Details_Info.class);
             }
 
         }else if(data instanceof MovieCommentDetailsBean){
@@ -188,6 +190,6 @@ public class DetailsActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().isRegistered(this);
+        EventBus.getDefault().unregister(this);
     }
 }

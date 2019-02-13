@@ -19,6 +19,7 @@
         android:textColor="#eeeeee"
         android:textColorHint="#fff"
         app:x_disableClear="true"
+        app:x_disableEmoji="true"
         android:theme="@style/MyEditText"
         android:textSize="@dimen/sp_16"
         />

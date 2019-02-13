@@ -93,7 +93,7 @@ public class ComingFragment extends BaseFragment {
     public void message(EventBusMessage eventBusMessage) {
         if (eventBusMessage.getId() == 1){
             page = 1;
-            setGet(String.format(Constant.Nearby_Path,page),ShowCinemaBean.class);
+            setGet(String.format(Constant.NWESHOWING_Path,page,count),ShowFile_HotShopBean.class);
         }
     }
     private void load() {

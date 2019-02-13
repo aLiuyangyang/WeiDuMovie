@@ -33,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <ImageView
+                android:id="@+id/ditus"
                 android:layout_alignParentRight="true"
                 android:background="@mipmap/com_icon_navigation_default"
                 android:layout_width="@dimen/dp_30"
@@ -79,6 +80,7 @@
 
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/detailsOf_recy"
         android:layout_marginTop="@dimen/dp_35"
         android:layout_below="@id/cinema_recyc_flow"
         android:layout_width="match_parent"

@@ -96,7 +96,7 @@ public class IsHotFragment extends BaseFragment {
     public void message(EventBusMessage eventBusMessage) {
         if (eventBusMessage.getId() == 1){
             page = 1;
-            setGet(String.format(Constant.Nearby_Path,page),ShowCinemaBean.class);
+            setGet(String.format(Constant.Banner_Path, page, count), ShowFile_HotShopBean.class);
         }
     }
     private void load() {
@@ -143,4 +143,5 @@ public class IsHotFragment extends BaseFragment {
         unbinder.unbind();
         EventBus.getDefault().unregister(this);
     }
+
 }
