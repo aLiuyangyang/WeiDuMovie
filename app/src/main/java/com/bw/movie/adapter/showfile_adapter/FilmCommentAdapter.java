@@ -10,13 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
-import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.MovieCommentDetailsBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.zhuang.likeviewlibrary.LikeView;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +24,7 @@ import butterknife.ButterKnife;
 
 
 public class FilmCommentAdapter extends XRecyclerView.Adapter<FilmCommentAdapter.ViewHolder> {
+
 
     private Context mContext;
     private List<MovieCommentDetailsBean.ResultBean> mList;
@@ -37,7 +37,7 @@ public class FilmCommentAdapter extends XRecyclerView.Adapter<FilmCommentAdapter
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_chat,viewGroup,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_chat, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -53,8 +53,15 @@ public class FilmCommentAdapter extends XRecyclerView.Adapter<FilmCommentAdapter
         String format = time.format(date);
         viewHolder.film_comment_button_time.setText(format);
 
-        viewHolder.film_comment_button_comment_num.setText(mList.get(i).getReplyNum()+"");
-        viewHolder.film_comment_button_prise_num.setText(mList.get(i).getGreatNum()+"");
+        viewHolder.film_comment_button_comment_num.setText(mList.get(i).getReplyNum() + "");
+        viewHolder.film_comment_button_prise_num.setText(mList.get(i).getGreatNum() + "");
+
+        viewHolder.likeView.setOnLikeListeners(new LikeView.OnLikeListeners() {
+            @Override
+            public void like(boolean isCancel) {
+
+            }
+        });
     }
 
     @Override
@@ -75,13 +82,15 @@ public class FilmCommentAdapter extends XRecyclerView.Adapter<FilmCommentAdapter
         TextView film_comment_button_prise_num;
         @BindView(R.id.film_comment_button_comment_num)
         TextView film_comment_button_comment_num;
-        @BindView(R.id.film_comment_button_prise)
-        ImageView film_comment_button_prise;
+        /*@BindView(R.id.film_comment_button_prise)
+        ImageView film_comment_button_prise;*/
         @BindView(R.id.film_comment_button_comment)
         ImageView film_comment_button_comment;
+        @BindView(R.id.likeView)
+        LikeView likeView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

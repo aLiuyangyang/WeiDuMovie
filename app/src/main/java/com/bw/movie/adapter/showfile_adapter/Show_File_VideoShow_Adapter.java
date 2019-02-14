@@ -51,7 +51,6 @@ public class Show_File_VideoShow_Adapter extends RecyclerView.Adapter<Show_File_
         if (setUp) {
             Glide.with(mContext).load(mFilmListBeans.get(i).getImageUrl()).into(viewHolder.mPlayer_list_video.thumbImageView);
         }
-
     }
 
     @Override

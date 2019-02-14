@@ -1,8 +1,14 @@
 package com.bw.movie.view.activity.showfileactivity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -41,6 +47,7 @@ public class ChoseseatActivity extends BaseActivity {
     private String mScreeningHall;
     private double price;
     double totalPrice = 0;
+    private PopupWindow mPopupWindow;
 
     @Override
     public void initView() {
@@ -78,7 +85,6 @@ public class ChoseseatActivity extends BaseActivity {
                 }
                 return true;
             }
-
             @Override
             public boolean isSold(int row, int column) {
                 if (row == 6 && column == 6) {
@@ -90,17 +96,17 @@ public class ChoseseatActivity extends BaseActivity {
             @Override
             public void checked(int row, int column) {
                 totalPrice += price;
-                String totalprice = String.format("%.2f", totalPrice);
-                moviePrice.setText(totalprice + "");
-
-
+                float  b   =  (float)(Math.round(totalPrice*100))/100;
+                //String totalprice = String.format("%.2f", totalPrice);
+                moviePrice.setText(b + "");
             }
 
             @Override
             public void unCheck(int row, int column) {
                 totalPrice -= price;
-                String totalprice = String.format("%.2f", totalPrice);
-                moviePrice.setText(totalprice + "");
+                float  b   =  (float)(Math.round(totalPrice*100))/100;
+                //String totalprice = String.format("%.2f", totalPrice);
+                moviePrice.setText(b + "");
             }
 
             @Override
@@ -111,9 +117,32 @@ public class ChoseseatActivity extends BaseActivity {
         });
         seatTableView.setData(10, 15);
 
+        payError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
+        paySuccess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow();
+            }
+        });
     }
 
+    private void showPopupWindow() {
+        View contentView = LayoutInflater.from(ChoseseatActivity.this).inflate(R.layout.pay_popupwindow, null);
+
+        mPopupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+
+        //显示PopupWindow
+
+        View rootview = LayoutInflater.from(ChoseseatActivity.this).inflate(R.layout.pay_popupwindow, null);
+
+        mPopupWindow.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
+    }
 
     @Override
     public int getContent() {
