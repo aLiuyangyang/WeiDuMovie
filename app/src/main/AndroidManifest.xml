@@ -34,12 +34,12 @@
         <activity android:name=".view.activity.logandregactivity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".view.activity.logandregactivity.RegisterActivity" />
-        <activity android:name=".view.activity.logandregactivity.GuideActivity" />
+        <activity android:name=".view.activity.logandregactivity.GuideActivity"/>
         <activity android:name=".view.activity.logandregactivity.ShowActivity"
             android:theme="@style/CustomTheme"
             />

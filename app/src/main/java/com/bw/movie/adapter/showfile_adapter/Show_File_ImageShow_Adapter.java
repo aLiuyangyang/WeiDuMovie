@@ -27,10 +27,16 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 public class Show_File_ImageShow_Adapter extends RecyclerView.Adapter<Show_File_ImageShow_Adapter.ViewHolder> {
     Context mContext;
 
-    List<Bitmap>  imgs ;
+    List<Details_Info.ResultBean.ShortFilmListBean> mFilmListBeans;
+
     public Show_File_ImageShow_Adapter(Context context) {
         mContext = context;
-        imgs = new ArrayList<>();
+        mFilmListBeans=new ArrayList<>();
+    }
+
+    public void setFilmListBeans(List<Details_Info.ResultBean.ShortFilmListBean> filmListBeans) {
+        mFilmListBeans = filmListBeans;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -43,21 +49,17 @@ public class Show_File_ImageShow_Adapter extends RecyclerView.Adapter<Show_File_
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.mShow_image.setImageBitmap(imgs.get(i));
+        //viewHolder.mShow_image.setImageBitmap(imgs.get(i));
+        Glide.with(mContext).load(mFilmListBeans.get(i).getImageUrl()).into(viewHolder.mShow_image);
     }
 
     @Override
     public int getItemCount() {
-        return imgs.size();
+        return mFilmListBeans.size();
     }
 
-    public void setResultBeans(List<Bitmap> mlist) {
-        imgs =mlist;
-        notifyDataSetChanged();
-    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
 
         private final ImageView mShow_image;
 

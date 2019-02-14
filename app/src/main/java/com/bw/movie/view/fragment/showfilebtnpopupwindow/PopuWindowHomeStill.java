@@ -34,6 +34,7 @@ public class PopuWindowHomeStill {
     private ImageView mFinish_image;
     private RecyclerView mThird_recyclerview;
     private Details_Info.ResultBean mResultBean;
+    private Show_File_ImageShow_Adapter mShow_file_imageShow_adapter;
 
     public PopuWindowHomeStill(Context context, Details_Info.ResultBean resultBean) {
         this.context = context;
@@ -42,7 +43,7 @@ public class PopuWindowHomeStill {
 
     public void bottomwindow(View view) {
         PopupMenu popupMenu = new PopupMenu(context, view);
-        if (popupWindow != null && popupWindow.isShowing()) {
+        if(popupWindow != null && popupWindow.isShowing()) {
             return;
         }
         ConstraintLayout inflate= (ConstraintLayout) View.inflate(context, R.layout.third_popupwindow, null);
@@ -59,17 +60,18 @@ public class PopuWindowHomeStill {
         popupWindow.showAtLocation(view, Gravity.LEFT | Gravity.BOTTOM, 0, -location[1]);
         //添加按键事件监听
         setButtonListeners(inflate);
+        
     }
 
     private void setButtonListeners(ConstraintLayout inflate) {
         mFinish_image = inflate.findViewById(R.id.finish_image);
         mThird_recyclerview = inflate.findViewById(R.id.third_recyclerview);
-
-        Show_File_ImageShow_Adapter show_file_imageShow_adapter = new Show_File_ImageShow_Adapter(context);
+        mShow_file_imageShow_adapter = new Show_File_ImageShow_Adapter(context);
+        mShow_file_imageShow_adapter.setFilmListBeans(mResultBean.getShortFilmList());
         mThird_recyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-        mThird_recyclerview.setAdapter(show_file_imageShow_adapter);
+        mThird_recyclerview.setAdapter(mShow_file_imageShow_adapter);
 
-        List<String> posterList = mResultBean.getPosterList();
+        /*List<String> posterList = mResultBean.getPosterList();
         final List<Bitmap> mlist = new ArrayList<>();
         for (int i = 0; i < posterList.size(); i++) {
             FrescoLoadUtil.getInstance().loadImageBitmap(posterList.get(i), new FrescoBitmapCallback<Bitmap>() {
@@ -90,7 +92,7 @@ public class PopuWindowHomeStill {
             });
 
         }
-        show_file_imageShow_adapter.setResultBeans(mlist);
+        show_file_imageShow_adapter.setResultBeans(mlist);*/
 
         mFinish_image.setOnClickListener(new View.OnClickListener() {
             @Override
