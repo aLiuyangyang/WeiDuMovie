@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.bw.movie">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -7,19 +8,21 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <!--//获取设备网络状态，禁用后无法获取网络状态-->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <!--//网络权限，当禁用后，无法进行检索等相关业务-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- //获取设备网络状态，禁用后无法获取网络状态 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- //网络权限，当禁用后，无法进行检索等相关业务 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--//读取设备硬件信息，统计数据-->
+    <!-- //读取设备硬件信息，统计数据 -->
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <!--//读取系统信息，包含系统版本等信息，用作统计-->
+    <!-- //读取系统信息，包含系统版本等信息，用作统计 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--//获取设备的网络状态，鉴权所需网络代理-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!--//获取统计数据-->
+    <!-- //获取设备的网络状态，鉴权所需网络代理 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- //获取统计数据 -->
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -40,13 +43,15 @@
         </activity>
         <activity android:name=".view.activity.logandregactivity.RegisterActivity" />
         <activity android:name=".view.activity.logandregactivity.GuideActivity" />
-        <activity android:name=".view.activity.logandregactivity.ShowActivity"
-            android:theme="@style/CustomTheme"
-            />
-        <activity android:name=".view.activity.showfileactivity.ShowFileAllActivity"   android:theme="@style/CustomTheme"/>
-        <activity android:name=".view.activity.showcinemaactivity.DetailsOfCinemaActivity" android:theme="@style/CustomTheme">
-
-        </activity>
+        <activity
+            android:name=".view.activity.logandregactivity.ShowActivity"
+            android:theme="@style/CustomTheme" />
+        <activity
+            android:name=".view.activity.showfileactivity.ShowFileAllActivity"
+            android:theme="@style/CustomTheme" />
+        <activity
+            android:name=".view.activity.showcinemaactivity.DetailsOfCinemaActivity"
+            android:theme="@style/CustomTheme" />
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true" />
@@ -54,11 +59,15 @@
         <activity android:name=".view.activity.showfileactivity.ChooseCinemaActivity" />
         <activity android:name=".view.activity.showfileactivity.CooseClassActivity" />
         <activity android:name=".view.activity.showfileactivity.DetailsActivity" />
-        <activity android:name=".view.activity.AreaActivity"></activity>
+        <activity android:name=".view.activity.AreaActivity" />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="slTiOBlO6mj5FIUGUnv5baxwbZdSXA8T" />
+
+        <activity android:name=".view.activity.showmineactivity.Presonal_Message_Activity" />
+        <activity android:name=".view.activity.showmineactivity.UpdatePassActivity" />
+        <activity android:name=".view.activity.showmineactivity.CareActivity"></activity>
     </application>
 
 </manifest>

@@ -19,5 +19,5 @@ public interface IP {
     void setdelRequest(String url, Class clazz);
 
     void getRequestimgtitle(String url, Map<String, Object> map, List<Object> list, Class clazz);
-
+    void setRequestHead(String path, Map<String,String> map,Class clazz);
 }

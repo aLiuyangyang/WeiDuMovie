@@ -17,4 +17,5 @@ public interface IM {
     void setPutResponse(String url, Class clazz, Map<String, String> map, MyCallBack myCallBack);
     void setDelResponse(String url, Class clazz, MyCallBack myCallBack);
     void getimgtitle(String url, Map<String, Object> map, List<Object> list, Class clazz, MyCallBack myCallback);
+    void setRequestHead(String path, Map<String,String> map,Class clazz,MyCallBack myCallback);
 }

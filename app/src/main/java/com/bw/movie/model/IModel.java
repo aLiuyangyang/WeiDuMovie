@@ -109,4 +109,26 @@ public class IModel implements IM{
         });
 
     }
+
+    @Override
+    public void setRequestHead(String path, Map<String, String> map, final Class clazz, final MyCallBack myCallback) {
+            RetrofitManager.getInstance().postHead(path, map, new RetrofitManager.HttpListener() {
+                @Override
+                public void onSuccess(String data) {
+                    try {
+                        Object obj=new Gson().fromJson(data,clazz);
+                        if(myCallback!=null){
+                            myCallback.setData(obj);
+                        }
+                    }catch (Exception e){
+                        Log.d("sjx","111"+e);
+                    }
+                }
+
+                @Override
+                public void onFail(String ex) {
+                    myCallback.setfail(ex);
+                }
+            });
+    }
 }

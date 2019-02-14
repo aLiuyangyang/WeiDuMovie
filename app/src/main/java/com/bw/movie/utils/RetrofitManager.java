@@ -95,6 +95,29 @@ public class RetrofitManager<T> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getObserver(listener));
     }
+    public void postHead(String path, Map<String, String> map,HttpListener listener) {
+        if (map == null) {
+            map = new HashMap<>();
+        }
+        MultipartBody multipartBody = filestBody(map);
+        mBaseApis.postHead(path, multipartBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getObserver(listener));
+    }
+
+    public static MultipartBody filestBody(Map<String,String> map) {
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            File file = new File(entry.getValue());
+            builder.addFormDataPart(entry.getKey(), "图片1.png",
+                    RequestBody.create(MediaType.parse("multipart/form-data"), file));
+        }
+
+        builder.setType(MultipartBody.FORM);
+        MultipartBody multipartBody = builder.build();
+        return multipartBody;
+    }
 
     public void postFormBodyObject(String url, Map<String,Object> params, List<Object> list, HttpListener listener){
 

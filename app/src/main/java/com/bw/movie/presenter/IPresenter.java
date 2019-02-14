@@ -99,6 +99,22 @@ public class IPresenter implements IP{
 
     }
 
+    @Override
+    public void setRequestHead(String path, Map<String, String> map, Class clazz) {
+        mIModel.setRequestHead(path, map, clazz, new MyCallBack() {
+            @Override
+            public void setData(Object data) {
+                    mIView.successed(data);
+            }
+
+            @Override
+            public void setfail(String error) {
+                mIView.failed(error);
+            }
+
+        });
+    }
+
     public void onDistouch(){
         if(mIModel!=null){
             mIModel=null;

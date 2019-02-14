@@ -110,7 +110,7 @@ public class RegisterActivity extends BaseActivity {
                 Calendar startDate = Calendar.getInstance();
                 Calendar endDate = Calendar.getInstance();
 
-                startDate.set(year-100,0,1);
+                startDate.set(year-80,0,1);
                 endDate.set(year,month,day);
                 TimePickerView pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
                     @Override

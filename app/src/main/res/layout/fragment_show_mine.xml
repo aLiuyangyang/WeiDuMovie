@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.bw.movie.view.activity.showmineactivity.Mine_Custom
-    android:layout_width="match_parent"
+<com.bw.movie.view.activity.showmineactivity.Mine_Custom android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -22,13 +22,13 @@
             android:layout_marginLeft="@dimen/dp_24"
             android:layout_marginTop="@dimen/dp_30"
             />
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/personal_top_image"
             android:layout_width="@dimen/dp_72"
             android:layout_height="@dimen/dp_72"
+            fresco:roundAsCircle="true"
             android:layout_marginTop="@dimen/dp_60"
             android:layout_centerHorizontal="true"
-            android:background="@mipmap/touxiang"
             />
         <TextView
             android:id="@+id/personal_name"
@@ -66,7 +66,7 @@
             android:background="@drawable/mine_back"
             >
             <RelativeLayout
-                android:id="@+id/personal_meassage_my"
+                android:id="@+id/personal_meassage"
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="86dp">
                 <ImageView
@@ -103,6 +103,7 @@
             android:background="@drawable/mine_back"
             >
             <RelativeLayout
+                android:id="@+id/my_care"
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="@dimen/dp_86">
                 <ImageView
@@ -177,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#333333"
-                    android:text="购票记录"
+                    android:text="意见反馈"
                     android:textSize="@dimen/sp_12"
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_below="@id/personal_advice_feedback"

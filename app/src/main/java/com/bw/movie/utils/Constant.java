@@ -49,13 +49,13 @@ public class Constant {
     public static String BDWeixin_Path="user/v1/verify/bindWeChat?userId=%d";
     public static String SFWeixin_Path="user/v1/verify/whetherToBindWeChat?=%d";
 
-   /* //根据电影id查看电影排期
-    public static String ChooseCinema_Path="movie/v1/findCinemasListByMovieId?movieId=%d";
-    //根据电影ID和影院ID查询电影排期列表
-    public static String ChooseClass_Path="movie/v1/findMovieScheduleList?cinemasId=%d&movieId=%d";
-    //根据电影ID查询电影信息
-    public static String MoviesById_Path="movie/v1/findMoviesById?movieId=%d";*/
-   public static final String URL_QUERY_COMMENT="movie/v1/findAllMovieComment?movieId=%d&page=1&count=10";
-
-
+     public static  String URL_QUERY_COMMENT="movie/v1/findAllMovieComment?movieId=%d&page=1&count=10";
+    //根据用户ID查询用户信息
+     public static String Update_User="user/v1/verify/getUserInfoByUserId";
+    //修改头像
+    public static String UploadHeadPic_Path="user/v1/verify/uploadHeadPic";
+    //修改密码
+    public static String UpdataPass_Path="user/v1/verify/modifyUserPwd";
+    //查询用户关注的影片列表
+    public static String MoviePageList_Path="movie/v1/verify/findMoviePageList";
 }

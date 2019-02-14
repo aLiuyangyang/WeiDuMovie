@@ -40,5 +40,7 @@ public interface BaseApis<T> {
 
     @PUT
     Observable<ResponseBody> put(@Url String url, @QueryMap Map<String, String> map);
+    @POST
+    Observable<ResponseBody> postHead(@Url String path,@Body MultipartBody multipartBody);
 }
 

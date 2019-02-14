@@ -1,4 +1,4 @@
-package com.bw.movie.utils.frescoutils;
+package com.bw.movie.utils;
 
 import android.content.ComponentName;
 import android.content.Context;
