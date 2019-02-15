@@ -72,4 +72,11 @@ public class Constant {
     public static String UserInfo_Path="user/v1/verify/modifyUserInfo";
     //查询新版本
     public static String NewVersion_Path="tool/v1/findNewVersion";
+
+    //电影评论点赞
+    public static String Prise_Path="movie/v1/verify/movieCommentGreat";
+
+    //电影评论
+    public static String DianZan_Path="";
+
 }
