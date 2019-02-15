@@ -64,8 +64,12 @@ public class Constant {
     public static String MoviePageList_Path="movie/v1/verify/findMoviePageList?page=%d&count=%d";
     //用户签到
     public static String UserSignIn_Path="user/v1/verify/userSignIn";
-    //用户购票记录查询列表
-    public static String BuyTicketRecordList_Path="user/v1/verify/findUserBuyTicketRecordList";
     //意见反馈
     public static String RecordFeedBack_Path="tool/v1/verify/recordFeedBack";
+    //用户购票记录查询列表
+    public static String BuyTicketRecord_Path="user/v1/verify/findUserBuyTicketRecordList?page=%d&count=%d&status=%d";
+   //修改用户信息
+    public static String UserInfo_Path="user/v1/verify/modifyUserInfo";
+    //查询新版本
+    public static String NewVersion_Path="tool/v1/findNewVersion";
 }

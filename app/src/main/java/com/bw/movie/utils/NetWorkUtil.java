@@ -18,7 +18,7 @@ import android.support.v7.app.AlertDialog;
 public class NetWorkUtil {
     /*
      * 判断网络连接是否已开
-     * 2012-08-20
+     * 2019-01-25
      *true 已打开  false 未打开
      * */
     public static boolean isConn(Context context){

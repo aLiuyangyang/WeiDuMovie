@@ -43,7 +43,7 @@
             />
         <TextView
             android:id="@+id/mine_sign"
-            android:layout_width="@dimen/dp_66"
+            android:layout_width="@dimen/dp_68"
             android:layout_height="@dimen/dp_28"
             android:background="@drawable/shape_button_login"
             android:text="签到"
@@ -189,6 +189,7 @@
                     />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/mine_NewVersion"
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="86dp">
                 <ImageView

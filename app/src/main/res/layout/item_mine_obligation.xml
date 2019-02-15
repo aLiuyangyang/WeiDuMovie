@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/mine_back"
+    android:layout_width="match_parent"
+    android:paddingTop="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10"
+    android:elevation="@dimen/dp_4"
+    android:layout_height="@dimen/dp_220">
+     <TextView
+         android:textSize="@dimen/sp_14"
+         android:id="@+id/obligation"
+         android:paddingLeft="@dimen/dp_10"
+         android:text="铁血战士"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+   <Button
+       android:id="@+id/obligation_but"
+      android:background="@drawable/mine_obli"
+       android:text="去付款"
+       android:textColor="#fff"
+       android:textSize="@dimen/sp_12"
+       android:layout_alignParentRight="true"
+       android:layout_width="@dimen/dp_54"
+       android:layout_height="34dp" />
+      <LinearLayout
+          android:paddingTop="@dimen/dp_10"
+          android:paddingLeft="@dimen/dp_10"
+          android:layout_below="@id/obligation"
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <TextView
+              android:id="@+id/obligation_code"
+              android:text="订单号:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:id="@+id/obligation_cinema"
+              android:text="影院:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:id="@+id/obligation_moviehall"
+              android:text="影厅:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:id="@+id/obligation_time"
+              android:text="时间:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:id="@+id/obligation_num"
+              android:text="数量:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:id="@+id/obligation_money"
+              android:text="金额:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+      </LinearLayout>
+</RelativeLayout>

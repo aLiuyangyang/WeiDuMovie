@@ -98,7 +98,6 @@ public class Recommend_Fragment extends BaseFragment {
                 if (data instanceof ShowCinemaBean){
                         ShowCinemaBean showCinemaBean= (ShowCinemaBean) data;
                         if (showCinemaBean.getStatus().equals("0000")){
-
                                 List<ShowCinemaBean.ResultBean> result = showCinemaBean.getResult();
                                 if (page==1){
                                         showCinema_adapter.setList(result);

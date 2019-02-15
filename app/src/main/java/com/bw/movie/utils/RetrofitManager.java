@@ -60,8 +60,9 @@ public class RetrofitManager<T> {
            Request.Builder newBuilder = request.newBuilder();
 
            newBuilder.method(request.method(),request.body());
-
+               newBuilder.addHeader("ak","0110010010000");
            if(!TextUtils.isEmpty(userId)&&!TextUtils.isEmpty(sessionId)){
+
                newBuilder.addHeader("userId",userId);
                newBuilder.addHeader("sessionId",sessionId);
            }

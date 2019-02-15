@@ -41,7 +41,7 @@ public class CareActivity extends BaseActivity {
 
     @Override
     public void initData() {
-       list=new ArrayList<>();
+        list=new ArrayList<>();
         list.add(new FilmFragment());
         list.add(new CinemaFragment());
         mineCareViewpager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {

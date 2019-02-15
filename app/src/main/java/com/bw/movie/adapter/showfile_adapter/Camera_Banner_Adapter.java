@@ -67,13 +67,6 @@ public class Camera_Banner_Adapter extends RecyclerView.Adapter<Camera_Banner_Ad
         holder.image.setImageURI(parse);
         holder.text.setText(list.get(i).getName());
 
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, DetailsActivity.class));
-                EventBus.getDefault().postSticky(new EventBusMessage(list.get(i).getId()));
-            }
-        });*/
     }
 
     @Override

@@ -26,13 +26,14 @@
         android:layout_marginTop="@dimen/dp_50"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp_84">
-    <EditText
+    <com.xw.repo.XEditText
         android:textSize="@dimen/sp_12"
+        app:x_disableEmoji="true"
         android:id="@+id/mine_edit"
         android:background="@null"
         android:hint="写下您对产品的感受吧！工作人员将会在第一时间评估处理"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></EditText>
+        android:layout_height="wrap_content"></com.xw.repo.XEditText>
     </RelativeLayout>
     <Button
         android:id="@+id/opin_submit"

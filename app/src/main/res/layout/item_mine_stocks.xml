@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/mine_back"
+    android:layout_width="match_parent"
+    android:paddingTop="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10"
+    android:elevation="@dimen/dp_4"
+    android:layout_height="wrap_content">
+     <TextView
+         android:textSize="@dimen/sp_14"
+         android:id="@+id/mine_stack_name"
+         android:paddingLeft="@dimen/dp_10"
+         android:text="铁血战士"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/mine_stack_StartTiem"
+        android:textSize="@dimen/sp_14"
+        android:textColor="#f77421"
+        android:text="14:40:00"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/mine_stack_EndTime"
+        android:textSize="@dimen/sp_14"
+        android:textColor="#f77421"
+        android:text="14:40:00"
+        android:layout_toRightOf="@id/mine_stack_StartTiem"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/mine_starttiems"
+        android:textSize="@dimen/sp_14"
+        android:textColor="#f77421"
+        android:text="开始时间"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="@dimen/sp_14"
+        android:textColor="#f77421"
+        android:text="结束时间"
+        android:layout_toRightOf="@id/mine_starttiems"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+      <LinearLayout
+          android:paddingTop="@dimen/dp_50"
+          android:paddingLeft="@dimen/dp_10"
+          android:layout_below="@id/obligation"
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <TextView
+              android:id="@+id/mine_stack_Code"
+              android:text="订单号:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_30"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:id="@+id/mine_stack_Cinema"
+              android:text="影院:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:id="@+id/mine_stack_moviehall"
+              android:text="影厅:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:id="@+id/mine_stack_time"
+              android:text="时间:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:id="@+id/mine_stack_num"
+              android:text="数量:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:id="@+id/mine_stack_money"
+              android:text="金额:"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/dp_10"
+              android:layout_width="wrap_content"
+              android:layout_marginBottom="@dimen/dp_20"
+              android:layout_height="wrap_content" />
+      </LinearLayout>
+</RelativeLayout>

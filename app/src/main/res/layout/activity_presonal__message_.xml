@@ -5,14 +5,27 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/top_personal_item"
+    android:id="@+id/top_personal_item"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:layout_marginLeft="24dp"
+    android:text="用户信息"
+    android:textSize="14sp"
+    android:textColor="#333333"
+    />
+    <Button
+        android:id="@+id/top_personal_but"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_34"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="24dp"
-        android:text="用户信息"
-        android:textSize="14sp"
-        android:textColor="#333333"
+        android:text="修改用户信息"
+        android:background="@drawable/show_fileh"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_alignParentRight="true"
+        android:textSize="12sp"
+        android:textColor="#fff"
         />
     <RelativeLayout
         android:id="@+id/personal_message_relative"

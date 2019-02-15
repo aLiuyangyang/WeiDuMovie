@@ -8,9 +8,14 @@ import com.bw.movie.R;
 import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Nearby_Adapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.AttentionBean;
+import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.ShowCinemaBean;
 import com.bw.movie.utils.Constant;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -27,6 +32,7 @@ public class Nearby_Fragment extends BaseFragment {
         @Override
         public void initView(View view) {
             ButterKnife.bind(this, view);
+                EventBus.getDefault().register(this);
                 load();
         }
 
@@ -76,6 +82,13 @@ public class Nearby_Fragment extends BaseFragment {
         public int getContent() {
                 return R.layout.fragment_nearbys;
         }
+        @Subscribe(threadMode = ThreadMode.MAIN)
+        public void message(EventBusMessage eventBusMessage) {
+                if (eventBusMessage.getId() == 1){
+                        page = 1;
+                        setGet(String.format(Constant.Nearby_Path,page),ShowCinemaBean.class);
+                }
+        }
         @Override
         public void success(Object data) {
                 if (data instanceof ShowCinemaBean){
@@ -92,6 +105,7 @@ public class Nearby_Fragment extends BaseFragment {
                 }else if (data instanceof AttentionBean){
                         AttentionBean attentionBean= (AttentionBean) data;
                         if (attentionBean.getStatus().equals("0000")){
+                                EventBus.getDefault().post(new EventBusMessage(1));
                                 showToast(attentionBean.getMessage());
                         }else {
                                 showToast(attentionBean.getMessage());
@@ -104,6 +118,10 @@ public class Nearby_Fragment extends BaseFragment {
         public void fail(String error) {
            showLog(error);
         }
-
+        @Override
+        public void onDestroy() {
+                super.onDestroy();
+                EventBus.getDefault().unregister(this);
+        }
 
 }

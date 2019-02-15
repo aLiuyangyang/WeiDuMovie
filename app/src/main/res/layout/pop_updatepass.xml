@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#ccc"
+    android:layout_height="wrap_content">
+   <com.xw.repo.XEditText
+       android:id="@+id/updatapass_name"
+       android:text="昵称"
+       app:x_disableEmoji="true"
+       android:layout_width="@dimen/dp_300"
+       android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/updatapass_sex"
+        android:text="性别"
+        android:digits="男女"
+        android:textColor="#333333"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/updatapass_emil"
+        android:text="邮箱"
+        android:digits="0123456789abcdefghigklmnopqrstuvwxyz@."
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/updatapass_but"
+        android:layout_gravity="center"
+        android:text="确认"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
