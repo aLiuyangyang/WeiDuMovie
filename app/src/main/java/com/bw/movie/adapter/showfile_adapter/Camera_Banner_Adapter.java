@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.bw.movie.bean.Camera_BannerBean;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.ShowFile_Banner_Info;
 import com.bw.movie.view.activity.showfileactivity.DetailsActivity;
@@ -19,6 +20,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -29,22 +31,29 @@ import butterknife.ButterKnife;
  * author:孙佳鑫(孙佳鑫)
  * function:轮播图
  */
-public class ShowFile_Banner_Adapter extends RecyclerView.Adapter<ShowFile_Banner_Adapter.ViewHolder> {
-
+public class Camera_Banner_Adapter extends RecyclerView.Adapter<Camera_Banner_Adapter.ViewHolder> {
 
     private Context mContext;
-    private List<ShowFile_Banner_Info.ResultBean> list;
+    private List<Camera_BannerBean.ResultBean> list;
 
-    public ShowFile_Banner_Adapter(Context context, List<ShowFile_Banner_Info.ResultBean> list) {
+    public Camera_Banner_Adapter(Context context) {
         mContext = context;
-        this.list = list;
+        list=new ArrayList<>();
     }
 
+    public void setList(List<Camera_BannerBean.ResultBean> list) {
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
+    public int getmovied(int position){
+        int id = list.get(position).getId();
+        return id;
+    }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(mContext, R.layout.item_layout_coverflow, null);
         ViewHolder viewHolder = new ViewHolder(view);
-
         return viewHolder;
     }
 
@@ -58,13 +67,13 @@ public class ShowFile_Banner_Adapter extends RecyclerView.Adapter<ShowFile_Banne
         holder.image.setImageURI(parse);
         holder.text.setText(list.get(i).getName());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mContext.startActivity(new Intent(mContext, DetailsActivity.class));
                 EventBus.getDefault().postSticky(new EventBusMessage(list.get(i).getId()));
             }
-        });
+        });*/
     }
 
     @Override
