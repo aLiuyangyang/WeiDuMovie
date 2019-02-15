@@ -67,7 +67,10 @@
 
         <activity android:name=".view.activity.showmineactivity.Presonal_Message_Activity" />
         <activity android:name=".view.activity.showmineactivity.UpdatePassActivity" />
-        <activity android:name=".view.activity.showmineactivity.CareActivity"></activity>
+        <activity android:name=".view.activity.showmineactivity.CareActivity" />
+        <activity android:name=".view.activity.showmineactivity.TicketActivity" />
+        <activity android:name=".view.activity.showmineactivity.OpinionActivity" />
+        <activity android:name=".view.activity.showmineactivity.OpinSuccessActivity"></activity>
     </application>
 
 </manifest>

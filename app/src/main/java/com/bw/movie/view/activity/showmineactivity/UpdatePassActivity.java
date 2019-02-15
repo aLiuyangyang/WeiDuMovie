@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -33,6 +34,8 @@ public class UpdatePassActivity extends BaseActivity {
     EditText personalOkPass;
     @BindView(R.id.myokpass)
     Button myokpass;
+    @BindView(R.id.film_details_back)
+    ImageView filmDetailsBack;
     @Override
     public void initView() {
         ButterKnife.bind(this);
@@ -40,6 +43,12 @@ public class UpdatePassActivity extends BaseActivity {
 
     @Override
     public void initData() {
+            filmDetailsBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
        myokpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

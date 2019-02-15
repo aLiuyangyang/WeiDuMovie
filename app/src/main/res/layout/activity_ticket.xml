@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.showmineactivity.TicketActivity">
+    <RadioGroup
+        android:id="@+id/mine_care_radio"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/mine_care_film"
+            android:button="@null"
+            android:gravity="center"
+            android:text="待付款"
+            android:layout_marginRight="@dimen/dp_70"
+            android:layout_marginTop="@dimen/dp_70"
+            android:checked="true"
+            android:background="@drawable/show_cinema_bg"
+            android:textColor="@color/mycolor"
+            android:layout_marginLeft="@dimen/dp_60"
+            android:layout_width="@dimen/dp_83"
+            android:layout_height="@dimen/dp_25" />
+        <RadioButton
+            android:id="@+id/mine_care_cinema"
+            android:text="已完成"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp_70"
+            android:background="@drawable/show_cinema_bg"
+            android:textColor="@color/mycolor"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/dp_83"
+            android:layout_height="@dimen/dp_25" />
+    </RadioGroup>
+</RelativeLayout>

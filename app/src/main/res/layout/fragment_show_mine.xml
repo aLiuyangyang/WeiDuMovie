@@ -42,6 +42,7 @@
             android:layout_marginTop="@dimen/dp_10"
             />
         <TextView
+            android:id="@+id/mine_sign"
             android:layout_width="@dimen/dp_66"
             android:layout_height="@dimen/dp_28"
             android:background="@drawable/shape_button_login"
@@ -126,6 +127,7 @@
                     />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/rela_ticket"
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="86dp">
                 <ImageView
@@ -163,16 +165,17 @@
             android:background="@drawable/mine_back"
             >
             <RelativeLayout
+                android:id="@+id/my_Opinion"
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="86dp">
+
                 <ImageView
                     android:id="@+id/personal_advice_feedback"
-                    android:layout_width="@dimen/dp_24"
-                    android:layout_height="@dimen/dp_24"
-                    android:background="@mipmap/my_icon_feedback_default"
-                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_40"
-                    />
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:background="@mipmap/my_icon_feedback_default" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -210,6 +213,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/mine_retuen"
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="86dp">
                 <ImageView
@@ -225,7 +229,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#333333"
-                    android:text="推出登录"
+                    android:text="退出登录"
                     android:textSize="@dimen/sp_12"
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_below="@id/personal_log_out"
