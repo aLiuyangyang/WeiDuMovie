@@ -58,10 +58,11 @@
         android:src="@mipmap/com_icon_comment_default"
         android:layout_toLeftOf="@id/film_comment_button_comment_num"
         android:layout_alignBottom="@id/film_comment_button_comment_num"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_marginRight="@dimen/dp_6"
         />
-    <!--<TextView
-        android:id="@+id/film_comment_button_prise_num"
+    <TextView
+        android:id="@+id/film_prise_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/sp_12"
@@ -70,26 +71,37 @@
         android:layout_toLeftOf="@id/film_comment_button_comment"
         android:layout_marginRight="@dimen/dp_16"
         android:layout_below="@id/film_comment_button_message"
-        />-->
-    <com.zhuang.likeviewlibrary.LikeView
-        android:id="@+id/likeView"
+        />
+    <ImageView
+        android:id="@+id/film_comment_button_prise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@mipmap/com_icon_praise_default"
+        android:layout_toLeftOf="@id/film_comment_button_comment_num"
+        android:layout_alignBottom="@id/film_comment_button_comment_num"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_52"
+        />
+    <!--<com.zhuang.likeviewlibrary.LikeView
+        android:id="@+id/likeView"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
         app:like_canCancel="true"
         app:like_iconSize="18sp"
         app:like_hasFly="false"
         app:like_textSize="12sp"
         android:layout_toLeftOf="@id/film_comment_button_comment"
-        android:layout_marginRight="@dimen/dp_31"
+        android:layout_marginRight="@dimen/dp_10"
         android:layout_below="@id/film_comment_button_message"
-        />
+        android:layout_marginTop="@dimen/dp_2"
+        />-->
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_2"
         android:background="#ccc"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_20"
         android:layout_below="@id/film_comment_button_time"
         />
 </RelativeLayout>

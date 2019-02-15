@@ -5,29 +5,42 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.showfile_adapter.FilmCommentAdapter;
-import com.bw.movie.bean.Details_Info;
+import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.MovieCommentDetailsBean;
-import com.bw.movie.bean.MovieScheduleBean;
+import com.bw.movie.presenter.IPresenter;
+import com.bw.movie.utils.Constant;
+import com.bw.movie.view.IView;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import butterknife.BindView;
 
 /**
  * date:2019/1/27
  * author:孙佳鑫(DELL)
- * function:
+ * function:评价和点赞页面
  */
-public class PopuWindowFileReview {
+public class PopuWindowFileReview implements IView {
+    @BindView(R.id.ping)
+    ImageView ping;
     private PopupWindow popupWindow;
-
     private Context context;
-    private MovieCommentDetailsBean  resultBean;
+    private MovieCommentDetailsBean resultBean;
+    private IPresenter mIPresenter;
+    private FilmCommentAdapter mCommentAdapter;
+
 
     public PopuWindowFileReview(Context context, MovieCommentDetailsBean resultBean) {
         this.context = context;
@@ -39,7 +52,7 @@ public class PopuWindowFileReview {
         if (popupWindow != null && popupWindow.isShowing()) {
             return;
         }
-        ConstraintLayout inflate= (ConstraintLayout) View.inflate(context, R.layout.fourth_popupwindow, null);
+        ConstraintLayout inflate = (ConstraintLayout) View.inflate(context, R.layout.fourth_popupwindow, null);
         popupWindow = new PopupWindow(inflate,
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -63,13 +76,48 @@ public class PopuWindowFileReview {
         film_details_button_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 popupWindow.dismiss();
             }
         });
-        FilmCommentAdapter commentAdapter = new FilmCommentAdapter(context,resultBean.getResult());
+        mCommentAdapter = new FilmCommentAdapter(context, resultBean.getResult());
         film_comment_recycle.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-        film_comment_recycle.setAdapter(commentAdapter);
+        film_comment_recycle.setAdapter(mCommentAdapter);
+
+
+        mIPresenter = new IPresenter(this);
+
+        mCommentAdapter.setOnclickId(new FilmCommentAdapter.OnclickId() {
+            @Override
+            public void successed(int commentId) {
+                Map<String, String> map = new HashMap<>();
+                map.put("commentId", commentId + "");
+                mIPresenter.setRequest(Constant.Prise_Path, LoginBean.class, map);
+            }
+
+            @Override
+            public void failed() {
+
+            }
+        });
+
+        /*ping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });*/
     }
 
+    @Override
+    public void successed(Object data) {
+        LoginBean loginBean = (LoginBean) data;
+        String message = loginBean.getMessage();
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        Log.i("sjx", message);
+    }
+
+    @Override
+    public void failed(String error) {
+
+    }
 }
