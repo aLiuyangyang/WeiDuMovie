@@ -25,6 +25,7 @@
             android:text="666"
             android:textColor="#ffffff"
             android:textSize="@dimen/sp_16"
+            android:gravity="center"
             android:background="@drawable/show_file_background"/>
     </RelativeLayout>
 </LinearLayout>

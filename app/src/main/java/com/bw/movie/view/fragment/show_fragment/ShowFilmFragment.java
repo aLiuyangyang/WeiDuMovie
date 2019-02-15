@@ -196,8 +196,9 @@ public class ShowFilmFragment extends BaseFragment {
             showFilm_coming_adapter.setClist(showFile_banner_info.getResult());
             ShowFile_Banner_Adapter showFile_banner_adapter = new ShowFile_Banner_Adapter(getContext(), showFile_banner_info.getResult());
             recycFlow.setAdapter(showFile_banner_adapter);
+
             recycFlow.smoothScrollToPosition(4);
-            final ImageViewAnimationHelper imageViewAnimationHelper = new ImageViewAnimationHelper(getContext(), checkedLayout, 2, 31);
+            final ImageViewAnimationHelper imageViewAnimationHelper = new ImageViewAnimationHelper(getContext(), checkedLayout, 1, 31);
             recycFlow.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {
                 @Override
                 public void onItemSelected(int position) {
@@ -210,7 +211,7 @@ public class ShowFilmFragment extends BaseFragment {
     }
 
     @Override
-    public void fail(String error) {
+    public void fail(String error){
         showLog(error);
     }
 

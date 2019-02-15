@@ -69,6 +69,37 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/ping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/com_icon_publish_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="@dimen/dp_60"
+        android:layout_marginRight="@dimen/dp_40"
+        />
 
+    <EditText
+        android:id="@+id/pinglun_edittext"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="wrap_content"
+        android:hint="请输入评论"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:layout_marginRight="@dimen/dp_40"
+        />
+
+    <Button
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_30"
+        android:text="评论"
+        android:background="@drawable/gradient"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="@dimen/dp_60"
+        android:layout_marginRight="@dimen/dp_100"
+        />
 
 </android.support.constraint.ConstraintLayout>
