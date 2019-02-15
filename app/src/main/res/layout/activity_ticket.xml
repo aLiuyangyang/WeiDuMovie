@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.showmineactivity.TicketActivity">
     <RadioGroup
-        android:id="@+id/mine_care_radio"
+        android:id="@+id/ticket_radio"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton
-            android:id="@+id/mine_care_film"
+            android:id="@+id/ticket_obligation"
             android:button="@null"
             android:gravity="center"
             android:text="待付款"
@@ -24,7 +24,7 @@
             android:layout_width="@dimen/dp_83"
             android:layout_height="@dimen/dp_25" />
         <RadioButton
-            android:id="@+id/mine_care_cinema"
+            android:id="@+id/ticket_stocks"
             android:text="已完成"
             android:button="@null"
             android:gravity="center"
@@ -35,4 +35,10 @@
             android:layout_width="@dimen/dp_83"
             android:layout_height="@dimen/dp_25" />
     </RadioGroup>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ticket_viewpager"
+        android:layout_below="@+id/ticket_radio"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
 </RelativeLayout>
