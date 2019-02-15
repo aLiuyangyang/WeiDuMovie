@@ -49,6 +49,8 @@ public class Constant {
     public static String BDWeixin_Path="user/v1/verify/bindWeChat?userId=%d";
     public static String SFWeixin_Path="user/v1/verify/whetherToBindWeChat?=%d";
 
+    public static String Camera_Banner="movie/v1/findMovieListByCinemaId?cinemaId=%d";
+
      public static  String URL_QUERY_COMMENT="movie/v1/findAllMovieComment?movieId=%d&page=1&count=10";
     //根据用户ID查询用户信息
      public static String Update_User="user/v1/verify/getUserInfoByUserId";

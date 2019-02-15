@@ -74,7 +74,7 @@ public class ShowCinema_Recommend_Adapter extends XRecyclerView.Adapter<XRecycle
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context,DetailsOfCinemaActivity.class);
-                intent.putExtra("id",mlist.get(i).getId());
+                intent.putExtra( "id",mlist.get(i).getId());
                 context.startActivity(intent);
             }
         });

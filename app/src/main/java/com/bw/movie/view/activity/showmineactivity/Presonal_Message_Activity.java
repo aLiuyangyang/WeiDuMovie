@@ -92,7 +92,7 @@ public class Presonal_Message_Activity extends BaseActivity {
             public void onClick(View v) {
               Intent intent=new Intent(Presonal_Message_Activity.this,UpdatePassActivity.class);
               startActivity(intent);
-              finish();
+
             }
         });
     }

@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.bw.movie.R;
 import com.bw.movie.presenter.IPresenter;
 import com.bw.movie.utils.Loading_view;
-import com.bw.movie.utils.frescoutils.NetWorkUtil;
+import com.bw.movie.utils.NetWorkUtil;
 import com.bw.movie.view.IView;
 
 import java.util.HashMap;

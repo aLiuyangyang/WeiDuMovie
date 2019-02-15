@@ -54,7 +54,7 @@ public class FilmCommentAdapter extends XRecyclerView.Adapter<FilmCommentAdapter
         viewHolder.film_comment_button_time.setText(format);
 
         viewHolder.film_comment_button_comment_num.setText(mList.get(i).getReplyNum() + "");
-        viewHolder.film_comment_button_prise_num.setText(mList.get(i).getGreatNum() + "");
+       // viewHolder.film_comment_button_prise_num.setText(mList.get(i).getGreatNum() + "");
 
         viewHolder.likeView.setOnLikeListeners(new LikeView.OnLikeListeners() {
             @Override
@@ -78,8 +78,8 @@ public class FilmCommentAdapter extends XRecyclerView.Adapter<FilmCommentAdapter
         TextView film_comment_button_message;
         @BindView(R.id.film_comment_button_time)
         TextView film_comment_button_time;
-        @BindView(R.id.film_comment_button_prise_num)
-        TextView film_comment_button_prise_num;
+        /*@BindView(R.id.film_comment_button_prise_num)
+        TextView film_comment_button_prise_num;*/
         @BindView(R.id.film_comment_button_comment_num)
         TextView film_comment_button_comment_num;
         /*@BindView(R.id.film_comment_button_prise)

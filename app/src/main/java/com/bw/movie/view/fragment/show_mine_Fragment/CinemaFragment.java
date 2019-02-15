@@ -27,7 +27,7 @@ public class CinemaFragment extends BaseFragment {
 
     @Override
     public int getContent() {
-        return R.layout.fragment_film;
+        return R.layout.fragment_cinema;
     }
 
     @Override

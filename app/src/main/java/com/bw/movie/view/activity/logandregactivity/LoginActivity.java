@@ -140,9 +140,7 @@ public class LoginActivity extends BaseActivity {
                     showToast("手机号或密码不能为空");
                 } else if (!RegularUtil.isMobile(mPhone)) {
                     showToast("手机号格式错误");
-                } else if (!RegularUtil.isPassword(mPwd)) {
-                    showToast("密码错误");
-                } else {
+                }else {
                     Map<String, String> map = new HashMap<>();
                     map.put("phone", mPhone);
                     map.put("pwd", EncryptUtil.encrypt(mPwd));//加密密码

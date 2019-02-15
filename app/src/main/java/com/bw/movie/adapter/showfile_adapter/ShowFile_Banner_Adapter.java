@@ -65,9 +65,6 @@ public class ShowFile_Banner_Adapter extends RecyclerView.Adapter<ShowFile_Banne
                 EventBus.getDefault().postSticky(new EventBusMessage(list.get(i).getId()));
             }
         });
-
-
-
     }
 
     @Override
@@ -84,7 +81,6 @@ public class ShowFile_Banner_Adapter extends RecyclerView.Adapter<ShowFile_Banne
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
-
         }
     }
 
