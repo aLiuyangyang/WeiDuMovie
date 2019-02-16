@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.PopupWindow;
@@ -16,16 +18,22 @@ import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.showfile_adapter.FilmCommentAdapter;
+import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.MovieCommentDetailsBean;
 import com.bw.movie.presenter.IPresenter;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.view.IView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * date:2019/1/27
@@ -35,25 +43,40 @@ import butterknife.BindView;
 public class PopuWindowFileReview implements IView {
     @BindView(R.id.ping)
     ImageView ping;
+    @BindView(R.id.finish_image)
+    ImageView finishImage;
+    @BindView(R.id.fourth_recyclerview)
+    RecyclerView fourthRecyclerview;
+    @BindView(R.id.pinglun_edittext)
+    EditText pinglunEdittext;
+    @BindView(R.id.pingjia_btn)
+    Button pingjiaBtn;
+
+
     private PopupWindow popupWindow;
     private Context context;
     private MovieCommentDetailsBean resultBean;
     private IPresenter mIPresenter;
     private FilmCommentAdapter mCommentAdapter;
+    private int movied;
 
 
     public PopuWindowFileReview(Context context, MovieCommentDetailsBean resultBean) {
         this.context = context;
         this.resultBean = resultBean;
+        EventBus.getDefault().register(this);
     }
 
     public void bottomwindow(View view) {
+
+
         PopupMenu popupMenu = new PopupMenu(context, view);
         if (popupWindow != null && popupWindow.isShowing()) {
             return;
         }
         ConstraintLayout inflate = (ConstraintLayout) View.inflate(context, R.layout.fourth_popupwindow, null);
-        popupWindow = new PopupWindow(inflate,
+         ButterKnife.bind(this,inflate);
+       popupWindow = new PopupWindow(inflate,
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         //点击空白处时，隐藏掉pop窗口
@@ -66,6 +89,13 @@ public class PopuWindowFileReview implements IView {
         popupWindow.showAtLocation(view, Gravity.LEFT | Gravity.BOTTOM, 0, -location[1]);
         //添加按键事件监听
         setButtonListeners(inflate);
+
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void message(EventBusMessage eventBusMessage) {
+        movied = eventBusMessage.getId();
     }
 
     private void setButtonListeners(ConstraintLayout inflate) {
@@ -79,12 +109,39 @@ public class PopuWindowFileReview implements IView {
                 popupWindow.dismiss();
             }
         });
+
+
+
+        ping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pinglunEdittext.setVisibility(View.VISIBLE);
+                pingjiaBtn.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+
         mCommentAdapter = new FilmCommentAdapter(context, resultBean.getResult());
         film_comment_recycle.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         film_comment_recycle.setAdapter(mCommentAdapter);
 
-
         mIPresenter = new IPresenter(this);
+
+        pingjiaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String plev = pinglunEdittext.getText().toString().trim();
+                Map<String, String> map = new HashMap<>();
+                map.put("movieId",movied+"");
+                map.put("commentContent",plev);
+                mIPresenter.setRequest(Constant.pinglun_Path,LoginBean.class,map);
+
+            }
+        });
+
+
+
 
         mCommentAdapter.setOnclickId(new FilmCommentAdapter.OnclickId() {
             @Override
@@ -100,12 +157,7 @@ public class PopuWindowFileReview implements IView {
             }
         });
 
-        /*ping.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });*/
     }
 
     @Override
@@ -113,6 +165,9 @@ public class PopuWindowFileReview implements IView {
         LoginBean loginBean = (LoginBean) data;
         String message = loginBean.getMessage();
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        if(message.equals("评论成功")){
+            pinglunEdittext.setText("");
+        }
         Log.i("sjx", message);
     }
 
