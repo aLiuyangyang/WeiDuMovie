@@ -67,6 +67,8 @@ public class ChoseseatActivity extends BaseActivity {
     private float mB;
     int num=0;
     private PopupWindow mPopupWindow;
+    private RadioButton mWeixin_btn;
+    private Button mPay_money;
 
     @Override
     public void initView() {
@@ -164,8 +166,7 @@ public class ChoseseatActivity extends BaseActivity {
                     String userId = sjx.getString("userId", "");
                     String sign=userId+mId+num+"movie";
                     //String jmSign = EncryptUtil.encrypt(sign);
-                    String jmSign = MD5(sign);
-
+                    final String jmSign = MD5(sign);
                     Map<String, String> map = new HashMap<>();
                     map.put("scheduleId",mId+"");
                     map.put("amount",num+"");
@@ -191,11 +192,13 @@ public class ChoseseatActivity extends BaseActivity {
 
         mPopupWindow.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
 
-        RadioButton weixin_btn = contentView.findViewById(R.id.weixin_btn);
+        mWeixin_btn = contentView.findViewById(R.id.weixin_btn);
         RadioButton zhifubao_btn = contentView.findViewById(R.id.zhifubao_btn);
-        Button pay_money = contentView.findViewById(R.id.pay_money);
+        mPay_money = contentView.findViewById(R.id.pay_money);
 
-        pay_money.setText("支付"+mB+"元");
+        mPay_money.setText("支付"+mB+"元");
+
+
 
     }
 
@@ -212,21 +215,27 @@ public class ChoseseatActivity extends BaseActivity {
             Toast.makeText(ChoseseatActivity.this, message, Toast.LENGTH_SHORT).show();
 
             if (message.equals("下单成功")) {  //下单成功则弹出支付
-                String orderId = buyBean.getOrderId();
+                final String orderId = buyBean.getOrderId();
                 PayTranDataBean dataBean = new PayTranDataBean(orderId, (int) totalPrice);
-
-                Map<String, String> map = new HashMap<>();
-                map.put("payType",1+"");
-                map.put("orderId",orderId);
-                setPost(Constant.Pay_Path,PayBeanTwo.class,map);
-
+                mPay_money.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                           if(mWeixin_btn.isChecked()){
+                               Map<String, String> map = new HashMap<>();
+                               map.put("payType",1+"");
+                               map.put("orderId",orderId);
+                               setPost(Constant.Pay_Path,PayBeanTwo.class,map);
+                           }
+                        }
+                    });
             }
         }
         if(data instanceof PayBeanTwo){
-            PayBeanTwo payBeanTwo = (PayBeanTwo) data;
-            Intent intent = new Intent(this,WXPayEntryActivity.class);
+            final PayBeanTwo payBeanTwo = (PayBeanTwo) data;
+            Intent intent = new Intent(ChoseseatActivity.this,WXPayEntryActivity.class);
             intent.putExtra("paybean",payBeanTwo);
             startActivity(intent);
+
         }
 
     }
