@@ -14,7 +14,6 @@ import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.MovieScheduleBean;
 import com.bw.movie.utils.Constant;
-import com.bw.movie.view.activity.AreaActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
@@ -76,7 +75,6 @@ public class CooseClassActivity extends BaseActivity {
         showFile_schedule_adapter=new ShowFile_Schedule_Adapter(this);
         scheduleRecy.setAdapter(showFile_schedule_adapter);
         setGet(String.format(Constant.ChooseClass_Path,cinemasId,movieId),MovieScheduleBean.class);
-
         showFile_schedule_adapter.setOnclickId(new ShowFile_Schedule_Adapter.OnclickId() {
             @Override
             public void successed(int id, String scheduleTimeStart, String scheduleTimeEnd, String schedulePlayHall, double price) {

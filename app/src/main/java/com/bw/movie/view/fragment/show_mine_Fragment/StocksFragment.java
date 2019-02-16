@@ -14,6 +14,7 @@ import com.bw.movie.adapter.showmine_adapter.MineObligationRecyAdapter;
 import com.bw.movie.adapter.showmine_adapter.MineStocksRecyAdapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.ObligationBean;
+import com.bw.movie.utils.Constant;
 
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class StocksFragment extends BaseFragment {
         mineStockRecy.setLayoutManager(linearLayoutManager);
         mineStocksRecyAdapter=new MineStocksRecyAdapter(getActivity());
         mineStockRecy.setAdapter(mineStocksRecyAdapter);
-        // setGet(String.format(Constant.BuyTicketRecord_Path,page,count,status),ObligationBean.class);
+        setGet(String.format(Constant.BuyTicketRecord_Path,page,count,status),ObligationBean.class);
     }
 
     @Override
@@ -63,7 +64,7 @@ public class StocksFragment extends BaseFragment {
             if (obligationBean.getStatus().equals("0000")){
                 List<ObligationBean.ResultBean> result = obligationBean.getResult();
                 if (result.size()==0){
-                    showToast("无待付款信息");
+                    showToast("无完成信息");
                 }else {
                     mineStocksRecyAdapter.setList(obligationBean.getResult());
                 }

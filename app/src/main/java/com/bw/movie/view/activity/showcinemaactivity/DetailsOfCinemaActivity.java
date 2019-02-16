@@ -20,12 +20,9 @@ import com.bw.movie.bean.Camera_BannerBean;
 import com.bw.movie.bean.CinemaDetailsBean;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.MovieScheduleBean;
-import com.bw.movie.bean.ShowFile_Banner_Info;
 import com.bw.movie.utils.Constant;
-import com.bw.movie.utils.ImageViewAnimationHelper;
-import com.bw.movie.view.activity.AreaActivity;
+import com.bw.movie.view.activity.showfileactivity.AreaActivity;
 import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
-import com.bw.movie.view.activity.showfileactivity.CooseClassActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.greenrobot.eventbus.EventBus;

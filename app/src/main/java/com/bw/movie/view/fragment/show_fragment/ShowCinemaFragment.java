@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.base.BaseFragment;
-import com.bw.movie.view.activity.AreaActivity;
+import com.bw.movie.view.activity.showfileactivity.AreaActivity;
 import com.bw.movie.view.fragment.show_cinema_Fragment.Nearby_Fragment;
 import com.bw.movie.view.fragment.show_cinema_Fragment.Recommend_Fragment;
 import com.zaaach.citypicker.CityPicker;
@@ -28,7 +28,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * date:2019/1/25

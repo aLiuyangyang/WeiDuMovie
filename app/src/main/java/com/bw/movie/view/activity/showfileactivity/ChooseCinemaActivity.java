@@ -26,7 +26,7 @@ public class ChooseCinemaActivity extends BaseActivity {
     @BindView(R.id.film_details_back)
     ImageView filmDetailsBack;
     private ShowFile_ChooseCinema_Adapter showFile_chooseCinema_adapter;
-    private int movieId;
+    private int movieId;//影院
     private String name;
 
     @Override

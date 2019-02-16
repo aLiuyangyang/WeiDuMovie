@@ -1,4 +1,4 @@
-package com.bw.movie.view.activity;
+package com.bw.movie.view.activity.showfileactivity;
 
 import android.app.Activity;
 import android.os.Bundle;

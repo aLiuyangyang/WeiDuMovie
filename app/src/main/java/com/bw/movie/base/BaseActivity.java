@@ -78,6 +78,13 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
         if(loading!=null){
             loading.dismiss();
         }
+       /* if(alertDialog==null){
+            alertDialog = NetWorkUtil.showNotNetWork(this);
+        }else{
+            alertDialog.dismiss();
+            alertDialog=null;
+            alertDialog=NetWorkUtil.showNotNetWork(this);
+        }*/
     }
 
     //沉浸式状态栏

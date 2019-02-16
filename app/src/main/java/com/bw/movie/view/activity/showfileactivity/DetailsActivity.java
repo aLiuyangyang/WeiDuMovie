@@ -62,10 +62,10 @@ public class DetailsActivity extends BaseActivity {
     Button filmDetailsBuyTicket;
     @BindView(R.id.li4)
     LinearLayout li4;
-    private int movieId;
+    private int movieId;//影院id
     private Details_Info.ResultBean mResult;
     private String name;
-    private int id;
+    private int id;//影片id
     private Details_Info details_info;
     private MovieCommentDetailsBean mMovieCommentDetailsBean1;
 
@@ -74,7 +74,6 @@ public class DetailsActivity extends BaseActivity {
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
     }
-
     @Override
     public void initData() {
         setGet(String.format(Constant.Details_Path, movieId), Details_Info.class);
@@ -84,7 +83,6 @@ public class DetailsActivity extends BaseActivity {
                 finish();
             }
         });
-
         //详情按钮
         filmDetailsHomeDetails.setOnClickListener(new View.OnClickListener() {
             @Override

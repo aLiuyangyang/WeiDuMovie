@@ -40,13 +40,9 @@ public class ChoseseatActivity extends BaseActivity {
     ImageView paySuccess;
     @BindView(R.id.pay_error)
     ImageView payError;
-    private int movieId;//影片id
-    private int cinemasId;//影院id
     public SeatTable seatTableView;
-    private int mId;
-    private String mScreeningHall;
-    private double price;
-    double totalPrice = 0;
+    private double price;//价钱
+    double totalPrice = 0;//总数
     private PopupWindow mPopupWindow;
 
     @Override
@@ -62,9 +58,9 @@ public class ChoseseatActivity extends BaseActivity {
         String name = intent1.getStringExtra("name");
         String resultName = intent1.getStringExtra("resultName");
         String address = intent1.getStringExtra("address");
-        movieId = intent1.getIntExtra("movieId", 0);
+      /*  movieId = intent1.getIntExtra("movieId", 0);
         cinemasId = intent1.getIntExtra("cinemasId", 0);
-        mId = intent1.getIntExtra("Id", 0);
+        mId = intent1.getIntExtra("Id", 0);*/
         price = intent1.getDoubleExtra("price", 0);
         String scheduleTimeStart = intent1.getStringExtra("scheduleTimeStart");
         String scheduleTimeEnd = intent1.getStringExtra("scheduleTimeEnd");

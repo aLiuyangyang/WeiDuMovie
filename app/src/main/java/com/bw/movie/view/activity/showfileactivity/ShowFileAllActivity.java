@@ -1,7 +1,6 @@
 package com.bw.movie.view.activity.showfileactivity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.base.BaseActivity;
-import com.bw.movie.view.activity.AreaActivity;
 import com.bw.movie.view.fragment.allfile_fragment.ComingFragment;
 import com.bw.movie.view.fragment.allfile_fragment.HotFileFragment;
 import com.bw.movie.view.fragment.allfile_fragment.IsHotFragment;
@@ -49,15 +47,12 @@ public class ShowFileAllActivity extends BaseActivity {
     ViewPager allFrame;
     @BindView(R.id.all_radio)
     RadioGroup allRadio;
-
     private List<Fragment> list=new ArrayList<>();
     private int flag;
-
     @Override
     public void initView() {
         ButterKnife.bind(this);
     }
-
     @Override
     public void initData() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);

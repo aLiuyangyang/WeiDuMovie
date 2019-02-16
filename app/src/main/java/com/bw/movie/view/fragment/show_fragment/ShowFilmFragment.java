@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.ShowFilm_NewShowing_Adapter;
@@ -27,13 +26,11 @@ import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.bean.ShowFile_NewShowingBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.utils.ImageViewAnimationHelper;
-import com.bw.movie.view.activity.AreaActivity;
-import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
+import com.bw.movie.view.activity.showfileactivity.AreaActivity;
 import com.bw.movie.view.activity.showfileactivity.ShowFileAllActivity;
 import com.zaaach.citypicker.CityPicker;
 import com.zaaach.citypicker.adapter.OnPickListener;
 import com.zaaach.citypicker.model.City;
-import com.zaaach.citypicker.model.LocateState;
 import com.zaaach.citypicker.model.LocatedCity;
 
 import butterknife.BindView;
@@ -94,19 +91,15 @@ public class ShowFilmFragment extends BaseFragment {
     View cview;
     @BindView(R.id.scrollview)
     ScrollView scrollview;
-    Unbinder unbinder1;
     @BindView(R.id.checked_layout)
     LinearLayout checkedLayout;
     @BindView(R.id.parent_layout)
     LinearLayout parentLayout;
-    Unbinder unbinder2;
-
     private int page;//当前页数
     private int count = 10;//每页请求的数量;
     private ShowFilm_HotShop_Adapter showFilm_hotShop_adapter;
     private ShowFilm_NewShowing_Adapter showFilm_newShowing_adapter;
     private ShowFilm_Coming_Adapter showFilm_coming_adapter;
-
     @Override
     public void initView(View view) {
         unbinder = ButterKnife.bind(this, view);

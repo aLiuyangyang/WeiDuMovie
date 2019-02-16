@@ -29,8 +29,8 @@ public class FilmFragment extends BaseFragment {
     @BindView(R.id.film_details_back)
     ImageView filmDetailsBack;
     Unbinder unbinder;
-    private int page = 1;
-    private int count = 10;
+    private int page = 1;//页数
+    private int count = 10;//每页请求的数量
     private MineCareCinemaRecyAdapter mineCareCinemaRecyAdapter;
 
     @Override

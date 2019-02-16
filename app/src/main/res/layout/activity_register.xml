@@ -23,28 +23,59 @@
         android:theme="@style/MyEditText"
         android:textSize="@dimen/sp_16"
         />
-    <EditText
+
+    <ImageView
+        android:id="@+id/ww"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reg_name"
+        android:layout_marginLeft="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_6"
+        android:background="@mipmap/register_icon_sex_default"
+        android:text="性别:"
+        android:textColor="#eeeeee"
+        android:textSize="@dimen/sp_18" />
+    <RadioGroup
         android:id="@+id/reg_sex"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_toRightOf="@id/ww"
+        android:orientation="horizontal"
         android:layout_below="@id/reg_name"
         android:layout_width="@dimen/dp_280"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@mipmap/register_icon_sex_default"
-        android:drawablePadding="@dimen/dp_18"
-        android:hint="性别"
-        android:digits="男女"
-        android:textColor="#eeeeee"
-        android:textColorHint="#fff"
-        android:theme="@style/MyEditText"
-        android:textSize="@dimen/sp_16"
-        />
-
-
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:text="男"
+            android:checked="true"
+            android:textColor="#eeeeee"
+            android:textSize="@dimen/sp_16"
+            android:theme="@style/MyEdit"
+            android:id="@+id/reg_sexman"
+            android:layout_below="@+id/updatapass_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:text="女"
+            android:id="@+id/reg_sexwoman"
+            android:textColor="#eeeeee"
+            android:textSize="@dimen/sp_16"
+            android:theme="@style/MyEdit"
+            android:layout_below="@+id/updatapass_name"
+            android:layout_toRightOf="@id/updatapass_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+    <View
+        android:background="#6ccc"
+        android:layout_below="@id/reg_sex"
+        android:layout_width="@dimen/dp_273"
+        android:layout_marginLeft="@dimen/dp_4"
+        android:layout_height="1dp"/>
     <TextView
         android:id="@+id/reg_date"
         android:layout_below="@id/reg_sex"
         android:layout_width="@dimen/dp_278"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_17"
         android:layout_marginLeft="@dimen/dp_4"
         android:drawableLeft="@mipmap/register_icon_date_default"
         android:drawablePadding="@dimen/dp_16"

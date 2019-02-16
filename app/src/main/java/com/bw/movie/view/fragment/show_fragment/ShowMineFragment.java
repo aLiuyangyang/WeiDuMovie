@@ -73,7 +73,7 @@ public class ShowMineFragment extends BaseFragment {
     SimpleDraweeView personal_top_image;
     @BindView(R.id.personal_name)
     TextView personal_name;
-    private int flag;
+    private int flag;//判断标识符
     private NewVersionBean newVersionBean;
     private String downloadUrl;
 

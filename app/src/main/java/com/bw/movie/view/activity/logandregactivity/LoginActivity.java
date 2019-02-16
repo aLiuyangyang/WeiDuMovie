@@ -77,7 +77,6 @@ public class LoginActivity extends BaseActivity {
                     case MotionEvent.ACTION_UP:
                         loginPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
                         break;
-
                     case MotionEvent.ACTION_DOWN:
                         loginPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                         break;
@@ -158,7 +157,6 @@ public class LoginActivity extends BaseActivity {
     public int getContent() {
         return R.layout.activity_login;
     }
-
     @Override public void success(Object data) {
       if (data instanceof LoginBean){
           LoginBean loginBean= (LoginBean) data;

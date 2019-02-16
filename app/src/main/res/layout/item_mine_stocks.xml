@@ -4,6 +4,9 @@
     android:background="@drawable/mine_back"
     android:layout_width="match_parent"
     android:paddingTop="@dimen/dp_10"
+    android:layout_marginLeft="@dimen/dp_20"
+    android:layout_marginTop="@dimen/dp_20"
+    android:layout_marginRight="@dimen/dp_20"
     android:paddingRight="@dimen/dp_10"
     android:elevation="@dimen/dp_4"
     android:layout_height="wrap_content">

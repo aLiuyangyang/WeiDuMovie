@@ -33,8 +33,8 @@ public class CinemaFragment extends BaseFragment {
     ImageView filmDetailsBack;
     Unbinder unbinder;
     private MineCareRecyAdapter mineCareRecyAdapter;
-    private int page = 1;
-    private int count = 10;
+    private int page = 1;//页数
+    private int count = 10;//每页请求的数量
 
     @Override
     public void initView(View view) {

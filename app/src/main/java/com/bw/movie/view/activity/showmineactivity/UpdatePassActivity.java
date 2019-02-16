@@ -55,7 +55,7 @@ public class UpdatePassActivity extends BaseActivity {
         String pass = personalPass.getText().toString().trim();
         String resetPass = personalResetPass.getText().toString().trim();
         String okPass = personalOkPass.getText().toString().trim();
-        if (resetPass.equals("") && okPass.equals("")&&pass.equals("")){
+        if (resetPass.equals("")||okPass.equals("")||pass.equals("")){
             showToast("请填写完整");
         }else {
             Map<String, String> map = new HashMap<>();
@@ -63,7 +63,7 @@ public class UpdatePassActivity extends BaseActivity {
             map.put("newPwd", EncryptUtil.encrypt(resetPass));//加密密码
             map.put("newPwd2", EncryptUtil.encrypt(okPass));
             setPost(Constant.UpdataPass_Path, UpdatePassBean.class, map);
-        }
+              }
             }
         });
     }
