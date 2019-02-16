@@ -111,6 +111,7 @@ public class DetailsActivity extends BaseActivity {
         filmDetailsHomeFilmReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EventBus.getDefault().postSticky(new EventBusMessage(movieId));
                 PopuWindowFileReview popuWindowFileReview = new PopuWindowFileReview(DetailsActivity.this,mMovieCommentDetailsBean1);
                 popuWindowFileReview.bottomwindow(linearlayout1);
             }
@@ -143,6 +144,7 @@ public class DetailsActivity extends BaseActivity {
             id = details_info.getResult().getId();
             mResult = details_info.getResult();
             name = details_info.getResult().getName();
+
             detailsTitle.setText(name);
             detailsPic.setImageURI(details_info.getResult().getImageUrl());
             detailsBackground.setImageURI(details_info.getResult().getImageUrl());

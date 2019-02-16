@@ -115,6 +115,7 @@
         </LinearLayout>
 
     <Button
+        android:id="@+id/pay_money"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/pay_gradient"

@@ -49,13 +49,13 @@ public class MineObligationRecyAdapter extends RecyclerView.Adapter<MineObligati
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.obligation.setText(list.get(i).getMovieName());
-        viewHolder.obligationCode.setText("订单号"+list.get(i).getOrderId());
-        viewHolder.obligationMoney.setText("金额"+list.get(i).getPrice()+"");
-        viewHolder.obligationMoviehall.setText("影厅"+list.get(i).getScreeningHall());
-        viewHolder.obligationNum.setText("数量"+list.get(i).getAmount()+"");
+        viewHolder.obligationCode.setText("订单号: "+list.get(i).getOrderId());
+        viewHolder.obligationMoney.setText("金额: "+list.get(i).getPrice()+"");
+        viewHolder.obligationMoviehall.setText("影厅: "+list.get(i).getScreeningHall());
+        viewHolder.obligationNum.setText("数量: "+list.get(i).getAmount()+"");
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(list.get(i).getCreateTime()));
-        viewHolder.obligationTime.setText("时间"+date);
-        viewHolder.obligation_cinema.setText("影院"+list.get(i).getCinemaName());
+        viewHolder.obligationTime.setText("时间: "+date+"");
+        viewHolder.obligation_cinema.setText("影院: "+list.get(i).getCinemaName());
     }
     @Override
     public int getItemCount() {

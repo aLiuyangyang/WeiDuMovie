@@ -31,7 +31,7 @@ public class StocksFragment extends BaseFragment {
     private MineStocksRecyAdapter mineStocksRecyAdapter;
     private int page=1;//第几页
     private int count=10;//每页显示数
-    private int status=1;//状态
+    private int status=2;//状态
     @Override
     public void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
