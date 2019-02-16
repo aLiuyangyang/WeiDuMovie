@@ -51,7 +51,7 @@ public class ObligationFragment extends BaseFragment {
         mine_obliagtion_recy.setLayoutManager(linearLayoutManager);
         mineObligationRecyAdapter=new MineObligationRecyAdapter(getActivity());
         mine_obliagtion_recy.setAdapter(mineObligationRecyAdapter);
-       // setGet(String.format(Constant.BuyTicketRecord_Path,page,count,status),ObligationBean.class);
+       setGet(String.format(Constant.BuyTicketRecord_Path,page,count,status),ObligationBean.class);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ObligationFragment extends BaseFragment {
                 if (result.size()==0){
                     showToast("无待付款信息");
                 }else {
-                    mineObligationRecyAdapter.setList(obligationBean.getResult());
+                    mineObligationRecyAdapter.setList(result);
                 }
             }
         }

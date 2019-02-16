@@ -9,8 +9,9 @@ import java.util.List;
  */
 public class ObligationBean {
 
+
     /**
-     * result : [{"amount":3,"beginTime":40800000,"cinemaName":"青春光线电影院","createTime":1533805513000,"endTime":47880000,"id":52,"movieName":"西虹市首富","orderId":"20180809170513183","price":66.5,"screeningHall":"2号厅","status":1,"userId":5},{"amount":3,"beginTime":40800000,"cinemaName":"青春光线电影院","createTime":1533805499000,"endTime":47880000,"id":51,"movieName":"西虹市首富","orderId":"20180809170459908","price":66.5,"screeningHall":"2号厅","status":1,"userId":5}]
+     * result : [{"amount":1,"beginTime":"22:00:00","cinemaName":"北京沃美影城（回龙观店）","createTime":1550305983000,"endTime":"23:55:00","id":1056,"movieName":"江湖儿女","orderId":"20190216163303006","price":0.28,"screeningHall":"2号厅","status":1,"userId":242}]
      * message : 请求成功
      * status : 0000
      */
@@ -45,25 +46,25 @@ public class ObligationBean {
 
     public static class ResultBean {
         /**
-         * amount : 3
-         * beginTime : 40800000
-         * cinemaName : 青春光线电影院
-         * createTime : 1533805513000
-         * endTime : 47880000
-         * id : 52
-         * movieName : 西虹市首富
-         * orderId : 20180809170513183
-         * price : 66.5
+         * amount : 1
+         * beginTime : 22:00:00
+         * cinemaName : 北京沃美影城（回龙观店）
+         * createTime : 1550305983000
+         * endTime : 23:55:00
+         * id : 1056
+         * movieName : 江湖儿女
+         * orderId : 20190216163303006
+         * price : 0.28
          * screeningHall : 2号厅
          * status : 1
-         * userId : 5
+         * userId : 242
          */
 
         private int amount;
-        private int beginTime;
+        private String beginTime;
         private String cinemaName;
         private long createTime;
-        private int endTime;
+        private String endTime;
         private int id;
         private String movieName;
         private String orderId;
@@ -80,11 +81,11 @@ public class ObligationBean {
             this.amount = amount;
         }
 
-        public int getBeginTime() {
+        public String getBeginTime() {
             return beginTime;
         }
 
-        public void setBeginTime(int beginTime) {
+        public void setBeginTime(String beginTime) {
             this.beginTime = beginTime;
         }
 
@@ -104,11 +105,11 @@ public class ObligationBean {
             this.createTime = createTime;
         }
 
-        public int getEndTime() {
+        public String getEndTime() {
             return endTime;
         }
 
-        public void setEndTime(int endTime) {
+        public void setEndTime(String endTime) {
             this.endTime = endTime;
         }
 

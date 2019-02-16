@@ -14,6 +14,7 @@ import com.bw.movie.adapter.showmine_adapter.MineObligationRecyAdapter;
 import com.bw.movie.adapter.showmine_adapter.MineStocksRecyAdapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.ObligationBean;
+import com.bw.movie.utils.Constant;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class StocksFragment extends BaseFragment {
     private MineStocksRecyAdapter mineStocksRecyAdapter;
     private int page=1;//第几页
     private int count=10;//每页显示数
-    private int status=1;//状态
+    private int status=2;//状态
     @Override
     public void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
@@ -48,7 +49,7 @@ public class StocksFragment extends BaseFragment {
         mineStockRecy.setLayoutManager(linearLayoutManager);
         mineStocksRecyAdapter=new MineStocksRecyAdapter(getActivity());
         mineStockRecy.setAdapter(mineStocksRecyAdapter);
-        // setGet(String.format(Constant.BuyTicketRecord_Path,page,count,status),ObligationBean.class);
+        setGet(String.format(Constant.BuyTicketRecord_Path,page,count,status),ObligationBean.class);
     }
 
     @Override

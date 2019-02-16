@@ -77,6 +77,12 @@ public class Constant {
     public static String Prise_Path="movie/v1/verify/movieCommentGreat";
 
     //电影评论
-    public static String DianZan_Path="";
+    public static String pinglun_Path="movie/v1/verify/movieComment";
 
+    //创建订单
+    public static String DingDan_Path="movie/v1/verify/buyMovieTicket";
+
+    //支付
+
+    public static String Pay_Path="movie/v1/verify/pay";
 }

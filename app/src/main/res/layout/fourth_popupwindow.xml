@@ -83,15 +83,18 @@
     <EditText
         android:id="@+id/pinglun_edittext"
         android:layout_width="@dimen/dp_300"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_50"
         android:hint="请输入评论"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="@dimen/dp_50"
         android:layout_marginRight="@dimen/dp_40"
+        android:visibility="invisible"
+        android:background="#eeeeee"
         />
 
     <Button
+        android:id="@+id/pingjia_btn"
         android:layout_width="@dimen/dp_40"
         android:layout_height="@dimen/dp_30"
         android:text="评论"
@@ -100,6 +103,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="@dimen/dp_60"
         android:layout_marginRight="@dimen/dp_100"
+        android:visibility="invisible"
         />
 
 </android.support.constraint.ConstraintLayout>
