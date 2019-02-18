@@ -3,6 +3,7 @@ package com.bw.movie.view.fragment.showfilebtnpopupwindow;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.RecyclerView;
 import android.view.CollapsibleActionView;
 import android.view.Gravity;
 import android.view.View;
@@ -33,7 +34,7 @@ public class PopuWindowDetails{
     private ImageView mFinish_image;
     private CollapsibleTextView mJianjie;
     private SimpleDraweeView mFile_img;
-    private TextView mFile_stars;
+    private RecyclerView mShower_recyc;
 
     public PopuWindowDetails(Context context, Details_Info.ResultBean resultBean) {
         this.context = context;
@@ -69,7 +70,7 @@ public class PopuWindowDetails{
         mFinish_image = inflate.findViewById(R.id.finish_image);
         mJianjie = inflate.findViewById(R.id.jianjie);
         mFile_img = inflate.findViewById(R.id.file_img);
-        mFile_stars = inflate.findViewById(R.id.file_stars);
+        mShower_recyc = inflate.findViewById(R.id.shower_recyc);
 
         mFile_img.setImageURI(resultBean.getImageUrl());
         mTv_file_type.setText(resultBean.getMovieTypes());
@@ -77,7 +78,8 @@ public class PopuWindowDetails{
         mTv_film_area.setText(resultBean.getPlaceOrigin());
         mTv_film_time.setText(resultBean.getDuration());
         mJianjie.setDesc(resultBean.getSummary());
-        mFile_stars.setText(resultBean.getStarring());
+
+
 
         mFinish_image.setOnClickListener(new View.OnClickListener() {
             @Override

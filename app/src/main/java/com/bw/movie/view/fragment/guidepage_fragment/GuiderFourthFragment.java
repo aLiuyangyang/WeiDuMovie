@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.bw.movie.R;
 import com.bw.movie.view.activity.logandregactivity.GuideActivity;
 import com.bw.movie.view.activity.logandregactivity.LoginActivity;
+import com.bw.movie.view.activity.logandregactivity.ShowActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +39,7 @@ public class GuiderFourthFragment extends Fragment {
     }
     @OnClick(R.id.guide_but)
     public void onViewClicked() {
-        Intent intent = new Intent(getActivity(),LoginActivity.class);
+        Intent intent = new Intent(getActivity(),ShowActivity.class);
         startActivity(intent);
         getActivity().finish();
     }

@@ -49,6 +49,11 @@ public class StocksFragment extends BaseFragment {
         mineStockRecy.setLayoutManager(linearLayoutManager);
         mineStocksRecyAdapter=new MineStocksRecyAdapter(getActivity());
         mineStockRecy.setAdapter(mineStocksRecyAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         setGet(String.format(Constant.BuyTicketRecord_Path,page,count,status),ObligationBean.class);
     }
 
@@ -62,12 +67,7 @@ public class StocksFragment extends BaseFragment {
         if (data instanceof ObligationBean){
             ObligationBean obligationBean= (ObligationBean) data;
             if (obligationBean.getStatus().equals("0000")){
-                List<ObligationBean.ResultBean> result = obligationBean.getResult();
-                if (result.size()==0){
-                    showToast("无完成信息");
-                }else {
-                    mineStocksRecyAdapter.setList(obligationBean.getResult());
-                }
+                  mineStocksRecyAdapter.setList(obligationBean.getResult());
             }
         }
     }

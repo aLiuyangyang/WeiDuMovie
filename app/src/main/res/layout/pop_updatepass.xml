@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
    <com.xw.repo.XEditText
        android:id="@+id/updatapass_name"
-       android:text="昵称"
+       android:hint="昵称"
        app:x_disableEmoji="true"
        android:layout_width="@dimen/dp_300"
        android:layout_height="wrap_content" />
@@ -43,7 +43,7 @@
     <EditText
         android:layout_below="@+id/updatapass"
         android:id="@+id/updatapass_emil"
-        android:text="邮箱"
+        android:hint="邮箱"
         android:digits="0123456789abcdefghigklmnopqrstuvwxyz@."
         android:layout_width="@dimen/dp_300"
         android:layout_height="wrap_content" />

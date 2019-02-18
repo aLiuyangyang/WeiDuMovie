@@ -56,7 +56,7 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
             android:id="@+id/fourth_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -65,7 +65,7 @@
             android:layout_marginRight="@dimen/dp_24"
             android:layout_marginTop="@dimen/dp_30"
             >
-        </android.support.v7.widget.RecyclerView>
+        </com.jcodecraeer.xrecyclerview.XRecyclerView>
 
     </LinearLayout>
 

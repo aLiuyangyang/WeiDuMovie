@@ -47,7 +47,7 @@ public class MineObligationRecyAdapter extends RecyclerView.Adapter<MineObligati
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         viewHolder.obligation.setText(list.get(i).getMovieName());
         viewHolder.obligationCode.setText("订单号: "+list.get(i).getOrderId());
         viewHolder.obligationMoney.setText("金额: "+list.get(i).getPrice()+"");
@@ -56,6 +56,15 @@ public class MineObligationRecyAdapter extends RecyclerView.Adapter<MineObligati
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(list.get(i).getCreateTime()));
         viewHolder.obligationTime.setText("时间: "+date+"");
         viewHolder.obligation_cinema.setText("影院: "+list.get(i).getCinemaName());
+
+        viewHolder.obligationBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mOnClickOrderId!=null){
+                    mOnClickOrderId.successed(list.get(i).getOrderId());
+                }
+            }
+        });
     }
     @Override
     public int getItemCount() {
@@ -83,5 +92,16 @@ public class MineObligationRecyAdapter extends RecyclerView.Adapter<MineObligati
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
+    }
+
+
+    public interface OnClickOrderId{
+        void successed(String orderId);
+    }
+
+    private OnClickOrderId mOnClickOrderId;
+
+    public void setOnClickOrderId(OnClickOrderId onClickOrderId){
+        mOnClickOrderId=onClickOrderId;
     }
 }

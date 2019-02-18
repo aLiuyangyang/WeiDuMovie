@@ -235,7 +235,6 @@ public class ChoseseatActivity extends BaseActivity {
             Intent intent = new Intent(ChoseseatActivity.this,WXPayEntryActivity.class);
             intent.putExtra("paybean",payBeanTwo);
             startActivity(intent);
-
         }
 
     }

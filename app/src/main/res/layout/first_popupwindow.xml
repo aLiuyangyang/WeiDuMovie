@@ -176,15 +176,50 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="@dimen/dp_75"
+                    android:layout_height="@dimen/dp_32"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_dividing_line_title"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/dp_160">
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="饰演角色"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/sp_12"
+                        android:layout_alignParentLeft="true" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
-                <TextView
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/shower_recyc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </android.support.v7.widget.RecyclerView>
+
+                <!--<TextView
                     android:id="@+id/file_stars"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="徐峥"
                     android:textSize="@dimen/sp_16"
-                    />
+                    />-->
+
+            </LinearLayout>
+
 
 
         </LinearLayout>

@@ -50,8 +50,6 @@ public class Show_File_VideoShow_Adapter extends RecyclerView.Adapter<Show_File_
         boolean setUp = viewHolder.mPlayer_list_video.setUp(mFilmListBeans.get(i).getVideoUrl(), JCVideoPlayer.SCREEN_LAYOUT_LIST, "");
         if (setUp) {
             Glide.with(mContext).load(mFilmListBeans.get(i).getImageUrl()).into(viewHolder.mPlayer_list_video.thumbImageView);
-        }else{
-            viewHolder.mPlayer_list_video.release();
         }
     }
 
