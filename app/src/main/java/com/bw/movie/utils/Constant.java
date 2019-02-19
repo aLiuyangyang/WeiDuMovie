@@ -51,7 +51,7 @@ public class Constant {
 
     public static String Camera_Banner="movie/v1/findMovieListByCinemaId?cinemaId=%d";
 
-     public static  String URL_QUERY_COMMENT="movie/v1/findAllMovieComment?movieId=%d&page=%d&count=5";
+     public static  String URL_QUERY_COMMENT="movie/v1/findAllMovieComment?movieId=%d&page=1&count=100";
     //根据用户ID查询用户信息
      public static String Update_User="user/v1/verify/getUserInfoByUserId";
     //修改头像
@@ -85,4 +85,7 @@ public class Constant {
     //支付
 
     public static String Pay_Path="movie/v1/verify/pay";
+
+    //信鸽
+    public static String XinGe="tool/v1/verify/uploadPushToken";
 }

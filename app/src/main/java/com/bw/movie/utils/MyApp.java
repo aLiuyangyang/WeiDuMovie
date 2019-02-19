@@ -14,6 +14,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.tencent.android.tpush.XGPushConfig;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -84,5 +85,14 @@ public class MyApp extends Application {
             e.printStackTrace();
             Log.e("TAG", e.getMessage());
         }
+
+
+        XGPushConfig.enableOtherPush(context, true);
+        XGPushConfig.setHuaweiDebug(true);
+        XGPushConfig.setMiPushAppId(context, "d71d384497c51");
+        XGPushConfig.setMiPushAppKey(context, "A44FJ9N7N9EY");
+        XGPushConfig.setMzPushAppId(context, "d71d384497c51");
+        XGPushConfig.setMzPushAppKey(context, "A44FJ9N7N9EY");
+
     }
 }

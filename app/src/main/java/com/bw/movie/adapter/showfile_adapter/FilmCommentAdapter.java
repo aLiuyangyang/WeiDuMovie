@@ -29,14 +29,9 @@ public class FilmCommentAdapter extends XRecyclerView.Adapter<FilmCommentAdapter
     private Context mContext;
     private List<MovieCommentDetailsBean.ResultBean> mList;
 
-    public FilmCommentAdapter(Context context) {
+    public FilmCommentAdapter(Context context, List<MovieCommentDetailsBean.ResultBean> list) {
         mContext = context;
-        mList=new ArrayList<>();
-    }
-
-    public void setList(List<MovieCommentDetailsBean.ResultBean> list) {
-        mList = list;
-        notifyDataSetChanged();
+        mList=list;
     }
 
     @NonNull
@@ -93,10 +88,7 @@ public class FilmCommentAdapter extends XRecyclerView.Adapter<FilmCommentAdapter
                     if(mOnclickId!=null){
                         mOnclickId.successed(commentId);
                     }
-
-
                 }
-
             }
         });
     }

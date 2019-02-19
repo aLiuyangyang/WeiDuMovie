@@ -3,6 +3,7 @@ package com.bw.movie.view.fragment.showfilebtnpopupwindow;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.CollapsibleActionView;
 import android.view.Gravity;
@@ -14,6 +15,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.bw.movie.adapter.showfile_adapter.FilmCosplayAdapter;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.utils.CollapsibleTextView;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -72,14 +74,16 @@ public class PopuWindowDetails{
         mFile_img = inflate.findViewById(R.id.file_img);
         mShower_recyc = inflate.findViewById(R.id.shower_recyc);
 
+        FilmCosplayAdapter filmCosplayAdapter = new FilmCosplayAdapter(context,resultBean.getStarring());
+        mShower_recyc.setAdapter(filmCosplayAdapter);
+        mShower_recyc.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false));
+
         mFile_img.setImageURI(resultBean.getImageUrl());
         mTv_file_type.setText(resultBean.getMovieTypes());
         mTv_film_director.setText(resultBean.getDirector());
         mTv_film_area.setText(resultBean.getPlaceOrigin());
         mTv_film_time.setText(resultBean.getDuration());
         mJianjie.setDesc(resultBean.getSummary());
-
-
 
         mFinish_image.setOnClickListener(new View.OnClickListener() {
             @Override
