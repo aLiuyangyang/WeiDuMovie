@@ -26,6 +26,8 @@ import com.bw.movie.utils.EncryptUtil;
 import com.bw.movie.utils.Loading_view;
 import com.bw.movie.utils.RegularUtil;
 import com.bw.movie.utils.WeiXinUtil;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushManager;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 import java.util.HashMap;
@@ -183,6 +185,7 @@ public class LoginActivity extends BaseActivity {
         switch (view.getId()) {
             //跳转到注册页面
             case R.id.login_sign:
+                getToken();
                 Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 break;
@@ -207,6 +210,29 @@ public class LoginActivity extends BaseActivity {
         super.onDestroy();
         bind.unbind();
     }
+
+    /**
+     * 获取设备Token
+     */
+    private void getToken() {
+        // 注册接口
+        XGPushManager.registerPush(this, new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object data, int flag) {
+                //token在设备卸载重装的时候有可能会变
+                Log.d("TPush", "注册成功，设备token为：" + data);
+                Map<String,String> map = new HashMap<>();
+                map.put("token",data+"");
+                map.put("os",1+"");
+                setPost(Constant.XinGe,LoginBean.class,map);
+            }
+            @Override
+            public void onFail(Object data, int errCode, String msg) {
+                Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
+            }
+        });
+    }
+
 
 
 

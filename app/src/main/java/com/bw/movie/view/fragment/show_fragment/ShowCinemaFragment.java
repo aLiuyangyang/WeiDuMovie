@@ -94,7 +94,6 @@ public class ShowCinemaFragment extends BaseFragment {
                 CityPicker.from(getActivity()) //activity或者fragment
                         .enableAnimation(true)	//启用动画效果，默认无
                         .setLocatedCity(new LocatedCity("杭州", "浙江", "101210101"))
-
                         .setOnPickListener(new OnPickListener() {
                             @Override
                             public void onPick(int position, City data) {

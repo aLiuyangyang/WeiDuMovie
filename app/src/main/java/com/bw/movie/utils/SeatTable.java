@@ -16,6 +16,9 @@ import android.graphics.Point;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Handler;
+import android.os.Message;
+import android.text.Layout;
+import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -31,6 +34,9 @@ import com.bw.movie.R;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Created by baoyunlong on 16/6/16.
+ */
 public class SeatTable extends View {
     private final boolean DBG = false;
 
@@ -287,8 +293,8 @@ public class SeatTable extends View {
         overview_checked = typedArray.getColor(R.styleable.SeatTableView_overview_checked, Color.parseColor("#5A9E64"));
         overview_sold = typedArray.getColor(R.styleable.SeatTableView_overview_sold, Color.RED);
         txt_color=typedArray.getColor(R.styleable.SeatTableView_txt_color,Color.WHITE);
-        seatCheckedResID = typedArray.getResourceId(R.styleable.SeatTableView_seat_checked, R.mipmap.rectangle3copy18);
-        seatSoldResID = typedArray.getResourceId(R.styleable.SeatTableView_overview_sold, R.mipmap.rectangle3copy12);
+        seatCheckedResID = typedArray.getResourceId(R.styleable.SeatTableView_seat_checked, R.mipmap.rectangle3copy12);
+        seatSoldResID = typedArray.getResourceId(R.styleable.SeatTableView_overview_sold, R.mipmap.rectangle3copy18);
         seatAvailableResID = typedArray.getResourceId(R.styleable.SeatTableView_seat_available, R.mipmap.rectangle3copy5);
         typedArray.recycle();
     }
@@ -389,11 +395,11 @@ public class SeatTable extends View {
 
         drawSeat(canvas);
         drawNumber(canvas);
-
-        if (headBitmap == null) {
+        //TODO  设置标识已选 未选 已售
+       /* if (headBitmap == null) {
             headBitmap = drawHeadInfo();
         }
-        canvas.drawBitmap(headBitmap, 0, 0, null);
+        canvas.drawBitmap(headBitmap, 0, 0, null);*/
 
         drawScreen(canvas);
 
@@ -530,20 +536,20 @@ public class SeatTable extends View {
         if (screenWidth < defaultScreenWidth) {
             screenWidth = defaultScreenWidth;
         }
-
+        //TODO 绘制展示演义厅的布局
         Path path = new Path();
         path.moveTo(centerX, startY);
         path.lineTo(centerX - screenWidth / 2, startY);
-        path.lineTo(centerX - screenWidth / 2 + 20, screenHeight * getMatrixScaleY() + startY);
-        path.lineTo(centerX + screenWidth / 2 - 20, screenHeight * getMatrixScaleY() + startY);
+        path.lineTo(centerX - screenWidth / 2 - 20, screenHeight * getMatrixScaleY() - startY);
+        path.lineTo(centerX + screenWidth / 2 +20, screenHeight * getMatrixScaleY() - startY);
         path.lineTo(centerX + screenWidth / 2, startY);
 
         canvas.drawPath(path, pathPaint);
 
         pathPaint.setColor(Color.BLACK);
-        pathPaint.setTextSize(20 * getMatrixScaleX());
-
-        canvas.drawText(screenName, centerX - pathPaint.measureText(screenName) / 2, getBaseLine(pathPaint, startY, startY + screenHeight * getMatrixScaleY()), pathPaint);
+        pathPaint.setTextSize(40 * getMatrixScaleX());
+        //TODO 设置播放大厅
+        canvas.drawText(screenName, centerX - pathPaint.measureText(screenName) / 2, getBaseLine(pathPaint, startY/6, startY /6+ screenHeight * getMatrixScaleY()), pathPaint);
     }
 
     Matrix tempMatrix = new Matrix();

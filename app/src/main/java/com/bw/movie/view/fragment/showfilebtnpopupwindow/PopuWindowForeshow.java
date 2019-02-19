@@ -74,6 +74,13 @@ public class PopuWindowForeshow {
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
+                
+            }
+        });
+
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
                 JCVideoPlayer.releaseAllVideos();
             }
         });

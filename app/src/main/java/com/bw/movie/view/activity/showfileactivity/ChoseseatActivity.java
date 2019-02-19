@@ -157,25 +157,29 @@ public class ChoseseatActivity extends BaseActivity {
         paySuccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(mB==0.0){
+                    showToast("请选择座位");
+                }else{
+                    showPopupWindow();
+                    if (num==0){
+                        Toast.makeText(ChoseseatActivity.this,"请选择座位！",Toast.LENGTH_SHORT).show();
+                    }else {
+                        SharedPreferences sjx = getSharedPreferences("UserMessage",MODE_PRIVATE);
+                        String userId = sjx.getString("userId", "");
+                        String sign=userId+mId+num+"movie";
+                        //String jmSign = EncryptUtil.encrypt(sign);
+                        final String jmSign = MD5(sign);
+                        Map<String, String> map = new HashMap<>();
+                        map.put("scheduleId",mId+"");
+                        map.put("amount",num+"");
+                        map.put("sign",jmSign);
 
-                showPopupWindow();
-                if (num==0){
-                    Toast.makeText(ChoseseatActivity.this,"请选择座位！",Toast.LENGTH_SHORT).show();
-                }else {
-                    SharedPreferences sjx = getSharedPreferences("UserMessage",MODE_PRIVATE);
-                    String userId = sjx.getString("userId", "");
-                    String sign=userId+mId+num+"movie";
-                    //String jmSign = EncryptUtil.encrypt(sign);
-                    final String jmSign = MD5(sign);
-                    Map<String, String> map = new HashMap<>();
-                    map.put("scheduleId",mId+"");
-                    map.put("amount",num+"");
-                    map.put("sign",jmSign);
-
-                    setPost(Constant.DingDan_Path,BuyBean.class,map);
+                        setPost(Constant.DingDan_Path,BuyBean.class,map);
 
 
+                    }
                 }
+
 
             }
         });

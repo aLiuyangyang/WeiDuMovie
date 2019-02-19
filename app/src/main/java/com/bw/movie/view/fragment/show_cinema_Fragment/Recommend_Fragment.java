@@ -101,16 +101,21 @@ public class Recommend_Fragment extends BaseFragment {
         @Override
         public void success(Object data) {
                 if (data instanceof ShowCinemaBean){
-                        ShowCinemaBean showCinemaBean= (ShowCinemaBean) data;
+                    ShowCinemaBean showCinemaBean= (ShowCinemaBean) data;
+                    List<ShowCinemaBean.ResultBean> result1 = showCinemaBean.getResult();
+                    if(result1.size()!=0){
                         if (showCinemaBean.getStatus().equals("0000")){
-                                List<ShowCinemaBean.ResultBean> result = showCinemaBean.getResult();
-                                if (page==1){
-                                        showCinema_adapter.setList(result);
-                                }else {
-                                        showCinema_adapter.addList(result);
-                                }
-                                page++;
+                            List<ShowCinemaBean.ResultBean> result = showCinemaBean.getResult();
+                            if (page==1){
+                                showCinema_adapter.setList(result);
+                            }else {
+                                showCinema_adapter.addList(result);
+                            }
+                            page++;
                         }
+                    }else{
+                        showToast("暂无数据");
+                    }
                 }else if (data instanceof AttentionBean){
                         AttentionBean attentionBean= (AttentionBean) data;
                         if (attentionBean.getStatus().equals("0000")){
