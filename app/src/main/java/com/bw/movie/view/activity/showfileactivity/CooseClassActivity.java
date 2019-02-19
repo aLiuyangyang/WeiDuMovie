@@ -1,7 +1,10 @@
 package com.bw.movie.view.activity.showfileactivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,6 +17,8 @@ import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.MovieScheduleBean;
 import com.bw.movie.utils.Constant;
+import com.bw.movie.view.activity.logandregactivity.LoginActivity;
+import com.bw.movie.view.activity.showmineactivity.Presonal_Message_Activity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
@@ -47,6 +52,9 @@ public class CooseClassActivity extends BaseActivity {
     ImageView filmDetailsBack;
     private ShowFile_Schedule_Adapter showFile_schedule_adapter;
     private String mResultName;
+    private SharedPreferences sharedPreferences;//存储
+    private SharedPreferences.Editor edit;
+    private boolean isUser;
 
     @Override
     public void initView() {
@@ -55,6 +63,9 @@ public class CooseClassActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        sharedPreferences=getSharedPreferences("UserMessage",MODE_PRIVATE);
+        edit = sharedPreferences.edit();
+        isUser = sharedPreferences.getBoolean("isUser", false);
         filmDetailsBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,18 +89,33 @@ public class CooseClassActivity extends BaseActivity {
         showFile_schedule_adapter.setOnclickId(new ShowFile_Schedule_Adapter.OnclickId() {
             @Override
             public void successed(int id, String scheduleTimeStart, String scheduleTimeEnd, String schedulePlayHall, double price) {
-                Intent intent1=new Intent(CooseClassActivity.this,ChoseseatActivity.class);
-                intent1.putExtra("movieId",movieId);
-                intent1.putExtra("cinemasId",cinemasId);
-                intent1.putExtra("Id",id);
-                intent1.putExtra("name",name);
-                intent1.putExtra("scheduleTimeStart",scheduleTimeStart);
-                intent1.putExtra("scheduleTimeEnd",scheduleTimeEnd);
-                intent1.putExtra("schedulePlayHall",schedulePlayHall);
-                intent1.putExtra("address",address);
-                intent1.putExtra("resultName",mResultName);
-                intent1.putExtra("price",price);
-                startActivity(intent1);
+                if (isUser) {
+                    Intent intent1=new Intent(CooseClassActivity.this,ChoseseatActivity.class);
+                    intent1.putExtra("movieId",movieId);
+                    intent1.putExtra("cinemasId",cinemasId);
+                    intent1.putExtra("Id",id);
+                    intent1.putExtra("name",name);
+                    intent1.putExtra("scheduleTimeStart",scheduleTimeStart);
+                    intent1.putExtra("scheduleTimeEnd",scheduleTimeEnd);
+                    intent1.putExtra("schedulePlayHall",schedulePlayHall);
+                    intent1.putExtra("address",address);
+                    intent1.putExtra("resultName",mResultName);
+                    intent1.putExtra("price",price);
+                    startActivity(intent1);
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CooseClassActivity.this);
+                    builder.setMessage("您还没有登录，确认要去登录吗?");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(CooseClassActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setNegativeButton("取消", null);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
             }
 
         });
@@ -102,7 +128,7 @@ public class CooseClassActivity extends BaseActivity {
     }
 
     @Override
-    public int getContent() {
+    public int getContent()  {
         return R.layout.activity_coose_class;
     }
 

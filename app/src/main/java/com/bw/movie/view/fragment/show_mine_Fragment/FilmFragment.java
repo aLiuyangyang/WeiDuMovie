@@ -56,6 +56,7 @@ public class FilmFragment extends BaseFragment {
                 getActivity().finish();
             }
         });
+
     }
 
     @Override

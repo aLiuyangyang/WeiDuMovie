@@ -46,7 +46,8 @@ public class IsHotFragment extends BaseFragment {
     private int page;//当前页数
     private int count = 10;//数量
     private ShowAllHotFile_Adapter showAllHotFile_adapter;
-
+    private int index;//下标
+    private int status;//状态
     @Override
     public void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
@@ -86,12 +87,12 @@ public class IsHotFragment extends BaseFragment {
         showAllHotFile_adapter.setAttentLineners(new ShowCinema_Nearby_Adapter.AttentLineners() {
             @Override
             public void setattents(int b, int position, int id) {
+                index=position;
+                status=b;
                 if(b==1){//取消
                     setGet(String.format(Constant.Unfollowmovie_Path,id),AttentionBean.class);
-                    showAllHotFile_adapter.cancel(position);
                 }else if(b == 2){//关注
                     setGet(String.format(Constant.Attentionmovie_Path,id),AttentionBean.class);
-                    showAllHotFile_adapter.add(position);
                 }
             }
         });
@@ -127,25 +128,28 @@ public class IsHotFragment extends BaseFragment {
         }else if (data instanceof AttentionBean){
             AttentionBean attentionBean= (AttentionBean) data;
             if (attentionBean.getStatus().equals("0000")){
+                if(status==1){
+                    showAllHotFile_adapter.cancel(index);
+                }else if(status==2){
+                    showAllHotFile_adapter.add(index);
+                }
                 EventBus.getDefault().post(new EventBusMessage(1));
                 showToast(attentionBean.getMessage());
             }else {
                 if (attentionBean.getMessage().equals("请先登陆")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage("请先登录");
+                    builder.setMessage("您还没有登陆，确认要去登陆吗?");
                     builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(getContext(), LoginActivity.class);
                             startActivity(intent);
-                            getActivity().finish();
                         }
                     });
                     builder.setNegativeButton("取消", null);
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 }
-                showToast(attentionBean.getMessage());
                 load();
             }
         }

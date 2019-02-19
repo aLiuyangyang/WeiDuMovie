@@ -39,6 +39,8 @@ public class Recommend_Fragment extends BaseFragment {
         XRecyclerView recommendCinemaXrecy;
         private int page;//当前页数
         private ShowCinema_Recommend_Adapter showCinema_adapter;
+    private int index;
+    private int status;
         @Override
         public void initView(View view) {
                 ButterKnife.bind(this,view);
@@ -79,12 +81,12 @@ public class Recommend_Fragment extends BaseFragment {
                 showCinema_adapter.setAttentLinener(new ShowCinema_Recommend_Adapter.AttentLinener() {
                         @Override
                         public void setattent(int b, int position, int id) {
+                            index=position;
+                            status=b;
                                 if(b==1){//取消
                                 setGet(String.format(Constant.Unfollow_Path,id),AttentionBean.class);
-                                showCinema_adapter.cancel(position);
                                 }else if(b == 2){//关注
                                 setGet(String.format(Constant.Attention_Path,id),AttentionBean.class);
-                                showCinema_adapter.add(position);
                                 }
                         }
                 });
@@ -114,27 +116,28 @@ public class Recommend_Fragment extends BaseFragment {
                 }else if (data instanceof AttentionBean){
                         AttentionBean attentionBean= (AttentionBean) data;
                         if (attentionBean.getStatus().equals("0000")){
+                            if(status==1){
+                                showCinema_adapter.cancel(index);
+                            }else if(status==2){
+                                showCinema_adapter.add(index);
+                            }
                             EventBus.getDefault().post(new EventBusMessage(1));
                                showToast(attentionBean.getMessage());
                         }else {
-
                             if (attentionBean.getMessage().equals("请先登陆")) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                builder.setMessage("请先登录");
+                                builder.setMessage("您还没有登录，确认要去登录吗?");
                                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(getContext(), LoginActivity.class);
                                         startActivity(intent);
-                                        getActivity().finish();
                                     }
                                 });
                                 builder.setNegativeButton("取消", null);
                                 AlertDialog alertDialog = builder.create();
                                 alertDialog.show();
                             }
-
-                                showToast(attentionBean.getMessage());
                                 load();
                         }
                 }

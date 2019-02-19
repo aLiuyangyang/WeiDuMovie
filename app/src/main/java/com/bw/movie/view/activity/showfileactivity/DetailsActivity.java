@@ -148,12 +148,10 @@ public class DetailsActivity extends BaseActivity {
     @Override
     public void success(Object data) {
         if (data instanceof Details_Info) {
-
             details_info = (Details_Info) data;
             id = details_info.getResult().getId();
             mResult = details_info.getResult();
             name = details_info.getResult().getName();
-
             detailsTitle.setText(name);
             detailsPic.setImageURI(details_info.getResult().getImageUrl());
             detailsBackground.setImageURI(details_info.getResult().getImageUrl());
@@ -176,20 +174,18 @@ public class DetailsActivity extends BaseActivity {
             }else {
                 if (attentionBean.getMessage().equals("请先登陆")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
-                    builder.setMessage("请先登录");
+                    builder.setMessage("您还没有登录，确认要去登录吗?");
                     builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(DetailsActivity.this, LoginActivity.class);
                             startActivity(intent);
-                            finish();
                         }
                     });
                     builder.setNegativeButton("取消", null);
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 }
-                showToast(attentionBean.getMessage());
             }
 
         }else if(data instanceof MovieCommentDetailsBean){
@@ -207,7 +203,6 @@ public class DetailsActivity extends BaseActivity {
         intent.putExtra("movieId",movieId);
         intent.putExtra("name",name);
         startActivity(intent);
-
     }
     @Override
     protected void onDestroy() {

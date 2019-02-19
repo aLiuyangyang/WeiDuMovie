@@ -26,7 +26,6 @@
                android:layout_height="@dimen/dp_50" />
             <TextView
                 android:id="@+id/details_name"
-                android:text="wewee"
                 android:textColor="#fff"
                 android:layout_toRightOf="@id/details_image"
                 android:layout_marginLeft="@dimen/dp_10"
@@ -42,7 +41,6 @@
             <TextView
                 android:id="@+id/details_addr"
                 android:text="wewee"
-                android:textColor="#fff"
                 android:layout_marginTop="@dimen/dp_20"
                 android:layout_marginRight="@dimen/dp_60"
                 android:layout_toRightOf="@id/details_image"

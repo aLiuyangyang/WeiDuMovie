@@ -1,10 +1,13 @@
 package com.bw.movie.view.activity.showcinemaactivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -27,8 +30,10 @@ import com.bw.movie.bean.CinemaPopupDetailsBean;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.MovieScheduleBean;
 import com.bw.movie.utils.Constant;
+import com.bw.movie.view.activity.logandregactivity.LoginActivity;
 import com.bw.movie.view.activity.showfileactivity.AreaActivity;
 import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
+import com.bw.movie.view.activity.showmineactivity.Presonal_Message_Activity;
 import com.bw.movie.view.fragment.show_cinema_Fragment.CinemaPopupDetailFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -67,13 +72,9 @@ public class DetailsOfCinemaActivity extends BaseActivity {
     RecyclerView detailsOfRecy;
     @BindView(R.id.rela)
     RelativeLayout rela;
-
     private View pop;
     private FragmentManager mManager;
-
-
-    private int id, page = 1, count = 10;
-    private ShowFilm_Coming_Adapter showFilm_coming_adapter;
+    private int id;
     private ShowFile_Schedule_Adapter showFile_schedule_adapter;
     private int cinemaid;
     private int id1;
@@ -83,7 +84,9 @@ public class DetailsOfCinemaActivity extends BaseActivity {
     private String mName1;
     private Camera_BannerBean mCamera_bannerBean;
     private CinemaDetailsBean mCinemaDetailsBean;
-    private CinemaDetailsBean.ResultBean mResult;
+    private SharedPreferences sharedPreferences;//存储
+    private SharedPreferences.Editor edit;
+    private boolean isUser;
 
     @Override
     public void initView() {
@@ -107,11 +110,12 @@ public class DetailsOfCinemaActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        sharedPreferences=getSharedPreferences("UserMessage",MODE_PRIVATE);
+        edit = sharedPreferences.edit();
+        isUser = sharedPreferences.getBoolean("isUser", false);
         //轮播
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
-
-
         setGet(String.format(Constant.Camera_Banner, id), Camera_BannerBean.class);
 
         filmDetailsBack.setOnClickListener(new View.OnClickListener() {
@@ -120,15 +124,10 @@ public class DetailsOfCinemaActivity extends BaseActivity {
                 finish();
             }
         });
-
-        /*CinemaPopupDetailsBean detailsBean = new CinemaPopupDetailsBean(mResult.getAddress(), mResult.getId(), mResult.getPhone(), mResult.getVehicleRoute());
-        EventBus.getDefault().postSticky(detailsBean);*/
         detailsAddr.setOnClickListener(new View.OnClickListener() {
-
 
             private PopupWindow mPopupWindow;
             View inflate = View.inflate(DetailsOfCinemaActivity.this, R.layout.filmactivity_item_details, null);
-
             TextView textView_detail = inflate.findViewById(R.id.cinema_pw_text_detail);
             final TextView textView_comment = inflate.findViewById(R.id.cinema_pw_text_comment);
             final TextView textView_detail_line = inflate.findViewById(R.id.cinema_pw_text_detail_line);
@@ -163,18 +162,33 @@ public class DetailsOfCinemaActivity extends BaseActivity {
         showFile_schedule_adapter.setOnclickId(new ShowFile_Schedule_Adapter.OnclickId() {
             @Override
             public void successed(int id, String scheduleTimeStart, String scheduleTimeEnd, String schedulePlayHall, double price) {
-                Intent intent1 = new Intent(DetailsOfCinemaActivity.this, ChoseseatActivity.class);
-                intent1.putExtra("movieId", id);
-                intent1.putExtra("cinemasId", cinemaid);
-                intent1.putExtra("Id", id);
-                intent1.putExtra("name", mName);
-                intent1.putExtra("scheduleTimeStart", scheduleTimeStart);
-                intent1.putExtra("scheduleTimeEnd", scheduleTimeEnd);
-                intent1.putExtra("schedulePlayHall", schedulePlayHall);
-                intent1.putExtra("address", mAddress);
-                intent1.putExtra("resultName", mName1);
-                intent1.putExtra("price", price);
-                startActivity(intent1);
+                if (isUser) {
+                    Intent intent1 = new Intent(DetailsOfCinemaActivity.this, ChoseseatActivity.class);
+                    intent1.putExtra("movieId", id);
+                    intent1.putExtra("cinemasId", cinemaid);
+                    intent1.putExtra("Id", id);
+                    intent1.putExtra("name", mName);
+                    intent1.putExtra("scheduleTimeStart", scheduleTimeStart);
+                    intent1.putExtra("scheduleTimeEnd", scheduleTimeEnd);
+                    intent1.putExtra("schedulePlayHall", schedulePlayHall);
+                    intent1.putExtra("address", mAddress);
+                    intent1.putExtra("resultName", mName1);
+                    intent1.putExtra("price", price);
+                    startActivity(intent1);
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DetailsOfCinemaActivity.this);
+                    builder.setMessage("您还没有登录，确认要去登录吗?");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(DetailsOfCinemaActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setNegativeButton("取消", null);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
             }
 
         });
@@ -198,7 +212,6 @@ public class DetailsOfCinemaActivity extends BaseActivity {
 
         if (data instanceof CinemaDetailsBean) {
             mCinemaDetailsBean = (CinemaDetailsBean) data;
-            mResult = mCinemaDetailsBean.getResult();
             if (mCinemaDetailsBean.getStatus().equals("0000")) {
                 mName = mCinemaDetailsBean.getResult().getName();
                 mAddress = mCinemaDetailsBean.getResult().getAddress();
@@ -237,22 +250,14 @@ public class DetailsOfCinemaActivity extends BaseActivity {
             }
         }
     }
-
     @Override
     public void fail(String error) {
 
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().isRegistered(this);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

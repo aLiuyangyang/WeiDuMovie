@@ -171,10 +171,7 @@ public class ChoseseatActivity extends BaseActivity {
                     map.put("scheduleId",mId+"");
                     map.put("amount",num+"");
                     map.put("sign",jmSign);
-
                     setPost(Constant.DingDan_Path,BuyBean.class,map);
-
-
                 }
 
             }
@@ -213,7 +210,6 @@ public class ChoseseatActivity extends BaseActivity {
             BuyBean buyBean = (BuyBean) data;
             String message = buyBean.getMessage();
             Toast.makeText(ChoseseatActivity.this, message, Toast.LENGTH_SHORT).show();
-
             if (message.equals("下单成功")) {  //下单成功则弹出支付
                 final String orderId = buyBean.getOrderId();
                 PayTranDataBean dataBean = new PayTranDataBean(orderId, (int) totalPrice);
