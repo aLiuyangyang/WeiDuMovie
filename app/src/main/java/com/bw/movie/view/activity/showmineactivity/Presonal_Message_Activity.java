@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.view.Gravity;
 import android.view.View;
@@ -358,12 +359,25 @@ public class Presonal_Message_Activity extends BaseActivity {
                     };
                     ActivityCompat.requestPermissions(Presonal_Message_Activity.this, mStatenetwork, 100);
                 }
-                setPopIcon();
+                    setPopIcon();
                 break;
             case R.id.personal_reset_pwd:
                 Intent intent = new Intent(Presonal_Message_Activity.this, UpdatePassActivity.class);
                 startActivity(intent);
                 break;
+        }
+    }
+    //没有权限的话负责打开权限
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        boolean hasPermission  = false;
+        if(requestCode == 100){
+            for (int i = 0;i<grantResults.length;i++){
+                if(grantResults[i] == -1){
+                    hasPermission = true;
+                }
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.bw.movie.view.activity.showfileactivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +18,7 @@ import com.bw.movie.bean.MovieCommentDetailsBean;
 import com.bw.movie.bean.MovieScheduleBean;
 import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.utils.Constant;
+import com.bw.movie.view.activity.logandregactivity.LoginActivity;
 import com.bw.movie.view.fragment.showfilebtnpopupwindow.PopuWindowDetails;
 import com.bw.movie.view.fragment.showfilebtnpopupwindow.PopuWindowFileReview;
 import com.bw.movie.view.fragment.showfilebtnpopupwindow.PopuWindowForeshow;
@@ -144,15 +147,9 @@ public class DetailsActivity extends BaseActivity {
             id = details_info.getResult().getId();
             mResult = details_info.getResult();
             name = details_info.getResult().getName();
-
             detailsTitle.setText(name);
             detailsPic.setImageURI(details_info.getResult().getImageUrl());
             detailsBackground.setImageURI(details_info.getResult().getImageUrl());
-            if (details_info.getResult().getFollowMovie() == 1) {
-                movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_selected);
-            } else {
-                movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_default);
-            }
             setGet(String.format(Constant.URL_QUERY_COMMENT,movieId),MovieCommentDetailsBean.class);
         }else if (data instanceof AttentionBean){
             AttentionBean attentionBean= (AttentionBean) data;
@@ -165,7 +162,21 @@ public class DetailsActivity extends BaseActivity {
                     movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_default);
                 }
                 showToast(attentionBean.getMessage());
-            }else {
+            }else if (attentionBean.getMessage().equals("请先登陆")) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("暂未登陆，您确认要登陆吗？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent=new Intent(DetailsActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("取消", null);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }else{
                 showToast(attentionBean.getMessage());
             }
 

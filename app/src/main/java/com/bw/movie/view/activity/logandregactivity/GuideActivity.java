@@ -116,7 +116,7 @@ public class GuideActivity extends BaseActivity {
         });
         int num = sharedPreferences.getInt("num", 0);
         if (num > 0){
-            Intent intent = new Intent(GuideActivity.this,LoginActivity.class);
+            Intent intent = new Intent(GuideActivity.this,ShowActivity.class);
             startActivity(intent);
             finish();
         }

@@ -117,7 +117,7 @@
         android:drawableLeft="@mipmap/register_icon_mail_default"
         android:drawablePadding="@dimen/dp_16"
         android:hint="邮箱"
-        android:digits="0123456789abcdefghigklmnopqrstuvwxyz@."
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyz@."
         android:textColor="#eeeeee"
         android:textColorHint="#fff"
         android:theme="@style/MyEditText"

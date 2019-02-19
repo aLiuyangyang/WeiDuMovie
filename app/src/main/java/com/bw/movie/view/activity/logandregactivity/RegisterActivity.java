@@ -67,6 +67,7 @@ public class RegisterActivity extends BaseActivity {
     public void initView() {
         bind = ButterKnife.bind(this);
         sharedPreferences=getSharedPreferences("UserMessage",MODE_PRIVATE);
+        edit=sharedPreferences.edit();
     }
     @Override
     public void initData() { }
@@ -118,7 +119,8 @@ public class RegisterActivity extends BaseActivity {
                 final int day = calendar.get(Calendar.DAY_OF_MONTH);
                 Calendar startDate = Calendar.getInstance();
                 Calendar endDate = Calendar.getInstance();
-                startDate.set(year-80,0,1);
+                calendar.set(year-20,month,day);
+                startDate.set(year-100,0,1);
                 endDate.set(year,month,day);
                 TimePickerView pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
                     @Override
@@ -138,6 +140,7 @@ public class RegisterActivity extends BaseActivity {
                         //点击屏幕，点在控件外部范围时，是否取消显示
                         .setRangDate(startDate,endDate)
                         //起始终止年月日设定
+                        .setDate(calendar)
                         .isCenterLabel(false)
                         //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                         .build();
@@ -172,8 +175,8 @@ public class RegisterActivity extends BaseActivity {
                     map.put("email",mEmil);
                     setPost(Constant.Register_Path,RegisterBean.class,map);
                 }
-                Intent intent=new Intent(this,ShowActivity.class);
-                startActivity(intent);
+               /* Intent intent=new Intent(this,ShowActivity.class);
+                startActivity(intent);*/
                 break;
         }
     }

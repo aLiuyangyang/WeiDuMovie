@@ -34,11 +34,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoTitle_FullScreen">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.tiamo.sumproject"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
         <activity android:name=".view.activity.logandregactivity.LoginActivity" />
         <activity android:name=".view.activity.logandregactivity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -71,26 +79,16 @@
         <activity android:name=".view.activity.showfileactivity.CooseClassActivity" />
         <activity android:name=".view.activity.showfileactivity.DetailsActivity" />
         <activity android:name=".view.activity.showfileactivity.AreaActivity" />
-
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="slTiOBlO6mj5FIUGUnv5baxwbZdSXA8T" />
-
         <activity android:name=".view.activity.showmineactivity.Presonal_Message_Activity" />
         <activity android:name=".view.activity.showmineactivity.UpdatePassActivity" />
         <activity android:name=".view.activity.showmineactivity.CareActivity" />
         <activity android:name=".view.activity.showmineactivity.TicketActivity" />
         <activity android:name=".view.activity.showmineactivity.OpinionActivity" />
         <activity android:name=".view.activity.showmineactivity.OpinSuccessActivity"></activity>
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.tiamo.sumproject"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider>
+        <activity android:name=".view.activity.showmineactivity.SystemMessageActivity"/>
     </application>
 
 </manifest>

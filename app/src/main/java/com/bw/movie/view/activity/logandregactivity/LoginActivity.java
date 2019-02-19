@@ -185,7 +185,6 @@ public class LoginActivity extends BaseActivity {
             case R.id.login_sign:
                 Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
-                finish();
                 break;
             case R.id.login_weixin:
                 //微信登录

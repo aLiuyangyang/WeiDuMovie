@@ -72,17 +72,18 @@ public class Constant {
     public static String UserInfo_Path="user/v1/verify/modifyUserInfo";
     //查询新版本
     public static String NewVersion_Path="tool/v1/findNewVersion";
-
     //电影评论点赞
     public static String Prise_Path="movie/v1/verify/movieCommentGreat";
-
     //电影评论
     public static String pinglun_Path="movie/v1/verify/movieComment";
-
     //创建订单
     public static String DingDan_Path="movie/v1/verify/buyMovieTicket";
-
     //支付
-
     public static String Pay_Path="movie/v1/verify/pay";
+    //查询系统消息列表
+    public static String SysMsgList_Path="tool/v1/verify/findAllSysMsgList?page=%d&count=5";
+    //查询用户当前未读消息数量
+    public static String MessageCount_Path="tool/v1/verify/findUnreadMessageCount";
+    //消息读取状态改变
+    public static String SysMsgStatus_Path="tool/v1/verify/changeSysMsgStatus?id=%d";
 }

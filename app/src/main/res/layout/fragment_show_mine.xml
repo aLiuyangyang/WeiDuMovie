@@ -16,6 +16,7 @@
             android:background="@drawable/minebj"
             />
         <ImageView
+            android:id="@+id/system_mess"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
             android:background="@mipmap/my_icon_remind_default"
@@ -35,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sp_14"
-            android:text="冬天来了"
+            android:text="请登录"
             android:textColor="#ffffff"
             android:layout_below="@id/personal_top_image"
             android:layout_centerHorizontal="true"

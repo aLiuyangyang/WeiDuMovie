@@ -31,6 +31,7 @@ import com.bw.movie.view.activity.logandregactivity.LoginActivity;
 import com.bw.movie.view.activity.showmineactivity.CareActivity;
 import com.bw.movie.view.activity.showmineactivity.OpinionActivity;
 import com.bw.movie.view.activity.showmineactivity.Presonal_Message_Activity;
+import com.bw.movie.view.activity.showmineactivity.SystemMessageActivity;
 import com.bw.movie.view.activity.showmineactivity.TicketActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -73,6 +74,8 @@ public class ShowMineFragment extends BaseFragment {
     SimpleDraweeView personal_top_image;
     @BindView(R.id.personal_name)
     TextView personal_name;
+    @BindView(R.id.system_mess)
+    ImageView system_mess;
     private int flag;//判断标识符
     private NewVersionBean newVersionBean;
     private String downloadUrl;
@@ -104,7 +107,7 @@ public class ShowMineFragment extends BaseFragment {
     public int getContent() {
         return R.layout.fragment_show_mine;
     }
-    @OnClick({R.id.personal_meassage,R.id.mine_NewVersion,R.id.my_care,R.id.mine_sign,R.id.rela_ticket,R.id.my_Opinion,R.id.mine_retuen})
+    @OnClick({R.id.personal_meassage,R.id.system_mess,R.id.mine_NewVersion,R.id.my_care,R.id.mine_sign,R.id.rela_ticket,R.id.my_Opinion,R.id.mine_retuen})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             //版本更新
@@ -114,14 +117,16 @@ public class ShowMineFragment extends BaseFragment {
                 rotation.start();
                 setGet(Constant.NewVersion_Path,NewVersionBean.class);
                 break;
+            case R.id.system_mess:
+                Intent intent=new Intent(getActivity(),SystemMessageActivity.class);
+                getActivity().startActivity(intent);
+                break;
             case R.id.mine_sign://用户签到
-                mineSign.setText("已签到");
-              /*  mineSign.setBackgroundColor(R.color.hui);*/
                 setGet(Constant.UserSignIn_Path,SignBean.class);
                 break;
             case R.id.personal_meassage://个人信息
-                Intent intent=new Intent(getActivity(),Presonal_Message_Activity.class);
-                startActivity(intent);
+                Intent intentmeassage=new Intent(getActivity(),Presonal_Message_Activity.class);
+                startActivity(intentmeassage);
                 break;
             case R.id.my_care://我的关注
                 Intent intentcare=new Intent(getActivity(),CareActivity.class);

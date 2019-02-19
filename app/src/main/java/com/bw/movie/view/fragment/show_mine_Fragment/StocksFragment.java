@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.showmine_adapter.MineObligationRecyAdapter;
@@ -27,6 +28,8 @@ public class StocksFragment extends BaseFragment {
     ImageView filmDetailsBack;
     @BindView(R.id.mine_stock_recy)
     RecyclerView mineStockRecy;
+    @BindView(R.id.search_none)
+    RelativeLayout search_none;
     Unbinder unbinder;
     private MineStocksRecyAdapter mineStocksRecyAdapter;
     private int page=1;//第几页
@@ -62,9 +65,8 @@ public class StocksFragment extends BaseFragment {
         if (data instanceof ObligationBean){
             ObligationBean obligationBean= (ObligationBean) data;
             if (obligationBean.getStatus().equals("0000")){
-                List<ObligationBean.ResultBean> result = obligationBean.getResult();
-                if (result.size()==0){
-                    showToast("无完成信息");
+                if (obligationBean.getResult().size()==0){
+                    search_none.setVisibility(View.VISIBLE);
                 }else {
                     mineStocksRecyAdapter.setList(obligationBean.getResult());
                 }
