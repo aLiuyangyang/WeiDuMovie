@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="35dp"
+            android:textColor="#333333"
+            android:text="系统消息（0条未读）"
+            android:layout_marginLeft="@dimen/dp_26"
+            android:id="@+id/system_message"/>
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/system_message_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/system_message"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="19dp"
+        android:layout_marginRight="@dimen/dp_24"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+   <include layout="@layout/include_return"/>
+</RelativeLayout>

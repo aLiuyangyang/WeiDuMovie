@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="#6ccc"
     tools:context=".view.fragment.show_cinema_Fragment.Recommend_Fragment">
+    <include layout="@layout/include_nodata"/>
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/recommend_cinema_xrecy"
         android:paddingRight="@dimen/dp_24"

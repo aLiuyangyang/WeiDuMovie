@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.showmine_adapter.MineCareCinemaRecyAdapter;
@@ -15,6 +16,8 @@ import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.MoviewPageListBean;
 import com.bw.movie.utils.Constant;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +31,8 @@ public class FilmFragment extends BaseFragment {
     RecyclerView mineCareFilmRecy;
     @BindView(R.id.film_details_back)
     ImageView filmDetailsBack;
+    @BindView(R.id.search_none)
+    RelativeLayout search_none;
     Unbinder unbinder;
     private int page = 1;//页数
     private int count = 10;//每页请求的数量
@@ -63,7 +68,13 @@ public class FilmFragment extends BaseFragment {
         if (data instanceof MoviewPageListBean) {
             MoviewPageListBean moviewPageListBean = (MoviewPageListBean) data;
             if (moviewPageListBean.getStatus().equals("0000")) {
-                mineCareCinemaRecyAdapter.setList(moviewPageListBean.getResult());
+                List<MoviewPageListBean.ResultBean> result = moviewPageListBean.getResult();
+                if (result.size()==0){
+                    search_none.setVisibility(View.VISIBLE);
+                }else {
+                    mineCareCinemaRecyAdapter.setList(result);
+                }
+
             }
         }
     }

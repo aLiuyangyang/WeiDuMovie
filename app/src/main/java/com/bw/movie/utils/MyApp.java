@@ -14,7 +14,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.tencent.android.tpush.XGPushConfig;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,11 +27,17 @@ import java.io.IOException;
  * function:
  */
 public class MyApp extends Application {
+    public static RefWatcher getRefWatcher(Context context) {
+        MyApp application = (MyApp) context.getApplicationContext();
+        return application.refWatcher;
+    }
+    private RefWatcher refWatcher;
     private static Context context;
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onCreate() {
         super.onCreate();
+        refWatcher = LeakCanary.install(this);
         // android 7.0系统解决拍照的问题
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());

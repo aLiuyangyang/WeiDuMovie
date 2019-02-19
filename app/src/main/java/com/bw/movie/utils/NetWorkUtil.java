@@ -8,6 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
 
+import com.bw.movie.base.BaseActivity;
+
 /**
  *
  * @描述 设置网络的工具类
@@ -63,4 +65,5 @@ public class NetWorkUtil {
         }).show();
 
     }
+
 }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.showmine_adapter.MineCareCinemaRecyAdapter;
@@ -32,6 +33,8 @@ public class CinemaFragment extends BaseFragment {
     @BindView(R.id.film_details_back)
     ImageView filmDetailsBack;
     Unbinder unbinder;
+    @BindView(R.id.search_none)
+    RelativeLayout search_none;
     private MineCareRecyAdapter mineCareRecyAdapter;
     private int page = 1;//页数
     private int count = 10;//每页请求的数量
@@ -66,7 +69,12 @@ public class CinemaFragment extends BaseFragment {
      if (data instanceof MinecinemaBean){
          MinecinemaBean minecinemaBean= (MinecinemaBean) data;
          if (minecinemaBean.getStatus().equals("0000")){
-             mineCareRecyAdapter.setList(minecinemaBean.getResult());
+             if (minecinemaBean.getResult().size()==0){
+                 search_none.setVisibility(View.VISIBLE);
+             }else {
+                 mineCareRecyAdapter.setList(minecinemaBean.getResult());
+             }
+
          }
       }
     }

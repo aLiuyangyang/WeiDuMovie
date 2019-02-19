@@ -5,16 +5,21 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.presenter.IPresenter;
 import com.bw.movie.utils.Loading_view;
+import com.bw.movie.utils.MyApp;
 import com.bw.movie.utils.NetWorkUtil;
 import com.bw.movie.view.IView;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
 
     private IPresenter mIPresenter;
     private Loading_view loading;
-
+    private AlertDialog alertDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,14 +83,14 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
         if(loading!=null){
             loading.dismiss();
         }
-       /* if(alertDialog==null){
-            alertDialog = NetWorkUtil.showNotNetWork(this);
+        if(alertDialog==null){
+            NetWorkUtil.setNetworkMethod(this);
         }else{
             alertDialog.dismiss();
             alertDialog=null;
-            alertDialog=NetWorkUtil.showNotNetWork(this);
-        }*/
-    }
+            NetWorkUtil.setNetworkMethod(this);
+            }
+          }
 
     //沉浸式状态栏
     public void windowManger(){
@@ -142,5 +147,17 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
         if(loading!=null){
             loading.dismiss();
         }
+        }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (BaseActivity.this.getCurrentFocus() != null) {
+                if (BaseActivity.this.getCurrentFocus().getWindowToken() != null) {
+                    imm.hideSoftInputFromWindow(BaseActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+            }
+        }
+        return super.onTouchEvent(event);
     }
 }

@@ -3,6 +3,7 @@ package com.bw.movie.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -176,11 +177,13 @@ public class RetrofitManager<T> {
            public void onNext(ResponseBody responseBody) {
                try {
                    String data = responseBody.string();
+                   Log.i("TAG",data);
                    if(listener!=null){
                        listener.onSuccess(data);
                    }
                } catch (IOException e) {
                    e.printStackTrace();
+                   Log.i("TAG",e.getMessage());
                    if(listener!=null){
                        listener.onFail(e.getMessage());
                    }

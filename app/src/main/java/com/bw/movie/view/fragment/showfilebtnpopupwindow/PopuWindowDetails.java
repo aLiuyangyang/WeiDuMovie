@@ -63,7 +63,6 @@ public class PopuWindowDetails{
         //添加按键事件监听
         setButtonListeners(inflate);
     }
-
     private void setButtonListeners(ConstraintLayout inflate) {
         mTv_file_type = inflate.findViewById(R.id.tv_film_type);
         mTv_film_director = inflate.findViewById(R.id.tv_film_director);

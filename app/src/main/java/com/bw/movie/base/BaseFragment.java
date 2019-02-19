@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,10 @@ import android.widget.Toast;
 import com.bw.movie.R;
 import com.bw.movie.presenter.IPresenter;
 import com.bw.movie.utils.Loading_view;
+import com.bw.movie.utils.MyApp;
 import com.bw.movie.utils.NetWorkUtil;
 import com.bw.movie.view.IView;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +33,7 @@ public abstract class BaseFragment extends Fragment implements IView {
 
     private IPresenter mIPresenter;
     private Loading_view loading;
-
+    private AlertDialog alertDialog;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,6 +77,13 @@ public abstract class BaseFragment extends Fragment implements IView {
             loading.dismiss();
         }
         fail(error);
+        if(alertDialog==null){
+            NetWorkUtil.setNetworkMethod(getActivity());
+        }else{
+            alertDialog.dismiss();
+            alertDialog=null;
+            NetWorkUtil.setNetworkMethod(getActivity());
+        }
     }
 
     public void setGet(String url, Class clazz) {
@@ -116,5 +126,9 @@ public abstract class BaseFragment extends Fragment implements IView {
         if (loading != null) {
             loading.dismiss();
         }
+        RefWatcher refWatcher = MyApp.getRefWatcher(getActivity());
+        refWatcher.watch(this);
     }
+
+
 }

@@ -59,15 +59,16 @@ public class ShowCinema_Nearby_Adapter extends XRecyclerView.Adapter<XRecyclerVi
     @Override
     public void onBindViewHolder(@NonNull XRecyclerView.ViewHolder viewHolder, final int i) {
         ViewHolder rHolder= (ViewHolder) viewHolder;
-        rHolder.itemNameCinema.setText(mlist.get(i).getName());
-        rHolder.itemAddrCinema.setText(mlist.get(i).getAddress());
+        ShowCinemaBean.ResultBean resultBean=mlist.get(i);
+        rHolder.itemNameCinema.setText(resultBean.getName());
+        rHolder.itemAddrCinema.setText(resultBean.getAddress());
         if (mlist.get(i).getFollowCinema()==1){
             rHolder.itemAttentionCinema.setImageResource(R.mipmap.com_icon_collection_selected);
         }else {
             rHolder.itemAttentionCinema.setImageResource(R.mipmap.com_icon_collection_default);
         }
-        rHolder.itemDistanceCinema.setText(mlist.get(i).getDistance()+"km");
-        Uri uri = Uri.parse(mlist.get(i).getLogo());
+        rHolder.itemDistanceCinema.setText(resultBean.getDistance()+"km");
+        Uri uri = Uri.parse(resultBean.getLogo());
         rHolder.itemImageCinema.setImageURI(uri);
         rHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +82,8 @@ public class ShowCinema_Nearby_Adapter extends XRecyclerView.Adapter<XRecyclerVi
             @Override
             public void onClick(View v) {
                 if (attentLineners!=null) {
-                    attentLineners.setattents(mlist.get(i).getFollowCinema(), i, mlist.get(i).getId());
+                    attentLineners.setattents(mlist.get(i).getFollowCinema(), i,
+                            mlist.get(i).getId());
                 }
             }
         });
