@@ -75,7 +75,6 @@ public class DetailsActivity extends BaseActivity {
     private int id;//影片id
     private Details_Info details_info;
     private MovieCommentDetailsBean mMovieCommentDetailsBean1;
-    private int page=1;
 
     @Override
     public void initView() {
@@ -116,11 +115,13 @@ public class DetailsActivity extends BaseActivity {
             }
         });
         //影评
+        setGet(String.format(Constant.URL_QUERY_COMMENT,movieId),MovieCommentDetailsBean.class);
         filmDetailsHomeFilmReview.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().postSticky(new EventBusMessage(movieId));
-                PopuWindowFileReview popuWindowFileReview = new PopuWindowFileReview(DetailsActivity.this);
+                PopuWindowFileReview popuWindowFileReview = new PopuWindowFileReview(DetailsActivity.this,mMovieCommentDetailsBean1);
                 popuWindowFileReview.bottomwindow(linearlayout1);
             }
         });
@@ -171,6 +172,7 @@ public class DetailsActivity extends BaseActivity {
                     movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_default);
                 }
                 showToast(attentionBean.getMessage());
+
             }else {
                 if (attentionBean.getMessage().equals("请先登陆")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);

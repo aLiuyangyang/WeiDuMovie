@@ -2,11 +2,9 @@ package com.bw.movie.view.fragment.showfilebtnpopupwindow;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,22 +56,21 @@ public class PopuWindowFileReview implements IView {
 
     private PopupWindow popupWindow;
     private Context context;
-
     private IPresenter mIPresenter;
     private FilmCommentAdapter mCommentAdapter;
     private int movied;
-    private XRecyclerView mFilm_comment_recycle;
-    private List<MovieCommentDetailsBean.ResultBean> mResult;
+    private RecyclerView mFilm_comment_recycle;
+    private MovieCommentDetailsBean resultBean;
+    private MovieCommentDetailsBean mDetailsBean;
 
 
-    public PopuWindowFileReview(Context context) {
+    public PopuWindowFileReview(Context context, MovieCommentDetailsBean resultBean) {
         this.context = context;
+        this.resultBean = resultBean;
         EventBus.getDefault().register(this);
     }
 
     public void bottomwindow(View view) {
-
-
 
         PopupMenu popupMenu = new PopupMenu(context, view);
         if (popupWindow != null && popupWindow.isShowing()) {
@@ -95,10 +92,6 @@ public class PopuWindowFileReview implements IView {
         //添加按键事件监听
         setButtonListeners(inflate);
 
-        mIPresenter = new IPresenter(this);
-
-        mIPresenter.setGetRequest(String.format(Constant.URL_QUERY_COMMENT,movied,page),MovieCommentDetailsBean.class);
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
@@ -106,42 +99,15 @@ public class PopuWindowFileReview implements IView {
         movied = eventBusMessage.getId();
     }
 
-    /*public void getData(){
-        mFilm_comment_recycle.setLoadingListener(new XRecyclerView.LoadingListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        page=1;
-                        initData();
-                        mFilm_comment_recycle.refreshComplete();
-                    }
-                },2000);
-            }
 
-            @Override
-            public void onLoadMore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        page++;
-                        initData();
-                        mFilm_comment_recycle.loadMoreComplete();
-
-                    }
-                },2000);
-            }
-        });
-    }*/
 
     private void setButtonListeners(ConstraintLayout inflate) {
+
+        mIPresenter = new IPresenter(this);
+
         mFilm_comment_recycle = inflate.findViewById(R.id.fourth_recyclerview);
         //收起
         ImageView film_details_button_down = inflate.findViewById(R.id.finish_image);
-
-
-
         //收起按钮点击监听
         film_details_button_down.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,7 +116,9 @@ public class PopuWindowFileReview implements IView {
             }
         });
 
-
+        mCommentAdapter = new FilmCommentAdapter(context,resultBean.getResult());
+        mFilm_comment_recycle.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        mFilm_comment_recycle.setAdapter(mCommentAdapter);
 
         ping.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,8 +127,6 @@ public class PopuWindowFileReview implements IView {
                 pingjiaBtn.setVisibility(View.VISIBLE);
             }
         });
-
-
 
 
         pingjiaBtn.setOnClickListener(new View.OnClickListener() {
@@ -189,18 +155,14 @@ public class PopuWindowFileReview implements IView {
         });
 
 
+
+
     }
 
     @Override
     public void successed(Object data) {
         if(data instanceof MovieCommentDetailsBean){
-            MovieCommentDetailsBean movieCommentDetailsBean = (MovieCommentDetailsBean) data;
-            mResult = movieCommentDetailsBean.getResult();
-
-            mCommentAdapter = new FilmCommentAdapter(context);
-            mCommentAdapter.setList(mResult);
-            mFilm_comment_recycle.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-            mFilm_comment_recycle.setAdapter(mCommentAdapter);
+            mDetailsBean  = (MovieCommentDetailsBean) data;
 
         }else if(data instanceof LoginBean){
             LoginBean loginBean = (LoginBean) data;

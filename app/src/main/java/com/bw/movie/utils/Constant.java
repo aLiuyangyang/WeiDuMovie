@@ -51,7 +51,7 @@ public class Constant {
 
     public static String Camera_Banner="movie/v1/findMovieListByCinemaId?cinemaId=%d";
 
-     public static  String URL_QUERY_COMMENT="movie/v1/findAllMovieComment?movieId=%d&page=%d&count=5";
+     public static  String URL_QUERY_COMMENT="movie/v1/findAllMovieComment?movieId=%d&page=1&count=100";
     //根据用户ID查询用户信息
      public static String Update_User="user/v1/verify/getUserInfoByUserId";
     //修改头像
@@ -80,10 +80,11 @@ public class Constant {
     public static String DingDan_Path="movie/v1/verify/buyMovieTicket";
     //支付
     public static String Pay_Path="movie/v1/verify/pay";
+
     //查询系统消息列表
     public static String SysMsgList_Path="tool/v1/verify/findAllSysMsgList?page=%d&count=5";
     //查询用户当前未读消息数量
     public static String MessageCount_Path="tool/v1/verify/findUnreadMessageCount";
-    //消息读取状态改变
-    public static String SysMsgStatus_Path="tool/v1/verify/changeSysMsgStatus?id=%d";
+  
+
 }
