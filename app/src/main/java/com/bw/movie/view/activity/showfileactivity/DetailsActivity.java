@@ -16,6 +16,7 @@ import com.bw.movie.bean.Details_Info;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.MovieCommentDetailsBean;
 import com.bw.movie.bean.MovieScheduleBean;
+import com.bw.movie.bean.RegisterBean;
 import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.view.activity.logandregactivity.LoginActivity;
@@ -34,6 +35,9 @@ import java.io.DataInput;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.baidu.mapapi.BMapManager.getContext;
+
 /**
  * date:2019/1/26
  * author:孙佳鑫(DELL)
@@ -71,6 +75,7 @@ public class DetailsActivity extends BaseActivity {
     private int id;//影片id
     private Details_Info details_info;
     private MovieCommentDetailsBean mMovieCommentDetailsBean1;
+    private int page=1;
 
     @Override
     public void initView() {
@@ -115,7 +120,7 @@ public class DetailsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().postSticky(new EventBusMessage(movieId));
-                PopuWindowFileReview popuWindowFileReview = new PopuWindowFileReview(DetailsActivity.this,mMovieCommentDetailsBean1);
+                PopuWindowFileReview popuWindowFileReview = new PopuWindowFileReview(DetailsActivity.this);
                 popuWindowFileReview.bottomwindow(linearlayout1);
             }
         });
@@ -131,7 +136,7 @@ public class DetailsActivity extends BaseActivity {
         });
     }
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    public void message(EventBusMessage eventBusMessage) {
+    public void message(EventBusMessage eventBusMessage)  {
         movieId = eventBusMessage.getId();
     }
 
@@ -143,14 +148,20 @@ public class DetailsActivity extends BaseActivity {
     @Override
     public void success(Object data) {
         if (data instanceof Details_Info) {
+
             details_info = (Details_Info) data;
             id = details_info.getResult().getId();
             mResult = details_info.getResult();
             name = details_info.getResult().getName();
+
             detailsTitle.setText(name);
             detailsPic.setImageURI(details_info.getResult().getImageUrl());
             detailsBackground.setImageURI(details_info.getResult().getImageUrl());
-            setGet(String.format(Constant.URL_QUERY_COMMENT,movieId),MovieCommentDetailsBean.class);
+            if (details_info.getResult().getFollowMovie() == 1) {
+                movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_selected);
+            } else {
+                movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_default);
+            }
         }else if (data instanceof AttentionBean){
             AttentionBean attentionBean= (AttentionBean) data;
             if (attentionBean.getStatus().equals("0000")){
@@ -162,27 +173,27 @@ public class DetailsActivity extends BaseActivity {
                     movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_default);
                 }
                 showToast(attentionBean.getMessage());
-            }else if (attentionBean.getMessage().equals("请先登陆")) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("暂未登陆，您确认要登陆吗？");
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent=new Intent(DetailsActivity.this,LoginActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
-                builder.setNegativeButton("取消", null);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            }else{
+            }else {
+                if (attentionBean.getMessage().equals("请先登陆")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
+                    builder.setMessage("请先登录");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(DetailsActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    builder.setNegativeButton("取消", null);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
                 showToast(attentionBean.getMessage());
             }
 
         }else if(data instanceof MovieCommentDetailsBean){
             mMovieCommentDetailsBean1 = (MovieCommentDetailsBean) data;
-
         }
     }
 

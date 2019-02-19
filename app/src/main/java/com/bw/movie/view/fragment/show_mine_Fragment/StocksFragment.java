@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.showmine_adapter.MineObligationRecyAdapter;
@@ -28,8 +27,6 @@ public class StocksFragment extends BaseFragment {
     ImageView filmDetailsBack;
     @BindView(R.id.mine_stock_recy)
     RecyclerView mineStockRecy;
-    @BindView(R.id.search_none)
-    RelativeLayout search_none;
     Unbinder unbinder;
     private MineStocksRecyAdapter mineStocksRecyAdapter;
     private int page=1;//第几页
@@ -52,6 +49,11 @@ public class StocksFragment extends BaseFragment {
         mineStockRecy.setLayoutManager(linearLayoutManager);
         mineStocksRecyAdapter=new MineStocksRecyAdapter(getActivity());
         mineStockRecy.setAdapter(mineStocksRecyAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         setGet(String.format(Constant.BuyTicketRecord_Path,page,count,status),ObligationBean.class);
     }
 
@@ -65,11 +67,7 @@ public class StocksFragment extends BaseFragment {
         if (data instanceof ObligationBean){
             ObligationBean obligationBean= (ObligationBean) data;
             if (obligationBean.getStatus().equals("0000")){
-                if (obligationBean.getResult().size()==0){
-                    search_none.setVisibility(View.VISIBLE);
-                }else {
-                    mineStocksRecyAdapter.setList(obligationBean.getResult());
-                }
+                  mineStocksRecyAdapter.setList(obligationBean.getResult());
             }
         }
     }

@@ -4,8 +4,9 @@ import java.util.List;
 
 public class MovieCommentDetailsBean {
 
+
     /**
-     * result : [{"commentContent":"楼下站住","commentHeadPic":"http://172.17.8.100/images/movie/head_pic/2018-12-19/20181219102900.png","commentId":1445,"commentTime":1545221808000,"commentUserId":2896,"commentUserName":"气人","greatNum":5,"hotComment":0,"isGreat":0,"replyNum":0},{"commentContent":"喀喀喀","commentHeadPic":"http://172.17.8.100/images/movie/head_pic/2018-10-11/20181011163109.unknown","commentId":917,"commentTime":1539253540000,"commentUserId":776,"commentUserName":"小熊维尼","greatNum":3,"hotComment":0,"isGreat":0,"replyNum":0},{"commentContent":"哇喔哇喔","commentHeadPic":"http://172.17.8.100/images/movie/head_pic/2018-09-20/20180920111801.png","commentId":835,"commentTime":1537257586000,"commentUserId":303,"commentUserName":"烤冷面","greatNum":7,"hotComment":0,"isGreat":0,"replyNum":8}]
+     * result : [{"commentContent":"透了","commentHeadPic":"http://mobile.bwstudent.com/images/movie/head_pic/bwjy.jpg","commentId":181,"commentTime":1550400098000,"commentUserId":242,"commentUserName":"sunj","greatNum":1,"hotComment":0,"isGreat":0,"replyNum":0},{"commentContent":"一名","commentHeadPic":"http://mobile.bwstudent.com/images/movie/head_pic/2019-02-14/20190214155110.jpg","commentId":105,"commentTime":1550111129000,"commentUserId":15,"commentUserName":"旺旺旺","greatNum":7,"hotComment":0,"isGreat":0,"replyNum":0},{"commentContent":"哈哈","commentHeadPic":"http://mobile.bwstudent.com/images/movie/head_pic/2019-02-14/20190214204750.png","commentId":102,"commentTime":1550103477000,"commentUserId":99,"commentUserName":"冷風","greatNum":5,"hotComment":0,"isGreat":0,"replyNum":0},{"commentContent":"来啦老弟","commentHeadPic":"http://mobile.bwstudent.com/images/movie/head_pic/2019-02-14/20190214204750.png","commentId":101,"commentTime":1550103455000,"commentUserId":99,"commentUserName":"冷風","greatNum":5,"hotComment":0,"isGreat":0,"replyNum":0},{"commentContent":"关静音","commentHeadPic":"http://mobile.bwstudent.com/images/movie/head_pic/bwjy.jpg","commentId":99,"commentTime":1550062113000,"commentUserId":131,"commentUserName":"AndroidASD","greatNum":3,"hotComment":0,"isGreat":0,"replyNum":2},{"commentContent":"阿阿阿阿阿阿阿","commentHeadPic":"http://mobile.bwstudent.com/images/movie/head_pic/2019-02-14/20190214204132.jpg","commentId":84,"commentTime":1550057335000,"commentUserId":6,"commentUserName":"年","greatNum":4,"hotComment":0,"isGreat":0,"replyNum":0},{"commentContent":"阿阿阿阿阿","commentHeadPic":"http://mobile.bwstudent.com/images/movie/head_pic/2019-02-14/20190214204132.jpg","commentId":83,"commentTime":1550057316000,"commentUserId":6,"commentUserName":"年","greatNum":3,"hotComment":0,"isGreat":0,"replyNum":0}]
      * message : 查询成功
      * status : 0000
      */
@@ -40,13 +41,13 @@ public class MovieCommentDetailsBean {
 
     public static class ResultBean {
         /**
-         * commentContent : 楼下站住
-         * commentHeadPic : http://172.17.8.100/images/movie/head_pic/2018-12-19/20181219102900.png
-         * commentId : 1445
-         * commentTime : 1545221808000
-         * commentUserId : 2896
-         * commentUserName : 气人
-         * greatNum : 5
+         * commentContent : 透了
+         * commentHeadPic : http://mobile.bwstudent.com/images/movie/head_pic/bwjy.jpg
+         * commentId : 181
+         * commentTime : 1550400098000
+         * commentUserId : 242
+         * commentUserName : sunj
+         * greatNum : 1
          * hotComment : 0
          * isGreat : 0
          * replyNum : 0

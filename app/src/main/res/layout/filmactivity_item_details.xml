@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_500"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/dialog_rectangle"
+        >
+
+        <TextView
+            android:id="@+id/cinema_pw_text_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_16"
+            android:textColor="#333"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_6"
+            android:layout_marginLeft="@dimen/dp_90"
+            android:text="详情"/>
+        <TextView
+            android:id="@+id/cinema_pw_text_detail_line"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_3"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_below="@id/cinema_pw_text_detail"
+            android:layout_marginLeft="@dimen/dp_90"
+            />
+
+        <TextView
+            android:id="@+id/cinema_pw_text_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_16"
+            android:textColor="#333"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_6"
+            android:layout_marginLeft="@dimen/dp_215"
+            android:text="评论"/>
+        <TextView
+            android:id="@+id/cinema_pw_text_comment_line"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_3"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_below="@id/cinema_pw_text_comment"
+            android:layout_marginLeft="@dimen/dp_215"
+            android:visibility="invisible"
+            />
+
+        <FrameLayout
+            android:id="@+id/cinema_detail_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_70"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_marginRight="@dimen/dp_24"
+            android:layout_marginBottom="@dimen/dp_5">
+
+        </FrameLayout>
+
+        <!--<fragment
+            android:id="@+id/cinema_pw_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_70"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_marginRight="@dimen/dp_24"
+            android:name="com.bw.movie.cinema.fragment.CinemaPopupDetailFragment">
+
+        </fragment>-->
+
+        <!--<FrameLayout
+            android:id="@+id/my_fl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_70"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_marginRight="@dimen/dp_24"/>-->
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

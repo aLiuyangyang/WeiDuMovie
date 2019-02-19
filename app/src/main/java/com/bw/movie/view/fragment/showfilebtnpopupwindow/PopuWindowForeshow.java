@@ -18,6 +18,9 @@ import com.bw.movie.adapter.showfile_adapter.Show_File_VideoShow_Adapter;
 import com.bw.movie.bean.Details_Info;
 
 import java.util.List;
+
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 /**
  * date:2019/1/27
  * author:孙佳鑫(DELL)
@@ -71,6 +74,7 @@ public class PopuWindowForeshow {
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
+                JCVideoPlayer.releaseAllVideos();
             }
         });
     }

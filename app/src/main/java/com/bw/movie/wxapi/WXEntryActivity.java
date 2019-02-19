@@ -27,6 +27,7 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
     private SharedPreferences sharedPreferences;//存储
     private SharedPreferences.Editor edit;
 
+
     @Override
     public void initView() {
 
@@ -77,10 +78,8 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
         if (data instanceof WeixinBean){
             WeixinBean bean = (WeixinBean) data;
             if (((WeixinBean) data).getStatus().equals("0000")){
-                int userId = bean.getResult().getUserId();
-                String sessionId = bean.getResult().getSessionId();
-                edit.putString("userId", userId+"");
-                edit.putString("sessionId", sessionId);
+                edit.putString("sessionId",bean.getResult().getSessionId());
+                edit.putString("userId",bean.getResult().getUserId()+"");
                 edit.commit();
                 Intent intent = new Intent(WXEntryActivity.this,ShowActivity.class);
                 startActivity(intent);

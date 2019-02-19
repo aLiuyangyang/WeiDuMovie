@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -31,7 +32,6 @@ import com.bw.movie.view.activity.logandregactivity.LoginActivity;
 import com.bw.movie.view.activity.showmineactivity.CareActivity;
 import com.bw.movie.view.activity.showmineactivity.OpinionActivity;
 import com.bw.movie.view.activity.showmineactivity.Presonal_Message_Activity;
-import com.bw.movie.view.activity.showmineactivity.SystemMessageActivity;
 import com.bw.movie.view.activity.showmineactivity.TicketActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -43,6 +43,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * date:2019/1/24
@@ -74,8 +76,8 @@ public class ShowMineFragment extends BaseFragment {
     SimpleDraweeView personal_top_image;
     @BindView(R.id.personal_name)
     TextView personal_name;
-    @BindView(R.id.system_mess)
-    ImageView system_mess;
+    private SharedPreferences sharedPreferences;//存储
+    private SharedPreferences.Editor edit;
     private int flag;//判断标识符
     private NewVersionBean newVersionBean;
     private String downloadUrl;
@@ -84,6 +86,8 @@ public class ShowMineFragment extends BaseFragment {
     public void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
         EventBus.getDefault().register(this);
+
+
     }
 
     @Override
@@ -107,7 +111,7 @@ public class ShowMineFragment extends BaseFragment {
     public int getContent() {
         return R.layout.fragment_show_mine;
     }
-    @OnClick({R.id.personal_meassage,R.id.system_mess,R.id.mine_NewVersion,R.id.my_care,R.id.mine_sign,R.id.rela_ticket,R.id.my_Opinion,R.id.mine_retuen})
+    @OnClick({R.id.personal_meassage,R.id.mine_NewVersion,R.id.my_care,R.id.mine_sign,R.id.rela_ticket,R.id.my_Opinion,R.id.mine_retuen})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             //版本更新
@@ -117,16 +121,12 @@ public class ShowMineFragment extends BaseFragment {
                 rotation.start();
                 setGet(Constant.NewVersion_Path,NewVersionBean.class);
                 break;
-            case R.id.system_mess:
-                Intent intent=new Intent(getActivity(),SystemMessageActivity.class);
-                getActivity().startActivity(intent);
-                break;
             case R.id.mine_sign://用户签到
                 setGet(Constant.UserSignIn_Path,SignBean.class);
                 break;
             case R.id.personal_meassage://个人信息
-                Intent intentmeassage=new Intent(getActivity(),Presonal_Message_Activity.class);
-                startActivity(intentmeassage);
+                Intent intent=new Intent(getActivity(),Presonal_Message_Activity.class);
+                startActivity(intent);
                 break;
             case R.id.my_care://我的关注
                 Intent intentcare=new Intent(getActivity(),CareActivity.class);
@@ -141,11 +141,15 @@ public class ShowMineFragment extends BaseFragment {
                 startActivity(intentopin);
                 break;
             case R.id.mine_retuen:
+                sharedPreferences=getContext().getSharedPreferences("UserMessage",MODE_PRIVATE);
+                edit = sharedPreferences.edit();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setMessage("您确认要退出维度影院吗？");
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        edit.clear();
+                        edit.commit();
                         Intent intent=new Intent(getActivity(),LoginActivity.class);
                         getActivity().startActivity(intent);
                         getActivity().finish();
@@ -157,6 +161,9 @@ public class ShowMineFragment extends BaseFragment {
                 break;
         }
     }
+
+
+
     public static void openBrowser(Context context, String url){
         final Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);

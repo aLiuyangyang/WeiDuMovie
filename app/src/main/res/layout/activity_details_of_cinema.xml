@@ -13,6 +13,7 @@
         android:background="@mipmap/beijing2">
 
         <RelativeLayout
+            android:id="@+id/rela"
             android:layout_marginTop="@dimen/dp_24"
             android:paddingLeft="@dimen/dp_24"
             android:paddingRight="@dimen/dp_24"

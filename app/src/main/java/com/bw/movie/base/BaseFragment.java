@@ -1,5 +1,6 @@
 package com.bw.movie.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -48,18 +49,23 @@ public abstract class BaseFragment extends Fragment implements IView {
         Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
     }
 
+
+
+
     //log日志
-    public void showLog(String msg){
-        Log.e("sjx",msg);
+    public void showLog(String msg) {
+        Log.e("sjx", msg);
     }
 
     public abstract void initView(View view);
+
     public abstract void initData(View view);
+
     public abstract int getContent();
 
     @Override
     public void successed(Object data) {
-        if(loading!=null){
+        if (loading != null) {
             loading.dismiss();
         }
         success(data);
@@ -67,7 +73,7 @@ public abstract class BaseFragment extends Fragment implements IView {
 
     @Override
     public void failed(String error) {
-        if(loading!=null){
+        if (loading != null) {
             loading.dismiss();
         }
         fail(error);
@@ -80,28 +86,28 @@ public abstract class BaseFragment extends Fragment implements IView {
         }
     }
 
-    public void setGet(String url,Class clazz){
-        if (!(NetWorkUtil.isConn(getActivity()))){
+    public void setGet(String url, Class clazz) {
+        if (!(NetWorkUtil.isConn(getActivity()))) {
             NetWorkUtil.setNetworkMethod(getActivity());
-            return ;
+            return;
         }
-        if(loading==null){
+        if (loading == null) {
             loading = new Loading_view(getContext(), R.style.CustomDialog);
             loading.show();
         }
-        mIPresenter.setGetRequest(url,clazz);
+        mIPresenter.setGetRequest(url, clazz);
     }
 
-    public void setPost(String url, Class clazz, Map<String,String> map){
-        if (!(NetWorkUtil.isConn(getActivity()))){
+    public void setPost(String url, Class clazz, Map<String, String> map) {
+        if (!(NetWorkUtil.isConn(getActivity()))) {
             NetWorkUtil.setNetworkMethod(getActivity());
-            return ;
+            return;
         }
-        if(loading==null){
+        if (loading == null) {
             loading = new Loading_view(getContext(), R.style.CustomDialog);
             loading.show();
         }
-        mIPresenter.setRequest(url,clazz,map);
+        mIPresenter.setRequest(url, clazz, map);
     }
 
     //提供给activity的成功方法
@@ -111,14 +117,13 @@ public abstract class BaseFragment extends Fragment implements IView {
     public abstract void fail(String error);
 
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mIPresenter!=null){
+        if (mIPresenter != null) {
             mIPresenter.onDistouch();
         }
-        if(loading!=null){
+        if (loading != null) {
             loading.dismiss();
         }
         RefWatcher refWatcher = MyApp.getRefWatcher(getActivity());

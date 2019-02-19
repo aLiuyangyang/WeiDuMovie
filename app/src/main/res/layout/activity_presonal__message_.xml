@@ -86,7 +86,6 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:layout_below="@id/personal_view_icon"
-            android:text="你的易达"
             android:textSize="14sp"
             android:textColor="#999999"
             />
@@ -120,7 +119,6 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:layout_below="@id/personal_view_nickName"
-            android:text="男"
             android:textSize="14sp"
             android:textColor="#999999"
             />
@@ -153,7 +151,6 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:layout_below="@id/personal_view_sex"
-            android:text="2019-02-18"
             android:textSize="14sp"
             android:textColor="#999999"
             />
@@ -187,7 +184,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:text="13734213453"
             />
         <View
             android:id="@+id/personal_phone_message"
@@ -217,7 +213,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:text="123@qq.com"
             android:layout_marginBottom="20dp"
             />
     </RelativeLayout>
