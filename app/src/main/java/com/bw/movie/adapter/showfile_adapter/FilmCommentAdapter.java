@@ -13,9 +13,9 @@ import com.bw.movie.R;
 import com.bw.movie.bean.MovieCommentDetailsBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.zhuang.likeviewlibrary.LikeView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,9 +29,14 @@ public class FilmCommentAdapter extends XRecyclerView.Adapter<FilmCommentAdapter
     private Context mContext;
     private List<MovieCommentDetailsBean.ResultBean> mList;
 
-    public FilmCommentAdapter(Context context, List<MovieCommentDetailsBean.ResultBean> list) {
+    public FilmCommentAdapter(Context context) {
         mContext = context;
+        mList=new ArrayList<>();
+    }
+
+    public void setList(List<MovieCommentDetailsBean.ResultBean> list) {
         mList = list;
+        notifyDataSetChanged();
     }
 
     @NonNull

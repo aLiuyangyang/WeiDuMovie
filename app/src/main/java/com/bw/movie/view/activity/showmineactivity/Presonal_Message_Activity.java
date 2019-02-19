@@ -1,6 +1,7 @@
 package com.bw.movie.view.activity.showmineactivity;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,7 @@ import com.bw.movie.bean.UploadHeadPicBean;
 import com.bw.movie.presenter.IPresenter;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.utils.MyApp;
+import com.bw.movie.view.activity.logandregactivity.LoginActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -46,6 +49,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.baidu.mapapi.BMapManager.getContext;
 
 public class Presonal_Message_Activity extends BaseActivity {
     @BindView(R.id.film_details_back)
@@ -220,6 +225,23 @@ public class Presonal_Message_Activity extends BaseActivity {
                 }
                 personal_emails_count.setText(emil);
             } else {
+
+                if (updateUserBean.getMessage().equals("请先登陆")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Presonal_Message_Activity.this);
+                    builder.setMessage("请先登录");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getContext(), LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    builder.setNegativeButton("取消", null);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+
                 showToast(updateUserBean.getMessage());
             }
         }

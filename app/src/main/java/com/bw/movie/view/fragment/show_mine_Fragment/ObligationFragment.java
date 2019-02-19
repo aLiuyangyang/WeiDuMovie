@@ -1,6 +1,7 @@
 package com.bw.movie.view.fragment.show_mine_Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,9 +16,14 @@ import com.bw.movie.adapter.showmine_adapter.MineCareCinemaRecyAdapter;
 import com.bw.movie.adapter.showmine_adapter.MineObligationRecyAdapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.ObligationBean;
+import com.bw.movie.bean.PayBeanTwo;
 import com.bw.movie.utils.Constant;
+import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
+import com.bw.movie.wxapi.WXPayEntryActivity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,9 +57,24 @@ public class ObligationFragment extends BaseFragment {
         mine_obliagtion_recy.setLayoutManager(linearLayoutManager);
         mineObligationRecyAdapter=new MineObligationRecyAdapter(getActivity());
         mine_obliagtion_recy.setAdapter(mineObligationRecyAdapter);
-       setGet(String.format(Constant.BuyTicketRecord_Path,page,count,status),ObligationBean.class);
-    }
 
+        mineObligationRecyAdapter.setOnClickOrderId(new MineObligationRecyAdapter.OnClickOrderId() {
+            @Override
+            public void successed(String orderId) {
+                Map<String, String> map = new HashMap<>();
+                map.put("payType",1+"");
+                map.put("orderId",orderId);
+                setPost(Constant.Pay_Path,PayBeanTwo.class,map);
+            }
+
+        });
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        setGet(String.format(Constant.BuyTicketRecord_Path,page,count,status),ObligationBean.class);
+    }
     @Override
     public int getContent() {
         return R.layout.fragment_ticket;
@@ -65,14 +86,17 @@ public class ObligationFragment extends BaseFragment {
             ObligationBean obligationBean= (ObligationBean) data;
             if (obligationBean.getStatus().equals("0000")){
                 List<ObligationBean.ResultBean> result = obligationBean.getResult();
-                if (result.size()==0){
-                    showToast("无待付款信息");
-                }else {
                     mineObligationRecyAdapter.setList(result);
-                }
             }
+        }else if(data instanceof PayBeanTwo){
+            final PayBeanTwo payBeanTwo = (PayBeanTwo) data;
+            Intent intent = new Intent(getContext(),WXPayEntryActivity.class);
+            intent.putExtra("paybean",payBeanTwo);
+            startActivity(intent);
         }
     }
+
+
 
     @Override
     public void fail(String error) {

@@ -1,5 +1,8 @@
 package com.bw.movie.view.fragment.show_cinema_Fragment;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.view.View;
@@ -12,6 +15,7 @@ import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.ShowCinemaBean;
 import com.bw.movie.utils.Constant;
+import com.bw.movie.view.activity.logandregactivity.LoginActivity;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -112,6 +116,23 @@ public class Recommend_Fragment extends BaseFragment {
                             EventBus.getDefault().post(new EventBusMessage(1));
                                showToast(attentionBean.getMessage());
                         }else {
+
+                            if (attentionBean.getMessage().equals("请先登陆")) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                builder.setMessage("请先登录");
+                                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                                        startActivity(intent);
+                                        getActivity().finish();
+                                    }
+                                });
+                                builder.setNegativeButton("取消", null);
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+                            }
+
                                 showToast(attentionBean.getMessage());
                                 load();
                         }

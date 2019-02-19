@@ -67,6 +67,7 @@ public class RegisterActivity extends BaseActivity {
     public void initView() {
         bind = ButterKnife.bind(this);
         sharedPreferences=getSharedPreferences("UserMessage",MODE_PRIVATE);
+        edit=sharedPreferences.edit();
     }
     @Override
     public void initData() { }

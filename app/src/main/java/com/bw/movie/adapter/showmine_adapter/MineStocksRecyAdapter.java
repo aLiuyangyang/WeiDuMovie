@@ -47,18 +47,16 @@ public class MineStocksRecyAdapter extends RecyclerView.Adapter<MineStocksRecyAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        String startdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(list.get(i).getBeginTime()));
-        viewHolder.mineStarttiems.setText(startdate);
-        String enddate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(list.get(i).getEndTime()));
-        viewHolder.mineStackEndTime.setText(enddate);
+        viewHolder.mineStarttiems.setText(list.get(i).getBeginTime()+"");
+        viewHolder.mineStackEndTime.setText(list.get(i).getEndTime()+"");
         viewHolder.mineStackName.setText(list.get(i).getMovieName());
-        viewHolder.mineStackCode.setText("订单号"+list.get(i).getOrderId());
-        viewHolder.mineStackMoney.setText("金额"+list.get(i).getPrice()+"");
-        viewHolder.mineStackMoviehall.setText("影厅"+list.get(i).getScreeningHall());
-        viewHolder.mineStackNum.setText("数量"+list.get(i).getAmount()+"");
+        viewHolder.mineStackCode.setText("订单号: "+list.get(i).getOrderId());
+        viewHolder.mineStackMoney.setText("金额: "+list.get(i).getPrice()+"");
+        viewHolder.mineStackMoviehall.setText("影厅: "+list.get(i).getScreeningHall());
+        viewHolder.mineStackNum.setText("数量: "+list.get(i).getAmount()+"");
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(list.get(i).getCreateTime()));
-        viewHolder.mineStackEndTime.setText("下单时间"+date);
-        viewHolder.mineStackCinema.setText("影院"+list.get(i).getCinemaName());
+        viewHolder.mineStackTime.setText("下单时间: "+date);
+        viewHolder.mineStackCinema.setText("影院: "+list.get(i).getCinemaName());
     }
 
     @Override
