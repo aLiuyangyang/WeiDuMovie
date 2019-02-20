@@ -86,7 +86,6 @@ public class ShowMineFragment extends BaseFragment {
     private NewVersionBean newVersionBean;
     private String downloadUrl;
     private boolean isUser;
-
     @Override
     public void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
@@ -119,9 +118,27 @@ public class ShowMineFragment extends BaseFragment {
     public int getContent() {
         return R.layout.fragment_show_mine;
     }
-    @OnClick({R.id.personal_meassage,R.id.system_mess,R.id.mine_NewVersion,R.id.my_care,R.id.mine_sign,R.id.rela_ticket,R.id.my_Opinion,R.id.mine_retuen})
+    @OnClick({R.id.personal_meassage,R.id.personal_top_image,R.id.system_mess,R.id.mine_NewVersion,R.id.my_care,R.id.mine_sign,R.id.rela_ticket,R.id.my_Opinion,R.id.mine_retuen})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.personal_top_image:
+                if (isUser) {
+
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("您还没有登录，确认要去登录吗?");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setNegativeButton("取消", null);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+                break;
             case R.id.system_mess:
                 if (isUser) {
                     Intent intentmess=new Intent(getActivity(),SystemMessageActivity.class);

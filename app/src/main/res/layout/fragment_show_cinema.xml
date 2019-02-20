@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/dp_24"
-    android:background="#6ccc"
     tools:context=".view.fragment.show_fragment.ShowCinemaFragment"
     tools:ignore="MissingDefaultResource">
     <include layout="@layout/include_layout"/>

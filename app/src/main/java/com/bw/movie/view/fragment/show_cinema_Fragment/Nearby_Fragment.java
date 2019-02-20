@@ -13,6 +13,7 @@ import com.bw.movie.adapter.showcinema_adapter.ShowCinema_Nearby_Adapter;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.AttentionBean;
 import com.bw.movie.bean.EventBusMessage;
+import com.bw.movie.bean.MessageBus;
 import com.bw.movie.bean.ShowCinemaBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.view.activity.logandregactivity.LoginActivity;
@@ -37,6 +38,9 @@ public class Nearby_Fragment extends BaseFragment {
     private ShowCinema_Nearby_Adapter showCinema_adapter;
     private int index;
     private int status;
+    private double mylatitude;
+    private double mylongitude;
+
     @Override
     public void initView(View view) {
         ButterKnife.bind(this, view);
@@ -84,7 +88,7 @@ public class Nearby_Fragment extends BaseFragment {
         });
     }
     private void load() {
-        setGet(String.format(Constant.Nearby_Path, page), ShowCinemaBean.class);
+        setGet(String.format(Constant.Nearby_Path,mylongitude,mylatitude,page), ShowCinemaBean.class);
     }
 
     @Override
@@ -96,10 +100,14 @@ public class Nearby_Fragment extends BaseFragment {
     public void message(EventBusMessage eventBusMessage) {
         if (eventBusMessage.getId() == 1) {
             page = 1;
-            setGet(String.format(Constant.Nearby_Path, page), ShowCinemaBean.class);
+            setGet(String.format(Constant.Nearby_Path, mylongitude,mylatitude,page), ShowCinemaBean.class);
         }
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky =true)
+    public void message(MessageBus messageBus) {
+        mylatitude = messageBus.getMylatitude();
+        mylongitude = messageBus.getMylongitude();
+    }
     @Override
     public void success(Object data) {
         if (data instanceof ShowCinemaBean) {

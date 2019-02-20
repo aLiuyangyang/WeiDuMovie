@@ -19,7 +19,7 @@
             android:id="@+id/area_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="北京"
+            android:text="北京市"
             android:textSize="@dimen/sp_16"
             android:layout_marginTop="@dimen/dp_30"
             android:layout_marginLeft="@dimen/dp_5"

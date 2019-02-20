@@ -1,8 +1,11 @@
 package com.bw.movie.view.fragment.show_fragment;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -183,7 +186,6 @@ public class ShowFilmFragment extends BaseFragment {
         mlocationClient = new AMapLocationClient(getActivity());
         //设置定位监听
         mlocationClient.setLocationListener(new AMapLocationListener() {
-
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
                 if(aMapLocation!=null){
@@ -293,6 +295,17 @@ public class ShowFilmFragment extends BaseFragment {
                 startActivity(intentc);
                 break;
             case R.id.area_name:
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+                    String[] mStatenetwork = new String[]{
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.CHANGE_WIFI_STATE,
+                            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+                            Manifest.permission.BLUETOOTH,
+                            Manifest.permission.BLUETOOTH_ADMIN,
+                    };
+                    ActivityCompat.requestPermissions(getActivity(), mStatenetwork, 100);
+                }
                 CityPicker.from(getActivity()) //activity或者fragment
                         .enableAnimation(true)	//启用动画效果，默认无
                     .setOnPickListener(new OnPickListener() {
@@ -300,12 +313,9 @@ public class ShowFilmFragment extends BaseFragment {
                         public void onPick(int position, City data) {
                            areaName.setText(data.getName());
                         }
-
                         @Override
                         public void onCancel(){
-
                     }
-
                         @Override
                         public void onLocate() {
                             //定位接口，需要APP自身实现，这里模拟一下定位

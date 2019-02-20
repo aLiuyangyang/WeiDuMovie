@@ -48,21 +48,29 @@ public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Sch
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
-        viewHolder.schedulePlayHall.setText(list.get(i).getScreeningHall());
+
         viewHolder.scheduleTimeEnd.setText(list.get(i).getEndTime());
         viewHolder.scheduleTimeStart.setText(list.get(i).getBeginTime());
         viewHolder.scheduleTimePrice.setText(list.get(i).getPrice() + "");
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mOnclickId!=null){
-                    mOnclickId.successed(list.get(i).getId(),list.get(i).getBeginTime(),
-                            list.get(i).getEndTime(),list.get(i).getScreeningHall(),
-                            list.get(i).getPrice()
-                    );
+        int status = list.get(i).getStatus();
+        if (status==1){
+            viewHolder.schedulePlayHall.setText(list.get(i).getScreeningHall());
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mOnclickId!=null){
+                        mOnclickId.successed(list.get(i).getId(),list.get(i).getBeginTime(),
+                                list.get(i).getEndTime(),list.get(i).getScreeningHall(),
+                                list.get(i).getPrice()
+                        );
+                    }
                 }
-            }
-        });
+            });
+        }else {
+            viewHolder.schedulePlayHall.setText("影片已过期");
+        }
+
+
     }
 
     @Override

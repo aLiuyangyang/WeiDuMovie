@@ -148,7 +148,6 @@ public class HotFileFragment extends BaseFragment {
                  AlertDialog alertDialog = builder.create();
                  alertDialog.show();
              }
-
              load();
          }
       }

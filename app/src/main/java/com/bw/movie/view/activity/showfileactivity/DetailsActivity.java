@@ -117,9 +117,9 @@ public class DetailsActivity extends BaseActivity {
         //影评
         setGet(String.format(Constant.URL_QUERY_COMMENT,movieId),MovieCommentDetailsBean.class);
         filmDetailsHomeFilmReview.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
+
                 EventBus.getDefault().postSticky(new EventBusMessage(movieId));
                 PopuWindowFileReview popuWindowFileReview = new PopuWindowFileReview(DetailsActivity.this,mMovieCommentDetailsBean1);
                 popuWindowFileReview.bottomwindow(linearlayout1);

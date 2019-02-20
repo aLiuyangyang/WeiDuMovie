@@ -26,7 +26,7 @@ public class Constant {
     //热门影院
     public static String Recommend_Path="cinema/v1/findRecommendCinemas?page=%d&count=10";
     //附近影院
-    public static String Nearby_Path="cinema/v1/findNearbyCinemas?page=%d&count=10";
+    public static String Nearby_Path="cinema/v1/findNearbyCinemas?longitude=%s&latitude=%s&page=%d&count=10";
    //详情接口
     public static String Details_Path="movie/v1/findMoviesDetail?movieId=%d";
     //查询电影信息明细

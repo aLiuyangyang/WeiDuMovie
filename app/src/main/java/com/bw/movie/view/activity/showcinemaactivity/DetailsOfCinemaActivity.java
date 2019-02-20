@@ -209,7 +209,6 @@ public class DetailsOfCinemaActivity extends BaseActivity {
 
     @Override
     public void success(Object data) {
-
         if (data instanceof CinemaDetailsBean) {
             mCinemaDetailsBean = (CinemaDetailsBean) data;
             if (mCinemaDetailsBean.getStatus().equals("0000")) {
@@ -246,7 +245,7 @@ public class DetailsOfCinemaActivity extends BaseActivity {
         } else if (data instanceof MovieScheduleBean) {
             MovieScheduleBean movieScheduleBean = (MovieScheduleBean) data;
             if (movieScheduleBean.getStatus().equals("0000")) {
-                showFile_schedule_adapter.setList(movieScheduleBean.getResult());
+                    showFile_schedule_adapter.setList(movieScheduleBean.getResult());
             }
         }
     }

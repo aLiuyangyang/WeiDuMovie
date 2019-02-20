@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6ccc"
     tools:context=".view.fragment.show_cinema_Fragment.Recommend_Fragment">
     <include layout="@layout/include_nodata"/>
     <com.jcodecraeer.xrecyclerview.XRecyclerView

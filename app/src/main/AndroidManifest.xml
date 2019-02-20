@@ -48,9 +48,10 @@
         android:supportsRtl="true"
 
         android:theme="@style/AppTheme.NoTitle_FullScreen">
+
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.tiamo.sumproject"
+            android:authorities="com.bw.movie.sumproject"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -103,17 +104,10 @@
         <activity android:name=".view.activity.showmineactivity.TicketActivity" />
         <activity android:name=".view.activity.showmineactivity.OpinionActivity" />
         <activity android:name=".view.activity.showmineactivity.OpinSuccessActivity"></activity>
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.tiamo.sumproject"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider>
-
-    
+        <activity android:name=".view.activity.showmineactivity.SystemMessageActivity"/>
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="73939048961034d8ef13cd245764fa61">
+            <!--开发者申请的key-->
+        </meta-data>
     </application>
 
 </manifest>

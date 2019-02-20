@@ -24,6 +24,7 @@
             android:layout_marginTop="@dimen/dp_30"
             />
         <com.facebook.drawee.view.SimpleDraweeView
+            android:background="@mipmap/touxiang"
             android:id="@+id/personal_top_image"
             android:layout_width="@dimen/dp_72"
             android:layout_height="@dimen/dp_72"
