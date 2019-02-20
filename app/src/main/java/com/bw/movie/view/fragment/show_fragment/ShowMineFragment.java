@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -57,7 +58,7 @@ public class ShowMineFragment extends BaseFragment {
     RelativeLayout personalMeassage;
     Unbinder unbinder;
     @BindView(R.id.mine_sign)
-    TextView mineSign;
+    Button mineSign;
     @BindView(R.id.rela_ticket)
     RelativeLayout rela_ticket;
     @BindView(R.id.my_Opinion)
@@ -81,6 +82,7 @@ public class ShowMineFragment extends BaseFragment {
     private int flag;//判断标识符
     private NewVersionBean newVersionBean;
     private String downloadUrl;
+    private SignBean mSignBean;
 
     @Override
     public void initView(View view) {
@@ -185,11 +187,13 @@ public class ShowMineFragment extends BaseFragment {
               personal_name.setText(presonalMessageBean.getResult().getNickName());
           }
       }else if (data instanceof SignBean){
-          SignBean signBean= (SignBean) data;
-          if (signBean.getStatus().equals("0000")){
-              showToast(signBean.getMessage());
+          mSignBean = (SignBean) data;
+          if (mSignBean.getStatus().equals("0000")){
+              mineSign.setText(mSignBean.getMessage());
+              showToast(mSignBean.getMessage());
           }else {
-              showToast(signBean.getMessage());
+              showToast(mSignBean.getMessage());
+              mineSign.setText(mSignBean.getMessage());
           }
       }else if (data instanceof NewVersionBean){
           newVersionBean = (NewVersionBean) data;

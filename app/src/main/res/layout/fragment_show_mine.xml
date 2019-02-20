@@ -42,19 +42,17 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp_10"
             />
-        <TextView
+        <Button
             android:id="@+id/mine_sign"
-            android:layout_width="@dimen/dp_68"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_28"
             android:background="@drawable/shape_button_login"
-            android:text="签到"
+            android:text="未签到"
             android:textColor="#ffffff"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/personal_name"
             android:layout_marginTop="@dimen/dp_12"
             android:textSize="@dimen/sp_14"
-            android:paddingLeft="@dimen/dp_18"
-            android:paddingTop="@dimen/dp_2"
             />
         <RelativeLayout
             android:id="@+id/personal_mine_message"

@@ -70,13 +70,13 @@ public class SystemMessageActivity extends BaseActivity {
                 setGet(String.format(Constant.SysMsgList_Path,page),SelectSystemBean.class);
             }
         });
-        /** 系统消息读取状态修改 */
+       /* *//** 系统消息读取状态修改 *//*
         systemMessageAdapter.setIsReadClick(new SystemMessageAdapter.IsReadClick() {
             @Override
             public void isReadClick(int id) {
                 setGet(String.format(Constant.SysMsgStatus_Path,id),StatusBean.class);
             }
-        });
+        });*/
 
     }
 

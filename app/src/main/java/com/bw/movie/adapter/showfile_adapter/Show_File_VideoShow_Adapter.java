@@ -51,6 +51,13 @@ public class Show_File_VideoShow_Adapter extends RecyclerView.Adapter<Show_File_
         if (setUp) {
             Glide.with(mContext).load(mFilmListBeans.get(i).getImageUrl()).into(viewHolder.mPlayer_list_video.thumbImageView);
         }
+
+        viewHolder.mPlayer_list_video.fullscreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               JCVideoPlayerStandard.backPress();
+            }
+        });
     }
 
     @Override

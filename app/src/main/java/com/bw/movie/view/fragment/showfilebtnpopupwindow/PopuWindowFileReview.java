@@ -1,8 +1,11 @@
 package com.bw.movie.view.fragment.showfilebtnpopupwindow;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -23,6 +26,7 @@ import com.bw.movie.bean.MovieCommentDetailsBean;
 import com.bw.movie.presenter.IPresenter;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.view.IView;
+import com.bw.movie.view.activity.logandregactivity.LoginActivity;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,6 +39,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.baidu.mapapi.BMapManager.getContext;
 
 /**
  * date:2019/1/27
@@ -164,11 +170,11 @@ public class PopuWindowFileReview implements IView {
         if(data instanceof MovieCommentDetailsBean){
             mDetailsBean  = (MovieCommentDetailsBean) data;
 
-        }else if(data instanceof LoginBean){
+        }else if(data instanceof LoginBean) {
             LoginBean loginBean = (LoginBean) data;
             String message = loginBean.getMessage();
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-            if(message.equals("评论成功")){
+            if (message.equals("评论成功")) {
                 pinglunEdittext.setText("");
             }
         }
