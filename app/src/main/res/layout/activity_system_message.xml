@@ -24,4 +24,5 @@
         android:layout_marginTop="19dp"
         android:layout_marginRight="@dimen/dp_24"></com.jcodecraeer.xrecyclerview.XRecyclerView>
    <include layout="@layout/include_return"/>
+    <include layout="@layout/include_nodata"/>
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.showmine_adapter.MineCareCinemaRecyAdapter;
@@ -36,6 +37,8 @@ public class ObligationFragment extends BaseFragment {
     ImageView filmDetailsBack;
     @BindView(R.id.mine_obliagtion_recy)
     RecyclerView mine_obliagtion_recy;
+    @BindView(R.id.search_none)
+    RelativeLayout search_none;
     private MineObligationRecyAdapter mineObligationRecyAdapter;
     private int page=1;//第几页
     private int count=10;//每页显示数
@@ -86,7 +89,11 @@ public class ObligationFragment extends BaseFragment {
             ObligationBean obligationBean= (ObligationBean) data;
             if (obligationBean.getStatus().equals("0000")){
                 List<ObligationBean.ResultBean> result = obligationBean.getResult();
+                if (result.size()==0){
+                    search_none.setVisibility(View.VISIBLE);
+                }else {
                     mineObligationRecyAdapter.setList(result);
+                }
             }
         }else if(data instanceof PayBeanTwo){
             final PayBeanTwo payBeanTwo = (PayBeanTwo) data;

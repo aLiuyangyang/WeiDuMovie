@@ -80,6 +80,7 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
             if (((WeixinBean) data).getStatus().equals("0000")){
                 edit.putString("sessionId",bean.getResult().getSessionId());
                 edit.putString("userId",bean.getResult().getUserId()+"");
+                edit.putBoolean("isUser",true);
                 edit.commit();
                 Intent intent = new Intent(WXEntryActivity.this,ShowActivity.class);
                 startActivity(intent);

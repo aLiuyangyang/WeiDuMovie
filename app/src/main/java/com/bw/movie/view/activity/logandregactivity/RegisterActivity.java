@@ -95,6 +95,7 @@ public class RegisterActivity extends BaseActivity {
             if(loginBean.getStatus().equals("0000")){
                 edit.putString("sessionId",loginBean.getResult().getSessionId());
                 edit.putString("userId",loginBean.getResult().getUserId()+"");
+                edit.putBoolean("isUser",true);
                 edit.commit();
                 Intent intent=new Intent(this,ShowActivity.class);
                 startActivity(intent);

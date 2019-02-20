@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -30,6 +31,8 @@ public class SystemMessageActivity extends BaseActivity {
     @BindView(R.id.film_details_back)
     ImageView filmDetailsBack;
     private int page;
+    @BindView(R.id.search_none)
+    RelativeLayout search_none;
     private SystemMessageAdapter systemMessageAdapter;
     private List<SelectSystemBean.ResultBean> result;
 
@@ -56,8 +59,6 @@ public class SystemMessageActivity extends BaseActivity {
         //
         systemMessageAdapter = new SystemMessageAdapter(this);
         systemMessageList.setAdapter(systemMessageAdapter);
-        systemMessageList.setPullRefreshEnabled(true);
-        systemMessageList.setLoadingMoreEnabled(true);
 
         systemMessageList.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
@@ -65,12 +66,11 @@ public class SystemMessageActivity extends BaseActivity {
                 page = 1;
                 setGet(String.format(Constant.SysMsgList_Path,page),SelectSystemBean.class);
             }
-
-            @Override            public void onLoadMore() {
+            @Override
+            public void onLoadMore() {
                 setGet(String.format(Constant.SysMsgList_Path,page),SelectSystemBean.class);
             }
         });
-       /* *//** 系统消息读取状态修改 *//*
         systemMessageAdapter.setIsReadClick(new SystemMessageAdapter.IsReadClick() {
             @Override
             public void isReadClick(int id) {
@@ -97,7 +97,9 @@ public class SystemMessageActivity extends BaseActivity {
             SelectSystemBean bean = (SelectSystemBean) data;
             if (bean.getStatus().equals("0000")){
                 result = bean.getResult();
-                if (result.size()>0) {
+                if (result.size()==0){
+                    search_none.setVisibility(View.VISIBLE);
+                } else if (result.size()>0) {
                     if (page == 1) {
                         systemMessageAdapter.setData(result);
                         systemMessageList.refreshComplete();
@@ -106,6 +108,7 @@ public class SystemMessageActivity extends BaseActivity {
                         systemMessageAdapter.addData(result);
                         systemMessageList.loadMoreComplete();
                     }
+                    systemMessageList.loadMoreComplete();
                     systemMessageList.refreshComplete();
                 }
             }

@@ -30,9 +30,11 @@ import com.bw.movie.bean.ShowCinemaBean;
 import com.bw.movie.bean.SignBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.view.activity.logandregactivity.LoginActivity;
+import com.bw.movie.view.activity.showfileactivity.DetailsActivity;
 import com.bw.movie.view.activity.showmineactivity.CareActivity;
 import com.bw.movie.view.activity.showmineactivity.OpinionActivity;
 import com.bw.movie.view.activity.showmineactivity.Presonal_Message_Activity;
+import com.bw.movie.view.activity.showmineactivity.SystemMessageActivity;
 import com.bw.movie.view.activity.showmineactivity.TicketActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -63,6 +65,8 @@ public class ShowMineFragment extends BaseFragment {
     RelativeLayout rela_ticket;
     @BindView(R.id.my_Opinion)
     RelativeLayout  my_Opinion;
+    @BindView(R.id.system_mess)
+    ImageView system_mess;
     @BindView(R.id.my_care)
     RelativeLayout my_care;
     @BindView(R.id.mine_retuen)
@@ -82,7 +86,11 @@ public class ShowMineFragment extends BaseFragment {
     private int flag;//判断标识符
     private NewVersionBean newVersionBean;
     private String downloadUrl;
+
     private SignBean mSignBean;
+
+    private boolean isUser;
+
 
     @Override
     public void initView(View view) {
@@ -94,6 +102,9 @@ public class ShowMineFragment extends BaseFragment {
 
     @Override
     public void initData(View view) {
+        sharedPreferences=getContext().getSharedPreferences("UserMessage",MODE_PRIVATE);
+        edit = sharedPreferences.edit();
+        isUser = sharedPreferences.getBoolean("isUser", false);
         setGet(Constant.Update_User, PresonalMessageBean.class);
     }
 
@@ -113,9 +124,28 @@ public class ShowMineFragment extends BaseFragment {
     public int getContent() {
         return R.layout.fragment_show_mine;
     }
-    @OnClick({R.id.personal_meassage,R.id.mine_NewVersion,R.id.my_care,R.id.mine_sign,R.id.rela_ticket,R.id.my_Opinion,R.id.mine_retuen})
+    @OnClick({R.id.personal_meassage,R.id.system_mess,R.id.mine_NewVersion,R.id.my_care,R.id.mine_sign,R.id.rela_ticket,R.id.my_Opinion,R.id.mine_retuen})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.system_mess:
+                if (isUser) {
+                    Intent intentmess=new Intent(getActivity(),SystemMessageActivity.class);
+                    getActivity().startActivity(intentmess);
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("您还没有登录，确认要去登录吗?");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setNegativeButton("取消", null);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+                break;
             //版本更新
             case R.id.mine_NewVersion:
                 ObjectAnimator rotation = ObjectAnimator.ofFloat(personal_latest_version, "rotation", 0.0f, 720f);
@@ -127,24 +157,85 @@ public class ShowMineFragment extends BaseFragment {
                 setGet(Constant.UserSignIn_Path,SignBean.class);
                 break;
             case R.id.personal_meassage://个人信息
-                Intent intent=new Intent(getActivity(),Presonal_Message_Activity.class);
-                startActivity(intent);
+                if (isUser) {
+                    Intent intent = new Intent(getActivity(), Presonal_Message_Activity.class);
+                    startActivity(intent);
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("您还没有登录，确认要去登录吗?");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setNegativeButton("取消", null);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
                 break;
             case R.id.my_care://我的关注
-                Intent intentcare=new Intent(getActivity(),CareActivity.class);
-                startActivity(intentcare);
+                if (isUser) {
+                    Intent intentcare=new Intent(getActivity(),CareActivity.class);
+                    startActivity(intentcare);
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("您还没有登录，确认要去登录吗?");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setNegativeButton("取消", null);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
                 break;
             case R.id.rela_ticket:
-                Intent intentticket=new Intent(getActivity(),TicketActivity.class);
-                startActivity(intentticket);
+                if (isUser) {
+                    Intent intentticket=new Intent(getActivity(),TicketActivity.class);
+                    startActivity(intentticket);
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("您还没有登录，确认要去登录吗?");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setNegativeButton("取消", null);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+
                 break;
             case R.id.my_Opinion:
-                Intent intentopin=new Intent(getActivity(),OpinionActivity.class);
-                startActivity(intentopin);
+                if (isUser) {
+                    Intent intentopin=new Intent(getActivity(),OpinionActivity.class);
+                    startActivity(intentopin);
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("您还没有登录，确认要去登录吗?");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+
+                        }
+                    });
+                    builder.setNegativeButton("取消", null);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+
                 break;
             case R.id.mine_retuen:
-                sharedPreferences=getContext().getSharedPreferences("UserMessage",MODE_PRIVATE);
-                edit = sharedPreferences.edit();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setMessage("您确认要退出维度影院吗？");
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -154,7 +245,6 @@ public class ShowMineFragment extends BaseFragment {
                         edit.commit();
                         Intent intent=new Intent(getActivity(),LoginActivity.class);
                         getActivity().startActivity(intent);
-                        getActivity().finish();
                     }
                 });
                 builder.setNegativeButton("取消", null);
