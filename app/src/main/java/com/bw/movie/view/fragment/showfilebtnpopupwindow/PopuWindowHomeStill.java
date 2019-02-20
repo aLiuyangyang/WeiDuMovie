@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
@@ -35,6 +37,7 @@ public class PopuWindowHomeStill {
     private RecyclerView mThird_recyclerview;
     private Details_Info.ResultBean mResultBean;
     private Show_File_ImageShow_Adapter mShow_file_imageShow_adapter;
+    private StaggeredGridLayoutManager mLayoutManager;
 
     public PopuWindowHomeStill(Context context, Details_Info.ResultBean resultBean) {
         this.context = context;
@@ -67,9 +70,11 @@ public class PopuWindowHomeStill {
         mThird_recyclerview = inflate.findViewById(R.id.third_recyclerview);
         mShow_file_imageShow_adapter = new Show_File_ImageShow_Adapter(context);
         mShow_file_imageShow_adapter.setFilmListBeans(mResultBean.getShortFilmList());
-        mThird_recyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        mThird_recyclerview.setLayoutManager(mLayoutManager);
         mThird_recyclerview.setAdapter(mShow_file_imageShow_adapter);
-
+        //mThird_recyclerview.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
         /*List<String> posterList = mResultBean.getPosterList();
         final List<Bitmap> mlist = new ArrayList<>();
         for (int i = 0; i < posterList.size(); i++) {

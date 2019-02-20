@@ -27,17 +27,17 @@ import java.io.IOException;
  * function:
  */
 public class MyApp extends Application {
-    public static RefWatcher getRefWatcher(Context context) {
+   /* public static RefWatcher getRefWatcher(Context context) {
         MyApp application = (MyApp) context.getApplicationContext();
         return application.refWatcher;
     }
-    private RefWatcher refWatcher;
+    private RefWatcher refWatcher;*/
     private static Context context;
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onCreate() {
         super.onCreate();
-        refWatcher = LeakCanary.install(this);
+        //refWatcher = LeakCanary.install(this);
         // android 7.0系统解决拍照的问题
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -93,12 +93,12 @@ public class MyApp extends Application {
         }
 
 
-        XGPushConfig.enableOtherPush(context, true);
+        /*XGPushConfig.enableOtherPush(context, true);
         XGPushConfig.setHuaweiDebug(true);
         XGPushConfig.setMiPushAppId(context, "d71d384497c51");
         XGPushConfig.setMiPushAppKey(context, "A44FJ9N7N9EY");
         XGPushConfig.setMzPushAppId(context, "d71d384497c51");
-        XGPushConfig.setMzPushAppKey(context, "A44FJ9N7N9EY");
+        XGPushConfig.setMzPushAppKey(context, "A44FJ9N7N9EY");*/
 
     }
 }

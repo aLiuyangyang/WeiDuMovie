@@ -76,7 +76,7 @@ public class SystemMessageActivity extends BaseActivity {
             public void isReadClick(int id) {
                 setGet(String.format(Constant.SysMsgStatus_Path,id),StatusBean.class);
             }
-        });
+        });*/
 
     }
 

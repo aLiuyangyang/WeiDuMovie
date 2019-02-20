@@ -26,8 +26,7 @@ import com.bw.movie.utils.EncryptUtil;
 import com.bw.movie.utils.Loading_view;
 import com.bw.movie.utils.RegularUtil;
 import com.bw.movie.utils.WeiXinUtil;
-import com.tencent.android.tpush.XGIOperateCallback;
-import com.tencent.android.tpush.XGPushManager;
+
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 import java.util.HashMap;
@@ -186,7 +185,7 @@ public class LoginActivity extends BaseActivity {
         switch (view.getId()) {
             //跳转到注册页面
             case R.id.login_sign:
-                getToken();
+                //getToken();
                 Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 break;
@@ -215,7 +214,7 @@ public class LoginActivity extends BaseActivity {
     /**
      * 获取设备Token
      */
-    private void getToken() {
+    /*private void getToken() {
         // 注册接口
         XGPushManager.registerPush(this, new XGIOperateCallback() {
             @Override
@@ -232,7 +231,7 @@ public class LoginActivity extends BaseActivity {
                 Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
             }
         });
-    }
+    }*/
 
 
 
