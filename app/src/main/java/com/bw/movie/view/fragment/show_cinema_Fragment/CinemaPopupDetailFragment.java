@@ -14,11 +14,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Author: 范瑞旗
- * Date: 2019/1/27 13:32
- * Description: 影院弹框详情-Fragment
- */
 public class CinemaPopupDetailFragment extends BaseFragment {
 
     @BindView(R.id.cinema_pw_text_position)
