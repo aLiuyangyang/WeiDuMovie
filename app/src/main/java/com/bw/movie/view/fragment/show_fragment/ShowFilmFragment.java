@@ -33,9 +33,7 @@ import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.bean.ShowFile_NewShowingBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.utils.ImageViewAnimationHelper;
-import com.bw.movie.view.activity.showfileactivity.AreaActivity;
 import com.bw.movie.view.activity.showfileactivity.ShowFileAllActivity;
-import com.bw.movie.view.fragment.show_mine_Fragment.CinemaFragment;
 import com.zaaach.citypicker.CityPicker;
 import com.zaaach.citypicker.adapter.OnPickListener;
 import com.zaaach.citypicker.model.City;
@@ -176,12 +174,7 @@ public class ShowFilmFragment extends BaseFragment {
             }
         });
 
-        areaPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(),AreaActivity.class));
-            }
-        });
+
         //开始定位，这里模拟一下定位
         mlocationClient = new AMapLocationClient(getActivity());
         //设置定位监听
@@ -345,7 +338,7 @@ public class ShowFilmFragment extends BaseFragment {
                     if (System.currentTimeMillis() - exitTime > 2000) {
 
                         exitTime = System.currentTimeMillis();
-                        showToast("再按一次退出程序");
+                        showToast(getContext(),"再按一次退出程序");
                     } else {
                         getActivity().finish();
                         System.exit(0);

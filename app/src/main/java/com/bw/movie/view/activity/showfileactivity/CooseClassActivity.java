@@ -119,13 +119,7 @@ public class CooseClassActivity extends BaseActivity {
             }
 
         });
-        ditu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CooseClassActivity.this,AreaActivity.class));
-            }
-        });
-    }
+           }
 
     @Override
     public int getContent()  {

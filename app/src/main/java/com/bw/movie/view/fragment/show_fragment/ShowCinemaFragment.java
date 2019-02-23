@@ -23,7 +23,6 @@ import com.amap.api.location.AMapLocationListener;
 import com.bw.movie.R;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.MessageBus;
-import com.bw.movie.view.activity.showfileactivity.AreaActivity;
 import com.bw.movie.view.fragment.show_cinema_Fragment.Nearby_Fragment;
 import com.bw.movie.view.fragment.show_cinema_Fragment.Recommend_Fragment;
 import com.zaaach.citypicker.CityPicker;
@@ -102,12 +101,7 @@ public class ShowCinemaFragment extends BaseFragment {
                 }
             }
         });
-        areaPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(),AreaActivity.class));
-            }
-        });
+
         areaName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -240,7 +234,7 @@ public class ShowCinemaFragment extends BaseFragment {
                     if (System.currentTimeMillis() - exitTime > 2000) {
 
                         exitTime = System.currentTimeMillis();
-                        showToast("再按一次退出程序");
+                        showToast(getContext(),"再按一次退出程序");
                     } else {
                         getActivity().finish();
                         System.exit(0);

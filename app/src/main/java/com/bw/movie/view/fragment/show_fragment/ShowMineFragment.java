@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,7 +60,7 @@ public class ShowMineFragment extends BaseFragment {
     RelativeLayout personalMeassage;
     Unbinder unbinder;
     @BindView(R.id.mine_sign)
-    TextView mineSign;
+    Button mineSign;
     @BindView(R.id.rela_ticket)
     RelativeLayout rela_ticket;
     @BindView(R.id.my_Opinion)
@@ -86,6 +87,8 @@ public class ShowMineFragment extends BaseFragment {
     private NewVersionBean newVersionBean;
     private String downloadUrl;
     private boolean isUser;
+    private SignBean mSignBean;
+
     @Override
     public void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
@@ -167,6 +170,7 @@ public class ShowMineFragment extends BaseFragment {
                 break;
             case R.id.mine_sign://用户签到
                 setGet(Constant.UserSignIn_Path,SignBean.class);
+                mineSign.setText("已签到");
                 break;
             case R.id.personal_meassage://个人信息
                 if (isUser) {
@@ -289,11 +293,12 @@ public class ShowMineFragment extends BaseFragment {
               personal_name.setText(presonalMessageBean.getResult().getNickName());
           }
       }else if (data instanceof SignBean){
-          SignBean signBean= (SignBean) data;
-          if (signBean.getStatus().equals("0000")){
-              showToast(signBean.getMessage());
+          mSignBean = (SignBean) data;
+          if (mSignBean.getStatus().equals("0000")){
+              showToast(getContext(),mSignBean.getMessage());
+              mineSign.setText(mSignBean.getMessage());
           }else {
-              showToast(signBean.getMessage());
+              showToast(getContext(),mSignBean.getMessage());
           }
       }else if (data instanceof NewVersionBean){
           newVersionBean = (NewVersionBean) data;
@@ -313,10 +318,10 @@ public class ShowMineFragment extends BaseFragment {
                   AlertDialog alertDialog = builder.create();
                   alertDialog.show();
               }else {
-                  showToast("没新版本，不需要更新");
+                  showToast(getContext(),"没新版本，不需要更新");
               }
           }else {
-              showToast(newVersionBean.getMessage());
+              showToast(getContext(),newVersionBean.getMessage());
           }
       }
     }
@@ -340,7 +345,7 @@ public class ShowMineFragment extends BaseFragment {
                     if (System.currentTimeMillis() - exitTime > 2000) {
 
                         exitTime = System.currentTimeMillis();
-                        showToast("再按一次退出程序");
+                        showToast(getContext(),"再按一次退出程序");
                     } else {
                         getActivity().finish();
                         System.exit(0);

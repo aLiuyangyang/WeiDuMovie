@@ -3,14 +3,17 @@ package com.bw.movie.adapter.showmine_adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.ObligationBean;
+import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ import butterknife.ButterKnife;
  */
 public class MineObligationRecyAdapter extends RecyclerView.Adapter<MineObligationRecyAdapter.ViewHolder> {
 
+    private PopupWindow mPopupWindow;
     private List<ObligationBean.ResultBean> list;
     private Context context;
 
@@ -61,10 +65,21 @@ public class MineObligationRecyAdapter extends RecyclerView.Adapter<MineObligati
             @Override
             public void onClick(View v) {
                 if(mOnClickOrderId!=null){
-                    mOnClickOrderId.successed(list.get(i).getOrderId());
+                    mOnClickOrderId.successed(list.get(i).getOrderId(),list.get(i).getPrice());
                 }
             }
         });
+
+        /*viewHolder.obligationBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View contentView = LayoutInflater.from(context).inflate(R.layout.pay_popupwindow, null);
+                mPopupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                //显示PopupWindow
+                View rootview = LayoutInflater.from(context).inflate(R.layout.pay_popupwindow, null);
+                mPopupWindow.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
+            }
+        });*/
     }
     @Override
     public int getItemCount() {
@@ -96,7 +111,7 @@ public class MineObligationRecyAdapter extends RecyclerView.Adapter<MineObligati
 
 
     public interface OnClickOrderId{
-        void successed(String orderId);
+        void successed(String orderId,double price);
     }
 
     private OnClickOrderId mOnClickOrderId;

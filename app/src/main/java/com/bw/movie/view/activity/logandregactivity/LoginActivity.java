@@ -137,9 +137,9 @@ public class LoginActivity extends BaseActivity {
                     edit.commit();
                 }
                 if (mPhone.equals("") && mPwd.equals("")) {
-                    showToast("手机号或密码不能为空");
+                    showToast(LoginActivity.this,"手机号或密码不能为空");
                 } else if (!RegularUtil.isMobile(mPhone)) {
-                    showToast("手机号格式错误");
+                    showToast(LoginActivity.this,"手机号格式错误");
                 }else {
                     Map<String, String> map = new HashMap<>();
                     map.put("phone", mPhone);
@@ -162,7 +162,7 @@ public class LoginActivity extends BaseActivity {
       if (data instanceof LoginBean){
           LoginBean loginBean= (LoginBean) data;
           if (loginBean.getStatus().equals("0000")){
-              showToast(loginBean.getMessage());
+              showToast(LoginActivity.this,loginBean.getMessage());
               edit.putString("sessionId",loginBean.getResult().getSessionId());
               edit.putString("userId",loginBean.getResult().getUserId()+"");
               edit.putBoolean("isUser",true);
@@ -171,7 +171,7 @@ public class LoginActivity extends BaseActivity {
               startActivity(intent);
               finish();
           }else {
-              showToast(loginBean.getMessage());
+              showToast(LoginActivity.this,loginBean.getMessage());
           }
       }
     }
@@ -192,7 +192,7 @@ public class LoginActivity extends BaseActivity {
             case R.id.login_weixin:
                 //微信登录
                 if (!WeiXinUtil.success(this)) {
-                    showToast("请先安装应用");
+                    showToast(LoginActivity.this,"请先安装应用");
                 } else {
                     //  验证
                     SendAuth.Req req = new SendAuth.Req();
