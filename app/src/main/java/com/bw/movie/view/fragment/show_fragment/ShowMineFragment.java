@@ -257,6 +257,7 @@ public class ShowMineFragment extends BaseFragment {
                         edit.commit();
                         Intent intent=new Intent(getActivity(),LoginActivity.class);
                         getActivity().startActivity(intent);
+                        getActivity().notifyAll();
                     }
                 });
                 builder.setNegativeButton("取消", null);

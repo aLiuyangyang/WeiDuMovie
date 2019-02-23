@@ -8,23 +8,22 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
-    <!--用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <!--用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <!--用于申请调用A-GPS模块-->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
-    <!--用于申请获取蓝牙信息进行室内定位-->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <!-- //获取设备网络状态，禁用后无法获取网络状态 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -44,11 +43,9 @@
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
-
-        android:theme="@style/AppTheme.NoTitle_FullScreen">
-
+        android:theme="@style/TranslucentTheme">
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.bw.movie.sumproject"
@@ -56,13 +53,14 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
 
         <activity android:name=".view.activity.logandregactivity.LoginActivity" />
         <activity android:name=".view.activity.logandregactivity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -71,9 +69,11 @@
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="wxb3852e6a6b7d9516"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wxb3852e6a6b7d9516" />
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.logandregactivity.RegisterActivity" />
@@ -94,20 +94,29 @@
         <activity android:name=".view.activity.showfileactivity.ChooseCinemaActivity" />
         <activity android:name=".view.activity.showfileactivity.CooseClassActivity" />
         <activity android:name=".view.activity.showfileactivity.DetailsActivity" />
-        <activity android:name=".view.activity.showfileactivity.AreaActivity" />
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="slTiOBlO6mj5FIUGUnv5baxwbZdSXA8T" />
+
         <activity android:name=".view.activity.showmineactivity.Presonal_Message_Activity" />
         <activity android:name=".view.activity.showmineactivity.UpdatePassActivity" />
         <activity android:name=".view.activity.showmineactivity.CareActivity" />
         <activity android:name=".view.activity.showmineactivity.TicketActivity" />
         <activity android:name=".view.activity.showmineactivity.OpinionActivity" />
-        <activity android:name=".view.activity.showmineactivity.OpinSuccessActivity"></activity>
-        <activity android:name=".view.activity.showmineactivity.SystemMessageActivity"/>
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="73939048961034d8ef13cd245764fa61">
-            <!--开发者申请的key-->
+        <activity android:name=".view.activity.showmineactivity.OpinSuccessActivity" />
+        <activity android:name=".view.activity.showmineactivity.SystemMessageActivity" />
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="73939048961034d8ef13cd245764fa61">
+
+            <!-- 开发者申请的key -->
         </meta-data>
+
+        <activity android:name=".view.activity.showcinemaactivity.SearchActivity" />
+        <activity android:name=".view.activity.showcinemaactivity.SuccessActivity"></activity>
+        <activity android:name=".view.activity.showcinemaactivity.FailuerActivity"/>
     </application>
 
 </manifest>

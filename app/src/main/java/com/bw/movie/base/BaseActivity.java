@@ -19,7 +19,6 @@ import com.bw.movie.utils.Loading_view;
 import com.bw.movie.utils.MyApp;
 import com.bw.movie.utils.NetWorkUtil;
 import com.bw.movie.view.IView;
-import com.squareup.leakcanary.RefWatcher;
 
 import java.util.HashMap;
 import java.util.Map;

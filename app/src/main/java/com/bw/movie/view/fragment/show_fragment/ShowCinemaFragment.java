@@ -2,6 +2,8 @@ package com.bw.movie.view.fragment.show_fragment;
 
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
@@ -11,7 +13,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,7 +28,8 @@ import com.amap.api.location.AMapLocationListener;
 import com.bw.movie.R;
 import com.bw.movie.base.BaseFragment;
 import com.bw.movie.bean.MessageBus;
-import com.bw.movie.view.activity.showfileactivity.AreaActivity;
+import com.bw.movie.view.activity.logandregactivity.RegisterActivity;
+import com.bw.movie.view.activity.showcinemaactivity.SearchActivity;
 import com.bw.movie.view.fragment.show_cinema_Fragment.Nearby_Fragment;
 import com.bw.movie.view.fragment.show_cinema_Fragment.Recommend_Fragment;
 import com.zaaach.citypicker.CityPicker;
@@ -56,6 +62,14 @@ public class ShowCinemaFragment extends BaseFragment {
     ImageView areaPlace;
     @BindView(R.id.area_name)
     TextView areaName;
+    @BindView(R.id.file_linearLayout_search)
+    LinearLayout fileLinearLayoutSearch;
+    @BindView(R.id.file_search_text)
+    TextView fileSearchText;
+    @BindView(R.id.file_search_edit)
+    EditText file_search_edit;
+    @BindView(R.id.file_search_img)
+    ImageView fileSearchImg;
     @BindView(R.id.radio)
     RadioGroup radio;
     private List<Fragment> list = new ArrayList<>();
@@ -69,14 +83,53 @@ public class ShowCinemaFragment extends BaseFragment {
     private String city;
     private double longitude;
     private double latitude;
+    private String searchname;
+
     @Override
     public void initView(View view) {
         ButterKnife.bind(this, view);
     }
     @Override
     public void initData(View view) {
+
         list.add(new Recommend_Fragment());
         list.add(new Nearby_Fragment());
+        fileSearchImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(fileLinearLayoutSearch, "translationX", 0f, -380f);
+//      设置移动时间
+                objectAnimator.setDuration(1000);
+//      开始动画
+                objectAnimator.start();
+
+            }
+        });
+
+        fileSearchText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchname = file_search_edit.getText().toString().trim();
+
+                ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(fileLinearLayoutSearch, "translationX", -380f, 0f);
+//      设置移动时间
+                objectAnimator.setDuration(1000);
+//      开始动画
+                objectAnimator.start();
+
+                if(!searchname.isEmpty()){
+                    Intent intent=new Intent(getActivity(),SearchActivity.class);
+                    intent.putExtra("searchname", searchname);
+                    getActivity().startActivity(intent);
+                }else {
+                    showToast("不能为空哦！");
+                }
+
+                InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        });
+
         nearby_cinema_view.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
@@ -102,13 +155,8 @@ public class ShowCinemaFragment extends BaseFragment {
                 }
             }
         });
+
         areaPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(),AreaActivity.class));
-            }
-        });
-        areaName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {

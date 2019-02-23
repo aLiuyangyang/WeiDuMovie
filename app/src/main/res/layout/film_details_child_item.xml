@@ -22,7 +22,6 @@
         android:layout_centerHorizontal="true"
         />
     <TextView
-        android:id="@+id/film_xrecycle_role"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/sp_12"

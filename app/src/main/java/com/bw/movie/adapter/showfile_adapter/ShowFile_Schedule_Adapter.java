@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.MovieScheduleBean;
@@ -68,6 +69,12 @@ public class ShowFile_Schedule_Adapter extends RecyclerView.Adapter<ShowFile_Sch
             });
         }else {
             viewHolder.schedulePlayHall.setText("影片已过期");
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "影片已过期，请查看其他排期", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
 

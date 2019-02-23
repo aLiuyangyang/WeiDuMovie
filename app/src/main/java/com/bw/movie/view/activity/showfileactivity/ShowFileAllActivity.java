@@ -1,6 +1,8 @@
 package com.bw.movie.view.activity.showfileactivity;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
@@ -10,7 +12,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,6 +25,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.bw.movie.R;
 import com.bw.movie.base.BaseActivity;
+import com.bw.movie.view.activity.logandregactivity.RegisterActivity;
 import com.bw.movie.view.fragment.allfile_fragment.ComingFragment;
 import com.bw.movie.view.fragment.allfile_fragment.HotFileFragment;
 import com.bw.movie.view.fragment.allfile_fragment.IsHotFragment;
@@ -31,6 +36,7 @@ import com.zaaach.citypicker.model.LocateState;
 import com.zaaach.citypicker.model.LocatedCity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,6 +49,12 @@ import butterknife.ButterKnife;
 public class ShowFileAllActivity extends BaseActivity {
     @BindView(R.id.all_but_hotfile)
     RadioButton allButHotfile;
+    @BindView(R.id.file_linearLayout_search)
+    LinearLayout fileLinearLayoutSearch;
+    @BindView(R.id.file_search_text)
+    TextView fileSearchText;
+    @BindView(R.id.file_search_img)
+    ImageView fileSearchImg;
     @BindView(R.id.all_but_ishot)
     RadioButton allButIshot;
     @BindView(R.id.all_but_Coming)
@@ -73,6 +85,32 @@ public class ShowFileAllActivity extends BaseActivity {
     }
     @Override
     public void initData() {
+        fileSearchImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(fileLinearLayoutSearch, "translationX", 0f, -380f);
+//      设置移动时间
+                objectAnimator.setDuration(1000);
+//      开始动画
+                objectAnimator.start();
+
+            }
+        });
+
+        fileSearchText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(fileLinearLayoutSearch, "translationX", -380f, 0f);
+//      设置移动时间
+                objectAnimator.setDuration(1000);
+//      开始动画
+                objectAnimator.start();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(ShowFileAllActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                Calendar calendar = Calendar.getInstance();
+
+            }
+        });
         //开始定位，这里模拟一下定位
         mlocationClient = new AMapLocationClient(this);
         //设置定位监听
@@ -159,14 +197,8 @@ public class ShowFileAllActivity extends BaseActivity {
 
             }
         });
+
         areaPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1=new Intent(ShowFileAllActivity.this,AreaActivity.class);
-                startActivity(intent1);
-            }
-        });
-        areaName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {

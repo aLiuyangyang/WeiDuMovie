@@ -45,6 +45,7 @@
                 android:layout_toRightOf="@id/details_image"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:textSize="@dimen/sp_12"
+                android:textColor="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </RelativeLayout>

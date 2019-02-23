@@ -44,7 +44,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.baidu.mapapi.BMapManager.getContext;
 
 /**
  * date:2019/1/27
@@ -225,12 +224,12 @@ public class PopuWindowFileReview implements IView {
                 }
                 Toast.makeText(context, loginBean.getMessage(), Toast.LENGTH_SHORT).show();
             }else if (loginBean.getMessage().equals("请先登陆")){
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("您还没有登录，确认要去登录吗?");
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        Intent intent = new Intent(context, LoginActivity.class);
                         context.startActivity(intent);
                     }
                 });

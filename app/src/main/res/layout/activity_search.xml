@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/dp_40"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.showcinemaactivity.SearchActivity">
+   <include layout="@layout/include_nodata"/>
+   <RelativeLayout
+       android:id="@+id/search_nones"
+       android:visibility="gone"
+       android:layout_marginBottom="@dimen/dp_20"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+      <ImageView
+          android:id="@+id/serch_pic"
+          android:background="@mipmap/searcherror"
+          android:layout_centerVertical="true"
+          android:layout_centerHorizontal="true"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:layout_below="@id/serch_pic"
+          android:text="抱歉,没有找到您要查找的影院！"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="@dimen/dp_10"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+   </RelativeLayout>
+   <com.jcodecraeer.xrecyclerview.XRecyclerView
+       android:id="@+id/search_xrecy"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+</RelativeLayout>

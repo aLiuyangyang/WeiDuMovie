@@ -37,7 +37,6 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
     public void initData() {
         sharedPreferences=getSharedPreferences("UserMessage",MODE_PRIVATE);
         edit = sharedPreferences.edit();
-//        WeiXinUtil.reg(WXEntryActivity.this).handleIntent(getIntent(),this);
         WeiXinUtil.reg(WXEntryActivity.this).handleIntent(getIntent(),this);
     }
 

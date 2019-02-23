@@ -153,7 +153,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/personal_feedback"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_90"
             android:layout_marginLeft="@dimen/dp_24"

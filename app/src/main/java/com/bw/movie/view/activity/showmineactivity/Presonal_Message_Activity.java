@@ -51,7 +51,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.baidu.mapapi.BMapManager.getContext;
 
 public class Presonal_Message_Activity extends BaseActivity {
     @BindView(R.id.film_details_back)
@@ -233,7 +232,7 @@ public class Presonal_Message_Activity extends BaseActivity {
                     builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(getContext(), LoginActivity.class);
+                            Intent intent = new Intent(Presonal_Message_Activity.this, LoginActivity.class);
                             startActivity(intent);
                             finish();
                         }

@@ -85,6 +85,8 @@ public class Constant {
     public static String SysMsgList_Path="tool/v1/verify/findAllSysMsgList?page=%d&count=5";
     //查询用户当前未读消息数量
     public static String MessageCount_Path="tool/v1/verify/findUnreadMessageCount";
-  
-
+  //系统消息读取状态修改
+  public static String SysMsgStatus_Path="tool/v1/verify/changeSysMsgStatus?id=%d";
+//根据电影名称模糊查询电影院
+    public static String AllCinemas="cinema/v1/findAllCinemas?page=%d&count=10&cinemaName=%s";
 }

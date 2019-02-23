@@ -30,6 +30,8 @@ import com.bw.movie.bean.PayResult;
 import com.bw.movie.bean.PayTranDataBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.utils.SeatTable;
+import com.bw.movie.view.activity.showcinemaactivity.FailuerActivity;
+import com.bw.movie.view.activity.showcinemaactivity.SuccessActivity;
 import com.bw.movie.wxapi.WXPayEntryActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -95,9 +97,15 @@ public class ChoseseatActivity extends BaseActivity {
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
+                        Intent intent=new Intent(ChoseseatActivity.this,SuccessActivity.class);
+                        startActivity(intent);
+                        finish();
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         //showAlert(PayDemoActivity.this, getString(R.string.pay_success) + payResult);
                     } else {
+                        Intent intent=new Intent(ChoseseatActivity.this,FailuerActivity.class);
+                        startActivity(intent);
+                        finish();
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         //showAlert(PayDemoActivity.this, getString(R.string.pay_failed) + payResult);
                     }
@@ -205,8 +213,6 @@ public class ChoseseatActivity extends BaseActivity {
                         map.put("amount",num+"");
                         map.put("sign",jmSign);
                         setPost(Constant.DingDan_Path,BuyBean.class,map);
-
-
                     }
                 }
 
@@ -242,10 +248,8 @@ public class ChoseseatActivity extends BaseActivity {
     @Override
     public void success(Object data) {
         if (data instanceof BuyBean) {
-            BuyBean buyBean = (BuyBean) data;
+            final BuyBean buyBean = (BuyBean) data;
             String message = buyBean.getMessage();
-            Toast.makeText(ChoseseatActivity.this, message, Toast.LENGTH_SHORT).show();
-
             if (message.equals("下单成功")) {  //下单成功则弹出支付
                 final String orderId = buyBean.getOrderId();
                 PayTranDataBean dataBean = new PayTranDataBean(orderId, (int) totalPrice);
@@ -258,6 +262,7 @@ public class ChoseseatActivity extends BaseActivity {
                                map.put("payType",1+"");
                                map.put("orderId",orderId);
                                setPost(Constant.Pay_Path,PayBeanTwo.class,map);
+                               mPopupWindow.dismiss();
                            }else if(mZhifubao_btn.isChecked()){
                                Map<String, String> map = new HashMap<>();
                                map.put("payType",2+"");
@@ -265,20 +270,22 @@ public class ChoseseatActivity extends BaseActivity {
                                setPost(Constant.Pay_Path,AliBean.class,map);
                                mPopupWindow.dismiss();
                             }
+                            showToast(buyBean.getMessage());
                         }
                     });
             }
         }
         if(data instanceof PayBeanTwo){
-            final PayBeanTwo payBeanTwo = (PayBeanTwo) data;
-            Intent intent = new Intent(ChoseseatActivity.this,WXPayEntryActivity.class);
-            intent.putExtra("paybean",payBeanTwo);
-            startActivity(intent);
+            if (data instanceof PayBeanTwo) {
+                final PayBeanTwo payBeanTwo = (PayBeanTwo) data;
+                    Intent intent = new Intent(ChoseseatActivity.this, WXPayEntryActivity.class);
+                    intent.putExtra("paybean", payBeanTwo);
+                    startActivity(intent);
+            }
         }else if(data instanceof AliBean){
             AliBean aliBean= (AliBean) data;
             final String orderIndo = aliBean.getResult();
             Runnable payRunnable = new Runnable() {
-
                 @Override
                 public void run() {
                     PayTask alipay = new PayTask(ChoseseatActivity.this);

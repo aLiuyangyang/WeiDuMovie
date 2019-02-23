@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bw.movie.R;
 import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.MinecinemaBean;
+import com.bw.movie.view.activity.showcinemaactivity.DetailsOfCinemaActivity;
 import com.bw.movie.view.activity.showfileactivity.DetailsActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -57,6 +58,14 @@ public class MineCareRecyAdapter extends RecyclerView.Adapter<MineCareRecyAdapte
         viewHolder.careCinemaSim.setImageURI(parse);
         viewHolder.careCinemaName.setText(list.get(i).getName());
         viewHolder.careCinemaBrief.setText(list.get(i).getAddress());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,DetailsOfCinemaActivity.class);
+                intent.putExtra("id",list.get(i).getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

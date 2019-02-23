@@ -4,45 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.logandregactivity.ShowActivity">
+    android:orientation="vertical">
     <FrameLayout
-        android:id="@+id/flPager"
-        android:layout_weight="1"
+        android:id="@+id/three_frag"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        ></FrameLayout>
 
-    <RadioGroup
-        android:paddingLeft="@dimen/dp_20"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_100"
+        android:layout_alignParentBottom="true"
+        >
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/success_button_movie"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:src="@mipmap/com_icon_film_fault" />
+    <ImageView
+        android:id="@+id/success_button_movies"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70"
+        android:layout_marginLeft="@dimen/dp_35"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:src="@mipmap/com_icon_film_selected"
+        />
+
+    <ImageView
+        android:id="@+id/success_button_cinema"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_show"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_90">
-        <RadioButton
-            android:id="@+id/rbFilm"
-            android:button="@null"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:layout_width="@dimen/dp_60"
-            android:background="@drawable/show_film_select"
-            android:layout_marginTop="10dp"
-            android:layout_height="@dimen/dp_60" />
-        <RadioButton
-            android:id="@+id/rbCinema"
-            android:button="@null"
-            android:layout_width="@dimen/dp_60"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginLeft="@dimen/dp_50"
-            android:background="@drawable/show_cinema_select"
-            android:layout_height="@dimen/dp_60" />
-        <RadioButton
-            android:id="@+id/rbMine"
-            android:button="@null"
-            android:layout_width="@dimen/dp_60"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginLeft="@dimen/dp_50"
-            android:background="@drawable/show_mine_select"
-            android:layout_height="@dimen/dp_60" />
-    </RadioGroup>
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:src="@mipmap/com_icon_cinema_default" />
+    <ImageView
+        android:id="@+id/success_button_cinemas"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:src="@mipmap/com_icon_cinema_selected"
+        android:visibility="invisible"
+        />
+
+    <ImageView
+        android:id="@+id/success_button_mine"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="45dp"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:src="@mipmap/com_icon_my_default" />
+    <ImageView
+        android:id="@+id/success_button_mines"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_40"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:src="@mipmap/com_icon_my_selected"
+        android:visibility="invisible"
+        />
+
 </RelativeLayout>

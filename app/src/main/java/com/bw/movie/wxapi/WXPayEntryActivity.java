@@ -12,6 +12,8 @@ import com.bw.movie.R;
 import com.bw.movie.bean.PayBeanTwo;
 import com.bw.movie.utils.MyApp;
 import com.bw.movie.utils.WeiXinUtil;
+import com.bw.movie.view.activity.showcinemaactivity.FailuerActivity;
+import com.bw.movie.view.activity.showcinemaactivity.SuccessActivity;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -76,13 +78,20 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             if (resp.errCode == -2) {
                // ToastUtil.getInstance().setToastUtil("用户已取消");
                // EventBus.getDefault().postSticky(new CommonBean("pay_no","0001"));
+                Intent intent=new Intent(this,FailuerActivity.class);
+                startActivity(intent);
                 finish();
                 Log.i("TAG",resp.getType()+"");
             }else if (resp.errCode == 0) {
                // ToastUtil.getInstance().setToastUtil("支付成功");
                 //EventBus.getDefault().postSticky(new CommonBean("pay_ok","0000"));
+                Intent intent=new Intent(this,SuccessActivity.class);
+                startActivity(intent);
                 finish();
             }else if (resp.errCode == -1) {
+                Intent intent=new Intent(this,FailuerActivity.class);
+                startActivity(intent);
+                finish();
                 //ToastUtil.getInstance().setToastUtil("支付错误,请稍后重试");
                 finish();
             }

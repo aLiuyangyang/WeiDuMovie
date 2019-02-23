@@ -74,7 +74,6 @@
                 android:textSize="@dimen/sp_12" />
         </LinearLayout>
         <TextView
-            android:id="@+id/t"
             android:text="￥"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/dp_95"

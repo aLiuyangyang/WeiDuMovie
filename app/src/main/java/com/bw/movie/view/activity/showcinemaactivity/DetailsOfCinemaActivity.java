@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,7 +21,6 @@ import android.widget.TextView;
 import com.bw.movie.R;
 import com.bw.movie.adapter.showfile_adapter.Camera_Banner_Adapter;
 import com.bw.movie.adapter.showfile_adapter.ShowFile_Schedule_Adapter;
-import com.bw.movie.adapter.showfile_adapter.ShowFilm_Coming_Adapter;
 import com.bw.movie.base.BaseActivity;
 import com.bw.movie.bean.Camera_BannerBean;
 import com.bw.movie.bean.CinemaDetailsBean;
@@ -31,9 +29,7 @@ import com.bw.movie.bean.EventBusMessage;
 import com.bw.movie.bean.MovieScheduleBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.view.activity.logandregactivity.LoginActivity;
-import com.bw.movie.view.activity.showfileactivity.AreaActivity;
 import com.bw.movie.view.activity.showfileactivity.ChoseseatActivity;
-import com.bw.movie.view.activity.showmineactivity.Presonal_Message_Activity;
 import com.bw.movie.view.fragment.show_cinema_Fragment.CinemaPopupDetailFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -207,12 +203,7 @@ public class DetailsOfCinemaActivity extends BaseActivity {
         });
         detailsOfRecy.setAdapter(showFile_schedule_adapter);
 
-        ditus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DetailsOfCinemaActivity.this, AreaActivity.class));
-            }
-        });
+
     }
 
     @Override
@@ -224,11 +215,10 @@ public class DetailsOfCinemaActivity extends BaseActivity {
     public void success(Object data) {
         if (data instanceof CinemaDetailsBean) {
             mCinemaDetailsBean = (CinemaDetailsBean) data;
+            CinemaDetailsBean.ResultBean mResult = mCinemaDetailsBean.getResult();
 
-            mResult = mCinemaDetailsBean.getResult();
             CinemaPopupDetailsBean detailsBean = new CinemaPopupDetailsBean(mResult.getAddress(), mResult.getId(), mResult.getPhone(), mResult.getVehicleRoute());
             EventBus.getDefault().postSticky(detailsBean);
-
             if (mCinemaDetailsBean.getStatus().equals("0000")) {
                 mName = mCinemaDetailsBean.getResult().getName();
                 mAddress = mCinemaDetailsBean.getResult().getAddress();

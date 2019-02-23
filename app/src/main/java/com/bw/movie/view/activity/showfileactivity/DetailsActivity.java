@@ -37,7 +37,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
-import static com.baidu.mapapi.BMapManager.getContext;
 
 /**
  * date:2019/1/26

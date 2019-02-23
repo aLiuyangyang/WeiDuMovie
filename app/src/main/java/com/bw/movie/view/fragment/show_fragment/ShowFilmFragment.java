@@ -2,6 +2,7 @@ package com.bw.movie.view.fragment.show_fragment;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
@@ -11,6 +12,7 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,9 +35,7 @@ import com.bw.movie.bean.ShowFile_HotShopBean;
 import com.bw.movie.bean.ShowFile_NewShowingBean;
 import com.bw.movie.utils.Constant;
 import com.bw.movie.utils.ImageViewAnimationHelper;
-import com.bw.movie.view.activity.showfileactivity.AreaActivity;
 import com.bw.movie.view.activity.showfileactivity.ShowFileAllActivity;
-import com.bw.movie.view.fragment.show_mine_Fragment.CinemaFragment;
 import com.zaaach.citypicker.CityPicker;
 import com.zaaach.citypicker.adapter.OnPickListener;
 import com.zaaach.citypicker.model.City;
@@ -62,8 +62,8 @@ public class ShowFilmFragment extends BaseFragment {
     @BindView(R.id.newShowing_Recy)
     RecyclerView newShowingRecy;
     Unbinder unbinder;
-    @BindView(R.id.area_place)
-    ImageView areaPlace;
+    @BindView(R.id.area_places)
+    ImageView area_places;
     @BindView(R.id.area_name)
     TextView areaName;
     @BindView(R.id.recyc_flow)
@@ -172,16 +172,12 @@ public class ShowFilmFragment extends BaseFragment {
                 objectAnimator.setDuration(1000);
 //      开始动画
                 objectAnimator.start();
-
+                InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
 
-        areaPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(),AreaActivity.class));
-            }
-        });
+
         //开始定位，这里模拟一下定位
         mlocationClient = new AMapLocationClient(getActivity());
         //设置定位监听
@@ -276,7 +272,7 @@ public class ShowFilmFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.hotAll_HotFile, R.id.hotAll_IsHot, R.id.hotAll_Coming,R.id.area_name})
+    @OnClick({R.id.hotAll_HotFile,R.id.area_places,R.id.hotAll_IsHot, R.id.hotAll_Coming,R.id.area_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.hotAll_HotFile:
@@ -294,7 +290,7 @@ public class ShowFilmFragment extends BaseFragment {
                 intentc.putExtra("flag", 3);
                 startActivity(intentc);
                 break;
-            case R.id.area_name:
+            case R.id.area_places:
                 if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
                     String[] mStatenetwork = new String[]{
                             Manifest.permission.ACCESS_COARSE_LOCATION,

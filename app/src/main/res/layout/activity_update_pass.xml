@@ -89,7 +89,6 @@
             android:layout_marginRight="20dp"
             />
         <TextView
-            android:id="@+id/personal_meassage_phone1"
             android:layout_width="wrap_content"
             android:layout_below="@id/personal_phone_messag"
             android:layout_height="wrap_content"
