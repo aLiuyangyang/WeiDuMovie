@@ -202,7 +202,7 @@ public class Presonal_Message_Activity extends BaseActivity {
                 }
                 personal_emails_count.setText(presonalMessageBean.getResult().getEmail());
             } else {
-                showToast(presonalMessageBean.getMessage());
+                showToast(this,presonalMessageBean.getMessage());
             }
         } else if (data instanceof UploadHeadPicBean) {
             UploadHeadPicBean uploadHeadPicBean = (UploadHeadPicBean) data;
@@ -242,7 +242,7 @@ public class Presonal_Message_Activity extends BaseActivity {
                     alertDialog.show();
                 }
 
-                showToast(updateUserBean.getMessage());
+                showToast(this,updateUserBean.getMessage());
             }
         }
     }

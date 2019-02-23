@@ -50,8 +50,25 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
     }
 
     //吐司基类
-    public void showToast(String msg){
+   /* public void showToast(String msg){
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }*/
+    private static Toast toast;//在类前面声明吐司，确保在这个页面只有一个吐司
+
+    //需要谈吐司的地方调用showToast()
+
+    public static void showToast(Context context, String msg) {
+
+
+
+        if (toast == null) {
+            toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+        } else {
+            toast.cancel();//关闭吐司显示
+            toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+        }
+
+        toast.show();//重新显示吐司
     }
 
     //log日志

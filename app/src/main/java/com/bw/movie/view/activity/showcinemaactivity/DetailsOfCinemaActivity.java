@@ -104,7 +104,6 @@ public class DetailsOfCinemaActivity extends BaseActivity {
     }
 
 
-
     @Override
     public void initData() {
         sharedPreferences=getSharedPreferences("UserMessage",MODE_PRIVATE);
@@ -122,16 +121,8 @@ public class DetailsOfCinemaActivity extends BaseActivity {
             }
         });
 
-
-
-
-
-      
-
-
-
-
-        detailsAddr.setOnClickListener(new View.OnClickListener() {
+        
+        ditus.setOnClickListener(new View.OnClickListener() {
 
             private PopupWindow mPopupWindow;
             View inflate = View.inflate(DetailsOfCinemaActivity.this, R.layout.filmactivity_item_details, null);
@@ -212,13 +203,15 @@ public class DetailsOfCinemaActivity extends BaseActivity {
     }
 
     @Override
+
     public void success(Object data) {
         if (data instanceof CinemaDetailsBean) {
             mCinemaDetailsBean = (CinemaDetailsBean) data;
-            CinemaDetailsBean.ResultBean mResult = mCinemaDetailsBean.getResult();
 
+            CinemaDetailsBean.ResultBean mResult = mCinemaDetailsBean.getResult();
             CinemaPopupDetailsBean detailsBean = new CinemaPopupDetailsBean(mResult.getAddress(), mResult.getId(), mResult.getPhone(), mResult.getVehicleRoute());
             EventBus.getDefault().postSticky(detailsBean);
+
             if (mCinemaDetailsBean.getStatus().equals("0000")) {
                 mName = mCinemaDetailsBean.getResult().getName();
                 mAddress = mCinemaDetailsBean.getResult().getAddress();

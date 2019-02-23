@@ -37,7 +37,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
-
 /**
  * date:2019/1/26
  * author:孙佳鑫(DELL)
@@ -171,7 +170,7 @@ public class DetailsActivity extends BaseActivity {
                     details_info.getResult().setFollowMovie(2);
                     movieDetailsHomeXin.setImageResource(R.mipmap.com_icon_collection_default);
                 }
-                showToast(attentionBean.getMessage());
+                showToast(this,attentionBean.getMessage());
 
             }else {
                 if (attentionBean.getMessage().equals("请先登陆")) {

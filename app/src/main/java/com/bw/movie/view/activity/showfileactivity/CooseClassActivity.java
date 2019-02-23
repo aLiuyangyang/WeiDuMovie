@@ -119,8 +119,7 @@ public class CooseClassActivity extends BaseActivity {
             }
 
         });
-
-    }
+           }
 
     @Override
     public int getContent()  {

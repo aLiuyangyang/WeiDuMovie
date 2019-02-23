@@ -104,8 +104,8 @@ public class Recommend_Fragment extends BaseFragment {
         public void success(Object data) {
                 if (data instanceof ShowCinemaBean){
                     ShowCinemaBean showCinemaBean= (ShowCinemaBean) data;
-
-
+                    List<ShowCinemaBean.ResultBean> result1 = showCinemaBean.getResult();
+                    if(result1.size()!=0){
                         if (showCinemaBean.getStatus().equals("0000")){
                             List<ShowCinemaBean.ResultBean> result = showCinemaBean.getResult();
                             if (page==1){
@@ -115,7 +115,9 @@ public class Recommend_Fragment extends BaseFragment {
                             }
                             page++;
                         }
-
+                    }else{
+                        showToast(getContext(),"暂无数据");
+                    }
                 }else if (data instanceof AttentionBean){
                         AttentionBean attentionBean= (AttentionBean) data;
                         if (attentionBean.getStatus().equals("0000")){
@@ -125,7 +127,7 @@ public class Recommend_Fragment extends BaseFragment {
                                 showCinema_adapter.add(index);
                             }
                             EventBus.getDefault().post(new EventBusMessage(1));
-                               showToast(attentionBean.getMessage());
+                               showToast(getContext(),attentionBean.getMessage());
                         }else {
                             if (attentionBean.getMessage().equals("请先登陆")) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

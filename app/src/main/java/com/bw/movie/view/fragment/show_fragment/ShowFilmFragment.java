@@ -341,7 +341,7 @@ public class ShowFilmFragment extends BaseFragment {
                     if (System.currentTimeMillis() - exitTime > 2000) {
 
                         exitTime = System.currentTimeMillis();
-                        showToast("再按一次退出程序");
+                        showToast(getContext(),"再按一次退出程序");
                     } else {
                         getActivity().finish();
                         System.exit(0);

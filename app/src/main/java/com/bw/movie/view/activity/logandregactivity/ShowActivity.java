@@ -101,8 +101,12 @@ public class ShowActivity extends BaseActivity {
                 mSuccess_button_cinemas.setVisibility(View.INVISIBLE);
                 mSuccess_button_mine.setVisibility(View.VISIBLE);
                 mSuccess_button_mines.setVisibility(View.INVISIBLE);
+
+
                 android.support.v4.app.FragmentManager movie = getSupportFragmentManager();
+
                 //FragmentManager movie = getSupportFragmentManager();
+
                 FragmentTransaction transactionFilm = movie.beginTransaction();
                 transactionFilm.hide(mMineFragment);
                 transactionFilm.hide(mCinemaFragment);
@@ -116,8 +120,12 @@ public class ShowActivity extends BaseActivity {
                 mSuccess_button_cinemas.setVisibility(View.VISIBLE);
                 mSuccess_button_mine.setVisibility(View.VISIBLE);
                 mSuccess_button_mines.setVisibility(View.INVISIBLE);
+
+
                 android.support.v4.app.FragmentManager cinema = getSupportFragmentManager();
+
                 //FragmentManager cinema = getSupportFragmentManager();
+
                 FragmentTransaction transactionCinema = cinema.beginTransaction();
                 if (cinema.findFragmentByTag(mCinemaFragment.getClass().getName()) == null) {
                     transactionCinema.add(R.id.three_frag, mCinemaFragment, mCinemaFragment.getClass().getName());
@@ -134,8 +142,12 @@ public class ShowActivity extends BaseActivity {
                 mSuccess_button_cinemas.setVisibility(View.INVISIBLE);
                 mSuccess_button_mine.setVisibility(View.INVISIBLE);
                 mSuccess_button_mines.setVisibility(View.VISIBLE);
+
+
                 android.support.v4.app.FragmentManager mine = getSupportFragmentManager();
+
                 //FragmentManager mine = getSupportFragmentManager();
+
                 FragmentTransaction transactionMine = mine.beginTransaction();
                 if (mine.findFragmentByTag(mMineFragment.getClass().getName()) == null) {
                     transactionMine.add(R.id.three_frag, mMineFragment, mMineFragment.getClass().getName());

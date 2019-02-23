@@ -197,7 +197,7 @@ public class ChoseseatActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if(mB==0.0){
-                    showToast("请选择座位");
+                    showToast(ChoseseatActivity.this,"请选择座位");
                 }else{
                     showPopupWindow();
                     if (num==0){

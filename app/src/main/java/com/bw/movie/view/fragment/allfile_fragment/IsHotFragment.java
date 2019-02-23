@@ -134,7 +134,7 @@ public class IsHotFragment extends BaseFragment {
                     showAllHotFile_adapter.add(index);
                 }
                 EventBus.getDefault().post(new EventBusMessage(1));
-                showToast(attentionBean.getMessage());
+                showToast(getContext(),attentionBean.getMessage());
             }else {
                 if (attentionBean.getMessage().equals("请先登陆")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

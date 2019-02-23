@@ -9,7 +9,6 @@ import android.os.StrictMode;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
-
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
