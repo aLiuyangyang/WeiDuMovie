@@ -81,14 +81,14 @@ public class RegisterActivity extends BaseActivity {
             RegisterBean registerBean = (RegisterBean) data;
             if (registerBean.getStatus().equals("0000")) {
                 //注册成功之后到首页
-                showToast(registerBean.getMessage());
+                showToast(this,registerBean.getMessage());
                 Map<String, String> map = new HashMap<>();
                 map.put("phone", mPhone);
                 map.put("pwd", EncryptUtil.encrypt(mPass));
                 setPost(Constant.Login_Path, LoginBean.class, map);
 
             } else {
-                showToast(registerBean.getMessage());
+                showToast(this,registerBean.getMessage());
             }
         }else if(data instanceof LoginBean){
             LoginBean loginBean= (LoginBean) data;
@@ -161,11 +161,11 @@ public class RegisterActivity extends BaseActivity {
                 String mEmil = regEmil.getText().toString().trim();
                 mPass = regPass.getText().toString().trim();
                 if (mName.equals("")||mDtae.equals("")|| mPhone.equals("")||mEmil.equals("")|| mPass.equals("")){
-                    showToast("请填写完整");
+                    showToast(this,"请填写完整");
                 }else if (!RegularUtil.isMobile(mPhone)){
-                    showToast("请填写正确的手机号");
+                    showToast(this,"请填写正确的手机号");
                 }else if (!RegularUtil.isEmail(mEmil)){
-                    showToast("请填写正确的邮箱格式");
+                    showToast(this,"请填写正确的邮箱格式");
                 }else {
                     map.put("nickName",mName);
                     map.put("phone", mPhone);

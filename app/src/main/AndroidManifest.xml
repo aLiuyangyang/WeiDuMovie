@@ -47,7 +47,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
 
-        android:theme="@style/AppTheme.NoTitle_FullScreen">
+        android:theme="@style/TranslucentTheme">
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -94,7 +94,7 @@
         <activity android:name=".view.activity.showfileactivity.ChooseCinemaActivity" />
         <activity android:name=".view.activity.showfileactivity.CooseClassActivity" />
         <activity android:name=".view.activity.showfileactivity.DetailsActivity" />
-        <activity android:name=".view.activity.showfileactivity.AreaActivity" />
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="slTiOBlO6mj5FIUGUnv5baxwbZdSXA8T" />

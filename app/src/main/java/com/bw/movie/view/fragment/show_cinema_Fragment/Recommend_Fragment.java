@@ -116,7 +116,7 @@ public class Recommend_Fragment extends BaseFragment {
                             page++;
                         }
                     }else{
-                        showToast("暂无数据");
+                        showToast(getContext(),"暂无数据");
                     }
                 }else if (data instanceof AttentionBean){
                         AttentionBean attentionBean= (AttentionBean) data;
@@ -127,7 +127,7 @@ public class Recommend_Fragment extends BaseFragment {
                                 showCinema_adapter.add(index);
                             }
                             EventBus.getDefault().post(new EventBusMessage(1));
-                               showToast(attentionBean.getMessage());
+                               showToast(getContext(),attentionBean.getMessage());
                         }else {
                             if (attentionBean.getMessage().equals("请先登陆")) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

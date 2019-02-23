@@ -159,13 +159,7 @@ public class ShowFileAllActivity extends BaseActivity {
 
             }
         });
-        areaPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1=new Intent(ShowFileAllActivity.this,AreaActivity.class);
-                startActivity(intent1);
-            }
-        });
+
         areaName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

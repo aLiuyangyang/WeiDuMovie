@@ -66,7 +66,7 @@ public class OpinionActivity extends BaseActivity {
                 startActivity(intent);
                 finish();
             } else {
-                showToast(feedBackBean.getMessage());
+                showToast(this,feedBackBean.getMessage());
             }
         }
     }
@@ -81,7 +81,7 @@ public class OpinionActivity extends BaseActivity {
             case R.id.opin_submit:
                 mineEdits = mineEdit.getText().toString().trim();
                 if (mineEdits.equals("")) {
-                    showToast("请填写您的意见");
+                    showToast(this,"请填写您的意见");
                 } else {
                     Map<String, String> map = new HashMap<>();
                     map.put("content", mineEdits);

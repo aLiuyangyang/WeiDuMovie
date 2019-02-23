@@ -56,7 +56,7 @@ public class UpdatePassActivity extends BaseActivity {
         String resetPass = personalResetPass.getText().toString().trim();
         String okPass = personalOkPass.getText().toString().trim();
         if (resetPass.equals("")||okPass.equals("")||pass.equals("")){
-            showToast("请填写完整");
+            showToast(UpdatePassActivity.this,"请填写完整");
         }else {
             Map<String, String> map = new HashMap<>();
             map.put("oldPwd", EncryptUtil.encrypt(pass));
@@ -78,18 +78,18 @@ public class UpdatePassActivity extends BaseActivity {
        if (data instanceof UpdatePassBean){
            UpdatePassBean updatePassBean= (UpdatePassBean) data;
            if (updatePassBean.getStatus().equals("0000")){
-               showToast(updatePassBean.getMessage());
+               showToast(this,updatePassBean.getMessage());
                Intent intent=new Intent(this,LoginActivity.class);
                startActivity(intent);
                finish();
            }else {
-               showToast(updatePassBean.getMessage());
+               showToast(this,updatePassBean.getMessage());
            }
        }
     }
 
     @Override
     public void fail(String error) {
-     showToast(error);
+     showToast(this,error);
     }
 }
